@@ -4,7 +4,7 @@
 #' @export
 analyzeRS = function(dat = dat_rs, grp, B.CP=500, x1='d1', x2='d2') {
 
-  cores_n = detectCores()
+  cores_n = parallel::detectCores()
   doParallel::registerDoParallel(cores_n)
   `%dopar%` = foreach::`%dopar%`
   dat[, d1 := dat[, get(x1)]]
