@@ -1,0 +1,41 @@
+---
+title: RIF and PMB combination
+output: 
+  md_document:
+      fig_width: 7
+      fig_height: 5
+---
+
+# Background 
+
+We looked for combination therapies of largely neglected and misused
+antibiotics. RIF+PMB combination stood out as a promising approach against
+scpectrum of clinical isolates.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300)
+knitr::opts_knit$set(global.par = TRUE)
+library('data.table')
+library('tidyverse')
+library('DT')
+library('cowplot')
+library('BIGL')
+
+devtools::document('input/r')
+suppressMessages(devtools::load_all('input/r'))
+
+options(datatable.print.nrows=20)
+
+theme_set(theme_html())
+update_geom_defaults("point", list(size = 0.9))
+update_geom_defaults("line", list(size = 0.5))
+.text_size = 3
+.point_size = 2
+.facet_size = 8
+theme_update(
+  #legend.position = "bottom",
+  strip.text.y = element_text(size = 8)
+)
+```
+

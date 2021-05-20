@@ -1,0 +1,18 @@
+Package: rpp
+Title: RIF and PMB against PA
+Version: 0.0.0.1
+Authors@R: 
+    person(given = "Vallo",
+           family = "Varik",
+           role = c("aut", "cre"),
+           email = "vvarik.gmail@gmail.com",
+           comment = c(ORCID = "0000-0001-6900-6986"))
+Description: Accessory functions for RIF and PMB against PA
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends: data.table
+Imports: 
+    smoothmest, 
+    data.table

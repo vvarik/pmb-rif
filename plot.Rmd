@@ -1,0 +1,54 @@
+---
+title: Various plots
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300)
+knitr::opts_knit$set(global.par = TRUE)
+library('data.table')
+library('tidyverse')
+library('DT')
+library('cowplot')
+library('BIGL')
+
+devtools::document('input/r')
+suppressMessages(devtools::load_all('input/r'))
+
+options(datatable.print.nrows=20)
+
+theme_set(theme_pdf())
+update_geom_defaults("point", list(size = 0.9))
+update_geom_defaults("line", list(size = 0.5))
+.text_size = 3
+.point_size = 2
+.facet_size = 8
+theme_update(
+  #legend.position = "bottom",
+  strip.text.y = element_text(size = 8)
+)
+```
+
+```{r}
+
+```
+
+
+```{r}
+pa14 = c(
+  intra = list(readRDS('../analysis/data/r_obj/rs_pa14_cfu_intra.rds')),
+  pH7.4 = list(readRDS('../analysis/data/r_obj/rs_pa14_cfu_pH7.4.rds')),
+  pH5.5 = list(readRDS('../analysis/data/r_obj/rs_pa14_cfu_pH5.5.rds'))
+)
+
+foo = sapply(pa14[[1]], function(x) unique(x$rsl$data$mut))
+foo = str_pad(foo, 2, pad=0)
+foo = paste0('mut', foo)
+for(i in seq_along(pa14)) names(pa14[[i]]) = foo
+
+p1 = ~{pltDDI(pa14[[1]]$mut00$rsl, main = 'Intra')}
+p2 = ~{pltDDI(pa14[[2]]$mut00$rsl, main = 'pH7.4')}
+p3 = ~{pltDDI(pa14[[3]]$mut00$rsl, main = 'pH5.5')}
+
+plot_grid(p1, p2, p3, NULL)
+```
+
