@@ -71,7 +71,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         "sandybrown", "brown", "white"), breaks = c(-Inf, 0, 
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
-    lit=T,
+    lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", 
     xat = "pretty", yat = "pretty", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
@@ -177,7 +177,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         zcol <- col[zGridFloor - min(zGridFloor, na.rm = TRUE) + 
             1]
     }
-    labnames <- c("Response", "Compound 1", "Compound 2")
+    labnames <- c(zlab, xlab, ylab)
     if (!is.null(attr(data, "orig.colnames"))) 
         labnames <- attr(data, "orig.colnames")
     if (!add) {
