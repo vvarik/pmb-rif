@@ -250,7 +250,7 @@ pltResponseSurface = function (data, fitResult = NULL,
                  )
         axis3d(edge = "x+-", at = xat, labels = xlab)
         axis3d(edge = "y+-", at = yat, labels = ylab)
-        axis3d(edge = "z+-", )
+        axis3d(edge = "z+-")
         mtext3d(labnames[2], edge = "x+-", line = 2)
         mtext3d(labnames[3], edge = "y+-", line = 2)
         mtext3d(labnames[1], edge = "z+-", line = 2)
