@@ -241,6 +241,8 @@ pltResponseSurface = function (data, fitResult = NULL,
                  emission="grey50",       # emission color is grey50
                  marklen = 30,
                  xunit = 'pretty', yunit = 'pretty', zunit='pretty',
+                 front = 'lines',
+                 back = 'lines',
                  xat = xat, xlab = xlab, 
                  yat = yat, ylab = ylab
                  )
