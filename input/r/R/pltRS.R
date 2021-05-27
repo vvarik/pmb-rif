@@ -240,15 +240,22 @@ pltResponseSurface = function (data, fitResult = NULL,
         rgl.bbox(color="grey50",          # grey60 surface and black text
                  emission="grey50",       # emission color is grey50
                  marklen = 30,
-                 xunit = 'pretty', yunit = 'pretty', zunit='pretty',
+                 #xunit = 'pretty', yunit = 'pretty', zunit='pretty',
                  front = 'lines',
                  back = 'lines',
-                 xat = xat, xlab = xlab, 
-                 yat = yat, ylab = ylab
+                 xlen = 0, ylen = 0, zlen = 0,
+                 # xat = xat, xlab = xlab, 
+                 # yat = yat, ylab = ylab
+                 expand = 1.03
                  )
+        axis3d(edge = "x+-", at = xat, labels = format(xlab, 
+            ...))
+        axis3d(edge = "y+-", at = yat, labels = format(ylab, 
+            ...))
+        axis3d(edge = "z+-")
         mtext3d(labnames[2], edge = "x+-", line = 2)
         mtext3d(labnames[3], edge = "y+-", line = 2)
-        mtext3d(labnames[1], edge = "z--", line = 2)
+        mtext3d(labnames[1], edge = "z+-", line = 2)
     }
     persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
         zTransform(zGrid), add = TRUE, col = zcol, alpha = 0.6, 
