@@ -72,7 +72,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
     lit=T,
-    xat = "actual", yat = "actual", plotfun = NULL, ...) 
+    xat = "pretty", yat = "pretty", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
     if (missing(fitResult) & missing(predSurface)) 
