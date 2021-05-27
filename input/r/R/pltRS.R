@@ -237,7 +237,7 @@ pltResponseSurface = function (data, fitResult = NULL,
     if (!add) {
         rgl.bbox(xlen = 0, ylen = 0, zlen = 0, expand = 1.03, 
             color = "#000000", front = "lines", back = "cull")
-        rgl.bbox(color="grey50",          # grey60 surface and black text
+        rgl.bbox(color=c("black", "black"),          # grey60 surface and black text
                  emission="grey50",       # emission color is grey50
                  marklen = 30,
                  #xunit = 'pretty', yunit = 'pretty', zunit='pretty',
@@ -248,8 +248,6 @@ pltResponseSurface = function (data, fitResult = NULL,
                  # yat = yat, ylab = ylab
                  expand = 1.03
                  )
-        #axis3d(edge = "x+-", at = xat, labels = format(xlab, 
-        #    ...))
         axis3d(edge = "x+-", at = xat, labels = xlab)
         axis3d(edge = "y+-", at = yat, labels = ylab)
         axis3d(edge = "z+-", )
