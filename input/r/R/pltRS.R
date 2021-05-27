@@ -115,7 +115,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         if (length(pCols) > 1) 
             pCols <- min[pCols]
         if (any(duplicated(coloredBy[, c("d1", "d2")]))) {
-            coloredBy <- aggregate(coloredBy[, pCols], by = coloredBy[, 
+            coloredBy <- aggregate(coloredBy[, ..pCols], by = coloredBy[, 
                 c("d1", "d2")], FUN = colorfun)
         }
         # cols <- colnames(coloredBy)
