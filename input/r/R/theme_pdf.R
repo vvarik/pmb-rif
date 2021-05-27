@@ -3,8 +3,8 @@
 #' Custom theme for ggplot
 #' @export
 
-theme_pdf = function (base_size = 18, base_family = "", font_size = 18,
-  line_size = 0.5, rel_small = 12/14, rel_tiny = 11/14, rel_large = 18/14) 
+theme_pdf = function (base_size = 16, base_family = "", font_size = 16,
+  line_size = 0.5, rel_small = 12/14, rel_tiny = 11/14, rel_large = 16/14) 
 {
   half_line = font_size/2
   small_size = rel_small * font_size

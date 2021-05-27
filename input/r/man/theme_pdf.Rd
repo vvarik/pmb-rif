@@ -5,13 +5,13 @@
 \title{Custom ggplot theme}
 \usage{
 theme_pdf(
-  base_size = 18,
+  base_size = 16,
   base_family = "",
-  font_size = 18,
+  font_size = 16,
   line_size = 0.5,
   rel_small = 12/14,
   rel_tiny = 11/14,
-  rel_large = 18/14
+  rel_large = 16/14
 )
 }
 \description{
