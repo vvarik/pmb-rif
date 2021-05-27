@@ -71,7 +71,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         "sandybrown", "brown", "white"), breaks = c(-Inf, 0, 
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
-    lit=F,
+    lit=T,
     xat = "actual", yat = "actual", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
