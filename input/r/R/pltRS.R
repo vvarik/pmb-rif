@@ -246,8 +246,8 @@ pltResponseSurface = function (data, fitResult = NULL,
                  xat = xat, xlab = xlab, 
                  yat = yat, ylab = ylab
                  )
-        mtext3d(labnames[2], edge = "x--", line = 2)
-        mtext3d(labnames[3], edge = "y--", line = 2)
+        mtext3d(labnames[2], edge = "x+-", line = 2)
+        mtext3d(labnames[3], edge = "y+-", line = 2)
         mtext3d(labnames[1], edge = "z--", line = 2)
     }
     persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
