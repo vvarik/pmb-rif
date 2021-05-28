@@ -19,7 +19,8 @@ fitManually = function(grp, grp.val, dat = dat_rs) {
     fit = drc::drm(effect ~ dose, ab, data = x,  
       fct=drc::LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
       lowerl=c(min(x$effect), -Inf, -Inf),
-      pmodels = data.frame(ab, 1, ab)
+      pmodels = data.frame(ab, 1, ab),
+      robust = 'median'
     )
 
     # take Emax, BIGL calls it 'm'
