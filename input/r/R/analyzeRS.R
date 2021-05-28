@@ -23,8 +23,8 @@ analyzeRS = function(dat = dat_rs, grp, B.CP=500, x1='d1', x2='d2') {
     rs_loewe = fitSurf(data, marginal_fit, B=B.CP)
 
     if(length(rs_loewe) == 1){
-      marginal_fit = fitManually(grp, i, data)
-      rs_loewe = fitSurf(data, marginal_fit, B=B.CP)
+      marginal_fit2 = fitManually(grp, i, data)
+      rs_loewe = fitSurf(data, marginal_fit2, B=B.CP)
     }
   
     rs_bliss = fitSurf(data, marginal_fit, 'bliss', B.CP)
