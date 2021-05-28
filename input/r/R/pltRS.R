@@ -191,7 +191,7 @@ pltResponseSurface = function (data, fitResult = NULL,
             xat <- match.arg(xat, c("pretty", "actual"))
             if (xat == "pretty") {
                 xlab <- axisTicks(range(transformF(uniqueDoses$d1)), 
-                  log = logScale, nint = 3)
+                  log = logScale, nint = 5)
                 if (logScale && length(xlab) > 4) 
                   xlab <- xlab[!(log10(xlab)%%1)]
             }
@@ -206,7 +206,7 @@ pltResponseSurface = function (data, fitResult = NULL,
             yat <- match.arg(yat, c("pretty", "actual"))
             if (yat == "pretty") {
                 ylab <- axisTicks(range(transformF(uniqueDoses$d2)), 
-                  log = logScale, nint = 3)
+                  log = logScale, nint = 5)
                 if (logScale && length(ylab) > 4) 
                   ylab <- ylab[!(log10(ylab)%%1)]
             }
