@@ -25,7 +25,7 @@ fitManually = function(grp, grp.val, dat = dat_rs) {
     # take Emax, BIGL calls it 'm'
     #coef(fit)[grepl('m', names(coef(fit)))] %>% 
       #setNames(., c('m1', 'm2'))
-    setNames(coef(fit), c('m1', 'm2', 'b', 'e1', 'e2' ))
+    setNames(coef(fit), c('m2', 'm1', 'b', 'e2', 'e1' ))
 
   }
 
