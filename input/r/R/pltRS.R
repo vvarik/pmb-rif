@@ -71,7 +71,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         "sandybrown", "brown", "white"), breaks = c(-Inf, 0, 
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
-    lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", 
+    lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", zlim = NULL,
     xat = "pretty", yat = "pretty", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
@@ -185,6 +185,7 @@ pltResponseSurface = function (data, fitResult = NULL,
             data <- aggregate(effect ~ d1 + d2, data, FUN = plotfun)[, 
                 names(data)]
         plot3d(transformF(data$d1), transformF(data$d2), zTransform(data$effect), 
+          zlim = zlim,
             xlab = "", ylab = "", zlab = "", box = FALSE, axes = FALSE)
         if (!is.numeric(xat)) {
             xat <- match.arg(xat, c("pretty", "actual"))
