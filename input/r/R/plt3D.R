@@ -5,6 +5,8 @@
 #' @export
 plt3D = function(mod){
 
+  clear3d()
+
   pltRS(mod, radius = 0.1, main = '', legend = F,
     zlab = '', xlab='', ylab = '', zlim = c(-4, 4))
  
