@@ -34,7 +34,7 @@ fitManually = function(grp, grp.val, dat = dat_rs) {
  
   marginal_fit = fitMarginals(as.data.frame(foo), 
     # play around with parms 1:3 (Emax1, Emax2, Emin(common))
-    fixed = c('h1' = 1, 'h2' = 1, getParm(bar)[2])
+    fixed = c('h1' = 1, 'h2' = 1, getParm(bar)[1:3])
   )
 
   return(marginal_fit)
