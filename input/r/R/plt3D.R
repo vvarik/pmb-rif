@@ -3,12 +3,12 @@
 #' Mostly a convenience function to have the most common settings/appearance for
 #' manuscript: viewangle, consistent colors, range of z-axis etc.
 #' @export
-plt3D = function(mod){
+plt3D = function(mod, zlim=c(-4, 4)){
 
-  clear3d()
+  #clear3d()
 
-  pltRS(mod, radius = 0.1, main = '', legend = F,
-    zlab = '', xlab='', ylab = '', zlim = c(-4, 4))
+  do.call(pltRS, list(mod, radius = 0.1, main = '', legend = F,
+    zlab = '', xlab='', ylab = '', zlim = zlim))
  
   # View angle 
   rgl_graph_orientation = dget("input/dat/rgl_orientation")
