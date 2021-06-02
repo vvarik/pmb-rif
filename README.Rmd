@@ -8,9 +8,9 @@ output:
 
 # Background 
 
-We looked for combination therapies of largely neglected and misused
-antibiotics. Rifampin and polymyxin B combination stood out as a promising
-approach against scpectrum of clinical isolates.
+We looked for combination therapies of neglected and misused antibiotics.
+Rifampin and polymyxin B combination stood out as a promising approach against
+scpectrum of clinical isolates.
 
 
 ```{r setup, include=FALSE}
@@ -39,3 +39,20 @@ theme_update(
 )
 ```
 
+# Combination
+
+We studied the potential of the rifampicin-polymyxin B combination against
+intra- and extracellular forms of bacteria. Three _P. aeruginosa_ strains and
+two clinical isolates of A. baumannii, E. cloacae, and K. pneumoniae were
+investigated.
+
+```{r}
+
+```
+
+
+# Time-kill
+
+
+
+# Chemical genetic screen
