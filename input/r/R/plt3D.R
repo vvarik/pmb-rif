@@ -5,8 +5,6 @@
 #' @export
 plt3D = function(mod, zlim=c(-4, 4)){
 
-  #clear3d()
-
   do.call(pltRS, list(mod, radius = 0.1, main = '', legend = F,
     zlab = '', xlab='', ylab = '', zlim = zlim))
  
