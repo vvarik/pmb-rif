@@ -46,8 +46,8 @@ isOutlier = function(x, method = 'mad', alpha = 0.05, pvalue = FALSE,
   
   if (any(duplicated(x))) set.seed(9); x = jitter(x, amount = 0.0001)
 
-  upper = quantile(x, 0.75, na.rm=T) + 1.5 * IQR(x)
-  lower = quantile(x, 0.25, na.rm=T) - 1.5 * IQR(x)
+  upper = quantile(x, 0.75, na.rm=T) + 1.5 * IQR(x, na.rm=T)
+  lower = quantile(x, 0.25, na.rm=T) - 1.5 * IQR(x, na.rm=T)
 
   if (method == 'iqr') out = x > upper | x < lower
 
