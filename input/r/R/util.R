@@ -189,6 +189,23 @@ pltDDI = function(x, ...) {
     xlim = c(0.01, 30), ylim = c(0.01, 30), ...)
 }
 
+
+#' @export
+getRS = function (dat, name) {
+  vec = as.character(unique(dat$strain))
+  out = setNames(vector(mode = "list", length = length(vec)), vec)
+  
+  for(i in vec) {
+    cat('*** Took on ', i, '\n')
+    out[[i]] = analyzeRS(dat[strain == i], 'cond')
+  }
+
+  saveRDS(out, paste0('input/dat/tmp/', name, 'rds'))
+
+  out
+}
+
+
 #' @export
 getCFUt0 = function(dat) {
   cfu_t0 = dat[dat$time_h==0, "cfu"]*10^6 # cfu's are recorded cfu/10^6
@@ -203,4 +220,19 @@ getDetLim = function(dat, vol=5) {
   det_lim_effect = log10(1*1000/vol) - log10(cfu_t0)
   det_lim_cfu = log10(cfu_t0) + det_lim_effect
   list(effect=det_lim_effect, cfu=det_lim_cfu)
+}
+
+
+#' @export
+remNonCharcoal = function (dat) {
+  ## remove non-char results for combination and high rif
+  ## duplicates
+  idx_dup1 = duplicated(subset(dat, select=c(date, time_h, d_1, d_2, rep)))
+  idx_dup2 = duplicated(subset(dat, select=c(date, time_h, d_1, d_2, rep)), fromLast = T)
+  idx = idx_dup1 | idx_dup2 
+  idx = idx & dat$time_h!=0  # remove time 0, where duplicates were necessary
+  idx = idx & (dat$d_1==48 | (dat$d_1==4.8 & dat$d_2==1) )  # take only high rif and combo
+  idx = idx & dat$char==0  # take only no-char cases
+  ## apply the filter
+  dat[!idx, ]
 }
