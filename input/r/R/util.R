@@ -189,3 +189,18 @@ pltDDI = function(x, ...) {
     xlim = c(0.01, 30), ylim = c(0.01, 30), ...)
 }
 
+#' @export
+getCFUt0 = function(dat) {
+  cfu_t0 = dat[dat$time_h==0, "cfu"]*10^6 # cfu's are recorded cfu/10^6
+  exp(mean( log(cfu_t0) ) )
+}
+
+
+#' @export
+getDetLim = function(dat, vol=5) {
+  # finds detection limit, returns for effect and for cfu
+  cfu_t0 = findCFUt0(dat)
+  det_lim_effect = log10(1*1000/vol) - log10(cfu_t0)
+  det_lim_cfu = log10(cfu_t0) + det_lim_effect
+  list(effect=det_lim_effect, cfu=det_lim_cfu)
+}
