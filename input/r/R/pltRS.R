@@ -71,7 +71,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         "sandybrown", "brown", "white"), breaks = c(-Inf, 0, 
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
-    lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", zlim = NULL,
+    lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", zlim = NULL, xlim = NULL, ylim = NULL,
     xat = "pretty", yat = "pretty", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
@@ -185,12 +185,12 @@ pltResponseSurface = function (data, fitResult = NULL,
             data <- aggregate(effect ~ d1 + d2, data, FUN = plotfun)[, 
                 names(data)]
         plot3d(transformF(data$d1), transformF(data$d2), zTransform(data$effect), 
-          zlim = zlim,
+          zlim = zlim, xlim = range(transformF(c(data$d1, xlim))), ylim = range(transformF(c(data$d1, ylim))), 
             xlab = "", ylab = "", zlab = "", box = FALSE, axes = FALSE)
         if (!is.numeric(xat)) {
             xat <- match.arg(xat, c("pretty", "actual"))
             if (xat == "pretty") {
-                xlab <- axisTicks(range(transformF(uniqueDoses$d1)), 
+                xlab <- axisTicks(range(transformF(c(uniqueDoses$d1, xlim))), 
                   log = logScale, nint = 5)
                 if (logScale && length(xlab) > 4) 
                   xlab <- xlab[!(log10(xlab)%%1)]
@@ -205,7 +205,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         if (!is.numeric(yat)) {
             yat <- match.arg(yat, c("pretty", "actual"))
             if (yat == "pretty") {
-                ylab <- axisTicks(range(transformF(uniqueDoses$d2)), 
+                ylab <- axisTicks(range(transformF(c(uniqueDoses$d2, ylim))), 
                   log = logScale, nint = 5)
                 if (logScale && length(ylab) > 4) 
                   ylab <- ylab[!(log10(ylab)%%1)]
