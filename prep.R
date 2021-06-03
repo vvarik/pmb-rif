@@ -14,19 +14,19 @@ dat = dat[(d1 %between% c(0.003, 100) | d1==0) & (d2 %between% c(0.003, 100) | d
 dat[is.na(effect), effect := -4.5]
 
 
-# Response surface analysis
-rs = getRS(dat, 'rs')
-
-
-# Time-kill ------------------------------
-
-dtk = fread('input/dat/time-kill.tsv') %>% 
-  remNonCharcoal()
-
-.myLabels <- c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
-  "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
-
-dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
-xaxs = c(0, 2, 4, 6, 10)
-xlabs = c(0, 2, 4, 6, 24)
-dtk[, group := factor(group, levels=1:8, labels=.myLabels)]
+# # Response surface analysis
+# rs = getRS(dat, 'rs')
+# 
+# 
+# # Time-kill ------------------------------
+# 
+# dtk = fread('input/dat/time-kill.tsv') %>% 
+#   remNonCharcoal()
+# 
+# .myLabels <- c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
+#   "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
+# 
+# dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
+# xaxs = c(0, 2, 4, 6, 10)
+# xlabs = c(0, 2, 4, 6, 24)
+# dtk[, group := factor(group, levels=1:8, labels=.myLabels)]
