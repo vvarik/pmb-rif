@@ -21,4 +21,6 @@ plt3D = function(mod, zlim=c(-4.5, 4), xlim=NULL, ylim=NULL){
              interleave(log10T(tmp$d2), log10T(tmp$d2)),
              interleave(tmp$effect,  tmp$predicted),
              lwd=1.5, col=interleave(my_cols, my_cols))
+
+  aspect3d(x=1, y=1, z=1)
 }
