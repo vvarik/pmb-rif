@@ -3,7 +3,7 @@
 #' Mostly a convenience function to have the most common settings/appearance for
 #' manuscript: viewangle, consistent colors, range of z-axis etc.
 #' @export
-plt3D = function(mod, zlim=c(-4, 4)){
+plt3D = function(mod, zlim=c(-4.5, 4)){
 
   do.call(pltRS, list(mod, radius = 0.1, main = '', legend = F,
     zlab = '', xlab='', ylab = '', zlim = zlim))
