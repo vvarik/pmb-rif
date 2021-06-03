@@ -186,7 +186,7 @@ pltResponseSurface = function (data, fitResult = NULL,
                 names(data)]
         plot3d(transformF(data$d1), transformF(data$d2), zTransform(data$effect), 
           zlim = zlim, xlim = range(transformF(c(data$d1, xlim))), ylim = range(transformF(c(data$d1, ylim))), 
-            xlab = "", ylab = "", zlab = "", box = FALSE, axes = FALSE)
+            xlab = "", ylab = "", zlab = "", box = FALSE, axes = FALSE, type = 'n')
         if (!is.numeric(xat)) {
             xat <- match.arg(xat, c("pretty", "actual"))
             if (xat == "pretty") {
