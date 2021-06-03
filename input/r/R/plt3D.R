@@ -16,8 +16,9 @@ plt3D = function(mod, zlim=c(-4.5, 4), xlim=NULL, ylim=NULL){
   interleave = function(v1, v2)  as.vector(rbind(v1,v2))
   tmp = mod$offAxisTable
   my_cols = ifelse(tmp$effect - tmp$predicted>0, "#2166AC", "#B2182B")
-  segments3d(interleave(log10(tmp$d1), log10(tmp$d1)),
-             interleave(log10(tmp$d2), log10(tmp$d2)),
+  log10T = function(z) log10(z + 0.5 * min(z[z != 0]))
+  segments3d(interleave(log10T(tmp$d1), log10T(tmp$d1)),
+             interleave(log10T(tmp$d2), log10T(tmp$d2)),
              interleave(tmp$effect,  tmp$predicted),
              lwd=2, col=interleave(my_cols, my_cols))
 }
