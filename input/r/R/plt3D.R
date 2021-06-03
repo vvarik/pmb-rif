@@ -5,7 +5,7 @@
 #' @export
 plt3D = function(mod, zlim=c(-4.5, 4), xlim=NULL, ylim=NULL){
 
-  do.call(pltRS, list(mod, radius = 0.1, main = '', legend = F,
+  do.call(pltRS, list(mod, radius = 0.13, main = '', legend = F,
     zlab = '', xlab='', ylab = '', zlim = zlim, xlim=xlim, ylim=ylim))
  
   # View angle 
@@ -20,5 +20,5 @@ plt3D = function(mod, zlim=c(-4.5, 4), xlim=NULL, ylim=NULL){
   segments3d(interleave(log10T(tmp$d1), log10T(tmp$d1)),
              interleave(log10T(tmp$d2), log10T(tmp$d2)),
              interleave(tmp$effect,  tmp$predicted),
-             lwd=2, col=interleave(my_cols, my_cols))
+             lwd=1.5, col=interleave(my_cols, my_cols))
 }
