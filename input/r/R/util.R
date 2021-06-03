@@ -204,7 +204,7 @@ getRS = function (dat, name) {
     for(j in seq_along(out[[i]]))
       names(out[[i]])[j] = unique(out[[i]][[j]]$rsl$data$cond)
 
-  saveRDS(out, paste0('input/dat/tmp/', name, 'rds'))
+  saveRDS(out, paste0('input/dat/tmp/', name, '.rds'))
 
   out
 }
