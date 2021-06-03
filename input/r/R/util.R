@@ -200,6 +200,10 @@ getRS = function (dat, name) {
     out[[i]] = analyzeRS(dat[strain == i], 'cond')
   }
 
+  for(i in seq_along(out))
+    for(j in seq_along(out[[i]]))
+      names(out[[i]])[j] = unique(out[[i]][[j]]$rsl$data$cond)
+
   saveRDS(out, paste0('input/dat/tmp/', name, 'rds'))
 
   out
