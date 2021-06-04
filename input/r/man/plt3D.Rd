@@ -4,7 +4,7 @@
 \alias{plt3D}
 \title{Plot drug-drug interaction plots in 3D}
 \usage{
-plt3D(mod, zlim = c(-5.5, 5), xlim = NULL, ylim = NULL)
+plt3D(mod, zlim = c(-5.5, 5), xlim = NULL, ylim = NULL, show_mono_only = FALSE)
 }
 \description{
 Mostly a convenience function to have the most common settings/appearance for

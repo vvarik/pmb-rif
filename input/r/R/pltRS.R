@@ -72,6 +72,7 @@ pltResponseSurface = function (data, fitResult = NULL,
         Inf), radius = NULL, logScale = TRUE, colorfun = median, 
     zTransform = function(x) x, add = FALSE, main = "", legend = TRUE, 
     lit=T, zlab="Response", xlab="Cpd1", ylab="Cpd2", zlim = NULL, xlim = NULL, ylim = NULL,
+    show_mono_only = FALSE,
     xat = "pretty", yat = "pretty", plotfun = NULL, ...) 
 {
     null_model <- match.arg(null_model)
@@ -217,17 +218,32 @@ pltResponseSurface = function (data, fitResult = NULL,
             ylab <- yat
             yat <- transformF(yat)
         }
-        with(data, spheres3d(transformF(d1), transformF(d2), 
-            zTransform(effect), radius = radius, add = TRUE, 
-            lit=lit,
-            col = colorPoints[1 + 1 * (d2 == 0) + 2 * (d1 == 
-                0)]))
+        if(!show_mono_only) {
+          with(data, spheres3d(transformF(d1), transformF(d2), 
+              zTransform(effect), radius = radius, add = TRUE, 
+              lit=lit,
+              col = colorPoints[1 + 1 * (d2 == 0) + 2 * (d1 == 
+                  0)]))
+        } else {
+          with(subset(data, d1==0 | d2==0)[, .(effect = mean(effect)), .(d1, d2)], 
+            spheres3d(transformF(d1), transformF(d2), 
+              zTransform(effect), radius = radius, add = TRUE, 
+              lit=lit,
+              col = colorPoints[1 + 1 * (d2 == 0) + 2 * (d1 == 
+                  0)]))
+        }
     }
 #    planes3d(0, 0, 1, zTransform(0), col = "grey", lit = FALSE, 
 #        alpha = 0.3)
-    persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
-        zTransform(zGrid), add = TRUE, col = zcol, alpha = 0.6, 
-        lit = FALSE, aspect = FALSE, lwd = 2)
+    if(!show_mono_only) {
+      persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
+          zTransform(zGrid), add = TRUE, col = zcol, alpha = 0.6, 
+          lit = FALSE, aspect = FALSE, lwd = 2)
+    } else {
+      persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
+          zTransform(zGrid), add = TRUE, col = colorPalette[2], alpha = 0.6, 
+          lit = FALSE, aspect = FALSE, lwd = 2)
+    }
     bgplot3d({
         plot.new()
         title(main = main)
@@ -256,7 +272,14 @@ pltResponseSurface = function (data, fitResult = NULL,
         mtext3d(labnames[3], edge = "y+-", line = 2)
         mtext3d(labnames[1], edge = "z+-", line = 2)
     }
+    if(!show_mono_only) {
     persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
         zTransform(zGrid), add = TRUE, col = zcol, alpha = 0.6, 
         lit = FALSE, aspect = FALSE, lwd = 2)
+    } else {
+      persp3d(transformF(uniqueDoses$d1), transformF(uniqueDoses$d2), 
+          zTransform(zGrid), add = TRUE, col = colorPalette[2], alpha = 0.6, 
+          lit = FALSE, aspect = FALSE, lwd = 2)
+    }
+
 }
