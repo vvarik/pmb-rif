@@ -14,10 +14,10 @@ dat = dat[(d1 %between% c(0.003, 100) | d1==0) & (d2 %between% c(0.003, 100) | d
 dat[is.na(effect), effect := -4.5]
 
 
-# # Response surface analysis
+# Response surface analysis
 # rs = getRS(dat, 'rs')
-# 
-# 
+
+
 # # Time-kill ------------------------------
 # 
 # dtk = fread('input/dat/time-kill.tsv') %>% 
