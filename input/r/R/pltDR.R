@@ -24,7 +24,7 @@ pltDR = function(formula, dat, col='red3', by=cond, type=average, ci95=T,
   )
 
   par(lwd=1.5, cex=1.25, tcl=-0.25, #pty='s', # asp = 1
-            mar=c(4.1, 4.1, 1.5, 0.5), # around the plot, below, left, top, right
+            mar=c(3.1, 4.1, 0.5, 0.5), # around the plot, below, left, top, right
             mgp=c(1.5, 0.75, 0)  # closeness of axis title, label, line
   )
   
