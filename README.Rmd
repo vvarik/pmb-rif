@@ -21,6 +21,7 @@ library('tidyverse')
 library('DT')
 library('cowplot')
 library('BIGL')
+library('drc')
 
 devtools::document('input/r')
 suppressMessages(devtools::load_all('input/r'))
@@ -63,7 +64,7 @@ dat[is.na(effect), effect := -4.5]
 # dtk = fread('input/dat/time-kill.tsv') %>% 
 #   remNonCharcoal()
 # 
-# .myLabels <- c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
+# .myLabels = c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
 #   "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
 # 
 # dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
@@ -77,6 +78,66 @@ dat[is.na(effect), effect := -4.5]
 We studied the potential of the rifampicin-polymyxin B combination against
 intra- and extracellular forms of bacteria: three _P. aeruginosa_ strains, 
 two clinical isolates of _A. baumannii_, _E. cloacae_, and _K. pneumoniae_.
+
+
+# Supplementary figures
+
+## SFig1 
+
+```{r}
+sub = subset(dat, strain == 'ATCC27853' & (d1 == 0 | d2 == 0))
+
+p1 = function() pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30)
+p2 = function() pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L')
+
+# pH
+foo = fread("input/dat/raw/2018-07-11_pa278553_growth_pH.csv")
+
+foo = foo[time_h > 0, .(
+  od = gmu(od620),
+  od.ci = gci(od620),
+  ph = mean(pH),
+  ph.ci = ci(pH)
+  ), time_h]
+
+pltPH = function(x, y, ci, geom=T, col='grey20', ...) {
+  plot(x, y, type='l', yaxt='n', col = col, ...)
+  points(x, y, pch=19, col=col)
+
+  if(geom) {
+    arrows(x0=x, y0=y/ci, x1=x, y1=y*ci, 
+      code=3, angle=90, length=0.0, col=col)
+  } else {
+    arrows(x0=x, y0=y-ci, x1=x, y1=y+ci, 
+      code=3, angle=90, length=0.0, col=col)
+  }
+
+}
+
+p3 = function() {
+  par(lwd=1.5, cex=1.25, tcl=-0.25, #pty='s', # asp = 1
+            mar=c(3.1, 4.1, 0.5, 2.5), 
+            mgp=c(2, 0.75, 0)  # closeness of axis title, label, line
+  )
+  with(foo, {
+    pltPH(time_h, od, od.ci, log='y', ylab = expression('OD'[620]), xlab = 'Time, h')
+    magicaxis::magaxis(2, prettybase=1, las=1, tcl=-0.3)
+
+    par(new=TRUE)
+    pltPH(time_h, ph, ph.ci, geom=F, bty='n', col=cbPalette[3], 
+      axes=FALSE, ylab='', xlab='', ylim=c(5.5, 7.5)
+    )
+    mtext("pH", side=4, col=cbPalette[3], line=2.1) 
+    axis(4, at = seq(5.5, 7.5, 0.5), col=cbPalette[3],
+      col.axis=cbPalette[3], las=1)
+  })
+}
+
+plot_grid(ggdraw(p1), ggdraw(p2), ggdraw(p3),
+  labels = 'AUTO', label_fonface='normal', align='hv'
+)
+ggsave('output/fig/monotherapy_dose-response.png', width=10, height=9)
+```
 
 
 # Time-kill
