@@ -4,36 +4,6 @@ title: "PA14 chem-gen screen"
 
 
 ```{r loadIrisFiles, warning=F}
-loadIrisFiles = function(folder.path, keep.folder.name = F){
-  
-  all.iris.filenames = paste(folder.path, list.files(path = folder.path, pattern = "\\.iris$", all.files = T), 
-                             sep="/")
-  
-  
-  all.iris.files.data =
-    data.table::rbindlist(
-      lapply(all.iris.filenames, loadOneIrisFile)
-    )
-  
-  
-  if(!keep.folder.name){
-    all.iris.files.data[,filename:=basename(filename)]
-  }
-  
-  return(all.iris.files.data)
-}
-
-
-loadOneIrisFile = function(iris.filename){
-  iris.file.data = data.table::fread(iris.filename)
-  
-  iris.file.data[,filename:=iris.filename]
-  
-  return(iris.file.data)
-}
-
-
-
 #load all iris files ####
 #and set the right plate number, replicate number and colony
 all.iris.files = loadIrisFiles("input/iris files/")
