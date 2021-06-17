@@ -268,3 +268,9 @@ flagBadColonies = function (dat) {
   
 }
 
+
+#' @export
+turnBadColoniesToNAs = function (dat) {
+  dat[filtered.out==T, opacity:=NA]
+  dat[filtered.out==T, size:=NA]
+}
