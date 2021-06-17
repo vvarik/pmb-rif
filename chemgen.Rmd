@@ -1,0 +1,1094 @@
+---
+title: "PA14 Drug interaction screen"
+subtitle: "Data analysis results"
+author: "George Kritikos"
+output:
+  html_document:
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 6
+    number_sections: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, warning=F}
+rm(list=ls())
+
+source("functions/load.iris.files.R")
+source("functions/ipak.R")
+source("functions/my.strsplit.R")
+source("functions/my.t.test.R")
+source("functions/surfaceCorrection.correct.outer.rows.columns.separately.multiplicative.R")
+source("functions/scale.multiplicative.R")
+source("functions/plot.spatial.bias.R")
+source("functions/my.table.R")
+
+ipak(IHW)
+ipak(reshape2)
+ipak(data.table)
+ipak(tidyverse)
+ipak(magrittr)
+ipak(stringi)
+ipak(stringr)
+ipak(effsize)
+ipak(knitr)
+
+opts_knit$set(warning=F)
+```
+
+```{r initialize folder structure, warning=F}
+#initialize folders ####
+dir.create("output/rdata", recursive = T, showWarnings = F)
+dir.create("output/pdf", recursive = T, showWarnings = F)
+dir.create("output/csv/per.condition.epsilon.phenotypes/", recursive = T, showWarnings = F)
+```
+
+```{r load iris files, warning=F}
+#load all iris files ####
+#and set the right plate number, replicate number and colony
+all.iris.files = load.iris.files("input/iris files/")
+
+all.iris.files[,media:=my.strsplit(filename, "-", 1)]
+all.iris.files[,antibiotic:=my.strsplit(filename, "-", 2)]
+all.iris.files[,condition:=paste(media, antibiotic, sep="-")]
+
+all.iris.files[,plate.id:=
+                 filename %>% 
+                 my.strsplit(".JPG.iris", 1) %>% 
+                 my.strsplit("-", 3) %>% 
+                 as.numeric()]
+
+#get library plate number and replicate numbers
+#modulo divisions work on zero-based numbers, so removing one to start with 
+#and adding it back later since both library plate and replicate are 1-based numbers
+all.iris.files[,plate.number:=(plate.id-1)%/%5 + 1]
+all.iris.files[,biorep:=(plate.id-1)%%5 + 1]
+
+all.iris.files[,colony:=10000*plate.number + 100*row + column]
+all.iris.files[,plate.id:=NULL]
+
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.loaded.Rdata")
+```
+
+# Introduction
+_(email from Nassos)_
+Vallo did a combination of `Rifampicin + Polymyxin B` in the PA14 library with
+Manu last week (no drug, single drugs, combination). The interaction is a
+synergy and we are looking for mutants that resolve it.   
+
+There are also 2 extra concentrations of single drugs (higher) to identify
+mutants that are more resistant to single drugs on their own.  
+ 
+
+There were two media (`LB` and `LB pH 5.5`), five antibiotic treatments
+(`rif16`, `pmb2`, `rif16+pmb2`, `rif32`, `pmb4`), and two no-antibiotic
+controls. Thus, altogether, 12 unique conditions. We had, indeed, our doubts how
+quantitatively one can compare the conditions directly.  
+
+Instead, we aimed for best dynamic range within a plate, and this affected two
+conditions which were incubated 3h longer at 37C:  
+
+1. LB pH 5.5 rif16+pmb2, and 
+2. LB pH 5.5 rif32.
+
+
+
+# Quality control
+
+Some plates were either wet, or having patches of swarming colonies.  
+These were spotted by eye and removed in the first step, see section `Plate
+removal: manual QC`
+ 
+
+Afterwards, I checked for pairwise replicate correlation.  
+
+Plates that don't match any of their replicates become prime candidates for a
+closer look, and possibly removal.  
+See section `Replicate correlation checks`
+   
+
+After commucating the pairwise correlations to Vallo, he checked the plates
+again for plates that would need removal, or can be still salvaged, keeping in
+mind we need to have at least 2 replicate plates for the downstream analysis.  
+See section `Manual file removal`
+   
+
+As a final quality control step, I detect and remove misdetected colonies.  
+I reasoned that since colony misdetection is a rare event (~0.05% in other PA
+screens), it would be very unlikely that they occur in the same plate position
+across replicates.  
+In other words, misdetected colonies are likely to have zero size in one of the
+replicates, while all other replicates of the same plate do have a colony size.  
+See section `Misdetected colony removal`
+   
+
+
+## Plate removal: manual QC
+
+In this step, the eye-spotted bad plates are removed.  
+These are the following plates:  
+
+``` {r remove bad plates, warning=F}
+#remove bad plates and/or colonies ####
+
+all.iris.files = readRDS("output/rdata/all.iris.files.loaded.Rdata")
+
+bad.plates = 
+  fread("input/qc.csv", skip = 3) %>% 
+  filter(is.na(row)) %>% 
+  #filter(notes=="remove the whole plate")
+  filter(!str_detect(notes, "normalize"))
+
+all.iris.files = all.iris.files[!filename %in% bad.plates$file]
+
+bad.colonies = 
+  fread("input/qc.csv", skip = 3) %>% 
+  filter(!is.na(row)) %>% 
+  select(filename=file, row, column) %>% 
+  mutate(
+    filtered.out=T
+  )
+
+all.iris.files = merge(all.iris.files, bad.colonies, 
+					   by=c("filename", "row", "column"), all.x=T)
+all.iris.files[filtered.out==T, opacity:=NA]
+all.iris.files[filtered.out==T, size:=NA]
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.filtered.Rdata")
+	
+DT::datatable(bad.plates)
+```
+
+Also some colonies that Vallo spotted that Iris had mis-identified or mispinned
+etc are removed (173 colonies):  
+
+
+```{r bad colonies table, warning=F}
+fread("input/qc.csv", skip = 3) %>% 
+  filter(!is.na(row)) %>% 
+  DT::datatable()
+```
+
+ 
+
+
+## Misdetected colony removal
+
+Next, I removed the colonies that are present in all but one replicates.
+
+```{r remove misdetected colonies, warning=F}
+#remove misdetected colonies  ####
+#these ones that have size zero should be set to opacity equal to NA
+
+all.iris.files = readRDS("output/rdata/all.iris.files.filtered.Rdata")
+
+# get how many times a mutant is in the dataset (all observations, incl
+# missing) vs absent (only zero size)
+mutant.all.vs.absent =  merge(
+  setnames(my.table(all.iris.files[size==0]$colony), 
+           c("colony", "times.absent")),
+  setnames(my.table(all.iris.files$colony), 
+           c("colony", "all.times")),
+  by="colony"
+)
+
+mutant.all.vs.absent[,frequency.absent := times.absent/all.times]
+mutant.all.vs.absent = mutant.all.vs.absent[order(frequency.absent)]
+
+(ggplot(mutant.all.vs.absent[times.absent>0], aes(x=frequency.absent))+
+    geom_histogram(bins=100, color="black", fill="gray")+
+    theme_bw()) %>% plotly::ggplotly()
+```
+
+Here's a table of the colony absense frequency:  
+
+```{r colony absense frequency, warning=F}
+mutant.all.vs.absent %>% 
+  arrange(frequency.absent) %>% 
+  DT::datatable()
+```
+
+
+```{r actually remove the colonies}
+# find the mutants that are absent only a few times (and thus probably a
+# misdetection than an empty spot)
+colonys.sometimes.missing = unique(mutant.all.vs.absent[frequency.absent<0.4]$colony)
+
+#remove these possible misdetections from the dataset
+all.iris.files[size==0 & colony %in% colonys.sometimes.missing, opacity:=NA]
+
+#these are 218 misdetections, or 0.05% of all colonies
+dim(all.iris.files[size==0 & colony %in% colonys.sometimes.missing])[1] /
+  dim(all.iris.files)[1]
+
+all.iris.files[,opacity.raw:=opacity]
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.filtered2.Rdata")
+```
+ 
+
+## Replicate correlation checks
+
+This section checks the pairwise correlation among the replicates of each
+condition.  
+ 
+
+The distribution is the following:
+ 
+```{r check replicate correlation, warning=F}
+#check replicate correlation, spot and remove bad replicates (poor correlation
+#to other plates)
+all.iris.files = readRDS("output/rdata/all.iris.files.filtered2.Rdata")
+
+
+#get all replicate correlations
+#per condition, and per plate number
+all.correlations = list()
+for(this.condition in unique(all.iris.files$condition)){
+  for(this.plate.number in unique(all.iris.files$plate.number)){
+    #get all pairwise combinations of the conditions
+    this.subset = all.iris.files[condition==this.condition][plate.number==this.plate.number]
+    
+    if(length(unique(this.subset$biorep))<2){
+      #there's no replicate reproducibility with one replicate
+      cat(paste0("Warning: only one replicate for ", this.condition, " in library plate", this.plate.number))
+      cat("\n")
+      next
+    }
+    
+    all.replicate.combinations = combn(unique(this.subset$biorep), 2)
+    
+    for(i in 1:dim(all.replicate.combinations)[2]){
+      this.correlation = cor(this.subset[biorep==all.replicate.combinations[1,i]]$opacity,
+                             this.subset[biorep==all.replicate.combinations[2,i]]$opacity, use="na.or.complete")
+      
+      all.correlations = c(all.correlations, list(data.table(correlation=this.correlation,
+                                                             replicate.A = all.replicate.combinations[1,i],
+                                                             replicate.B = all.replicate.combinations[2,i],
+                                                             filename.A = as.character(unique(this.subset[biorep==all.replicate.combinations[1,i]]$filename)),
+                                                             filename.B = as.character(unique(this.subset[biorep==all.replicate.combinations[2,i]]$filename)),
+                                                             condition = this.condition,
+                                                             plate.number = this.plate.number)))
+    }
+  }
+}
+
+all.correlations.dt = rbindlist(all.correlations)
+all.correlations.dt[,filename.A := as.character(filename.A)]
+all.correlations.dt[,filename.B := as.character(filename.B)]
+
+
+#check which combinations have bad correlations
+
+(ggplot(all.correlations.dt, aes(x=correlation))+
+    geom_histogram(bins=100, color="black", fill="gray")+
+    theme_bw()) %>% plotly::ggplotly()
+```
+
+Here is the corresponding table of pairwise replicate correlations:
+
+``` {r correlation table, warning=F}
+all.correlations.dt %>% 
+  DT::datatable() %>% 
+  DT::formatRound(columns=c("correlation"), digits=4)
+```
+
+Are certain conditions "enriched" for bad pairwise replicate correlations?
+Here a bad correlation is under 0.7
+
+
+``` {r check for condition enrichment, warning=F}
+#check if there's specific conditions with bad replicates
+data.table(table(all.correlations.dt[correlation<0.7]$condition))[order(N)] %>% 
+  DT::datatable()
+```
+
+Are certain plates (within conditions) "enriched" for bad pairwise replicate
+correlations? Here a bad correlation is under 0.7
+
+
+```{r check plates bad correlations, warning=F}
+data.table(table(paste0(all.correlations.dt[correlation<0.7]$condition, "__plate", 
+                        all.correlations.dt[correlation<0.7]$plate.number)))[order(N)] %>% 
+  DT::datatable()
+
+#get statistics on the correlations of certain conditions
+get.correlation.summary = function(condition.name){
+  summary.statistic = 
+    summary(all.correlations.dt[condition == condition.name]$correlation) %>%
+    broom::tidy() %>% 
+    mutate(
+      condition.name = condition.name
+    ) %>% 
+    data.table()
+}
+
+all.correlations.summary.dt = 
+  lapply(all.correlations.dt$condition %>% unique(), get.correlation.summary) %>% 
+  rbindlist() %>% 
+  arrange(median)
+```
+
+Visualizing the above result in a density plot:
+
+```{r check conditions bad correlations plot, warning=F}
+#plot whole condition correlations
+(ggplot(all.correlations.dt, aes(x=correlation, color=condition))+
+   geom_density(alpha=0.6, size=0.8)+
+   theme_bw() ) %>% plotly::ggplotly()
+```
+
+Checking for replicates that constantly "disagree" with other replicates, we
+can calculate the following table:
+
+```{r check conditions bad correlations table, warning=F}
+#Count number of times a specific filename has correlations under a threshold
+#vs over the threshold (all times). Kick out filenames that have 2 correlations
+#under 0.5 (disagree with both other replicates)
+bad.files = data.table(table(c(all.correlations.dt[correlation<0.5]$filename.A, 
+                               all.correlations.dt[correlation<0.5]$filename.B)))
+all.files = data.table(table(c(all.correlations.dt$filename.A, 
+                               all.correlations.dt$filename.B)))
+setnames(bad.files, c("filename", "times.discordant"))
+setnames(all.files, c("filename", "times.present"))
+candidate.files.to.kick.out = merge(bad.files, all.files, by="filename")
+candidate.files.to.kick.out[,ratio.discordant.vs.all:=times.discordant/times.present]
+
+
+candidate.files.to.kick.out[order(ratio.discordant.vs.all)] %>% 
+  arrange(-ratio.discordant.vs.all) %>% 
+  rename(
+    "discordant other replicates"=times.discordant,
+    "all other replicates"=times.present,
+    "ratio discordant vs all"=ratio.discordant.vs.all
+  ) %>% 
+  DT::datatable(caption = "replicates flagged for bad correlations")
+```
+
+
+Files which disagee with all other replicates should be flagged for removal. In
+this case, these are the following files, which are removed from the dataset:
+
+```{r files to kick out, warning=F}
+files.to.kick.out = candidate.files.to.kick.out[ratio.discordant.vs.all==1]
+
+files.to.kick.out %>% DT::datatable()
+
+candidate.files.to.kick.out %>% 
+  select(filename, times.discordant, number.of.other.relicates=times.present,
+         ratio.discordant.vs.all) %>% 
+  arrange(-ratio.discordant.vs.all) %>% 
+  fwrite("output/csv/candidate.files.to.kick.out.csv")
+
+fwrite(files.to.kick.out, "output/csv/files.to.kick.out.csv")
+files.to.kick.out = fread("output/csv/files.to.kick.out.csv")
+
+all.iris.files = all.iris.files[!filename %in% files.to.kick.out$filename]
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.filtered2.Rdata")
+
+files.to.kick.out %>% DT::datatable(caption = "plates to be removed")
+```
+
+
+
+## Plate removal: manual QC (second pass)
+
+After sending back the replicate correlation results to Vallo, we agreed to
+make a second-pass removal.
+
+_(email from Vallo)_  
+(1) Preferably, we should have something left after kicking garbage out.  So I
+added a column to your csv file, which counts just that -- how many replicates
+are left of that particular Tn-library plate, in that particular condition, if
+we kick all the suspicious out. Q: in those conditions, where we end up having
+1 or 2 replicates left, could we rescue some of the data from other plates by
+doing the similar correlation analysis at the level of a mutant? Sometimes it
+is only a certain region of the plate that is affected.
+
+(2) Some of the candidate plates to be kicked out, based on your correlation
+analysis, are in the QC file already, so it is good to see that we have an
+overlap. I added next column to indicate which ones are in QC file. From that,
+you can also see few plates which I flagged as removable in QC that did not
+come up with correlation analysis.
+
+(3) Final column I added is a judgement call, majority of them in favour of
+removal. I only advocated for keeping of some less bad ones when: (a) we would
+have 0-2 left in that condition; (b) one plate out of five appeared completely
+normal; (c) when staring at the picture, I failed to identify a problem beyond
+the variation.  Q: If, hypothetically speaking because we don't know the truth,
+only one of the plates would be normal, and others bad in a different way,
+would that mislead the correlation analysis?  After removing 1-2 the most
+erroneus plates out of 5, is it possible that the pairwise correlation improves
+a lot then for reminders?
+
+I do realise that my attempt to have something always left after removal of
+garbage might lead us to play around with carbage and that is waste of time.
+ 
+ 
+
+_(reply from George)_  
+1. Agreed! 
+To answer your question, it’s a good thought but it’s a bit more tricky than
+that, for two reasons:
+
+a. At a single-mutant level it’s not a correlation anymore, but a direct
+comparison of the (5) values. For this you need a good estimate of the
+variability to be able to confidently say “this replicate is sufficiently
+different than the rest”.  If there are whole regions (or entire plates) then
+estimating this variability using all mutants probably won’t work (i.e. it will
+be overestimated).
+
+b. Mutant-level correlation means filtering out a single colony if its value is
+sufficiently different than its other replicates. This assumes that this mutant
+behaves similarly across replicates — if not, it will be removed. As a result,
+remaining data will (by definition) tell you that it does indeed behave
+similarly. By keeping only similar and “similar” replicates you will inflate
+your t-test (and subsequent p-values).
+
+Alternatively, it’s much more “clean” to remove the whole plate if e.g.
+swarming occurred. There’s a more biological argument to support this: if whole
+areas of the plate are visibly swarming, it could be because of some signal
+that lead these cells to do so. 
+
+* Would that signal stop at the boundaries of the visible swarming area?
+  Probably not. 
+* Would that signal only affect swarming or also turn on other cellular
+  programs (perhaps limiting drug uptake etc) influencing our phenotype? Can’t
+  be ruled out.
+
+
+2. Good job! Just to clarify: the files you indicated in your QC file (previous
+   email), I will remove regardless of correlation. Only one question: what’s
+   the action I should take on the LB-Rifampicin32-009.JPG.iris? The comment is
+   compare with LB-Rifampicin32-010.JPG.iris
+
+
+3. Nice, I will use the judgement call column to apply (or not) the correlation
+   filter. To answer your question, the method doesn’t know which plate is
+   normal.  Pairwise correlation between replicate plates A and B does not
+   depend on plate C, and will be (numerically) the same irrespective of the
+   number of replicates. What does change is the ratio of times a replicate is
+   found “discordant” vs all other replicates: In our example, if only C was
+   bad, then C gets a 2/2 discordant (both against A and B), while A (and
+   similarly B) get 1/2 discordant. If C is removed, then both A and B get a
+   0/1 discordant.
+
+
+
+```{r second pass removal, warning=F}
+all.iris.files = readRDS("output/rdata/all.iris.files.filtered2.Rdata")
+
+qc.file.v2 = fread("input/candidate.files.to.kick.out_vv.csv")
+files.to.remove.qc2 = qc.file.v2[!str_detect(comment, "keep")]
+all.iris.files = all.iris.files[!filename %in% files.to.remove.qc2$filename]
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.filtered3.Rdata")
+```
+
+In this step 12 files were removed in total:  
+
+```{r qc2 files removed, warning=F}
+files.to.remove.qc2 %>% 
+  arrange(-ratio.discordant.vs.all) %>% 
+  rename(
+    "discordant other replicates"=times.discordant,
+    "all other replicates"=number.of.other.relicates,
+    "ratio discordant vs all"=ratio.discordant.vs.all
+  ) %>% 
+  DT::datatable()
+```
+
+# Bias correction
+This section deals with removing known systematic biases stemming from the
+screening platform.  
+ 
+
+These include:  
+
+1. spatial biases  
+2. plate-to-plate differences
+
+
+## Spatial bias correction
+
+Spatial bias correction was omited in this report.  
+The reason is that F-values (see section `F-value calculation`) anyway is
+controlled for the growth of the mutant on the same plate position (under no
+stress).  
+  
+Since positional effects will be cancelled out on that step, I purposefully
+omit this step in order not to over-correct the data.
+
+```{r spatial corrections, warning=F}
+#perform outerRC corrections for opacity
+#4 outer RCs? multiplicative
+
+#skip RC correction for now
+#correlation is good, but there's one colony that gets a negative number, need
+#to find out why
+
+
+# #perform 4 outer RC multiplicative correction, without surface correction
+# #this is done per filename and results are stored in new column opacity.RC.corrected
+# all.iris.files[,opacity.RC.corrected :=
+# surfaceCorrection.correct.outer.rows.columns.separately.multiplicative(opacity,
+# rows.columns.to.correct = 4, surface.correct.as.well = F,
+# correct.corner.twice = F),by=filename]
+
+# #sanity check:
+# #what is the correlation to the untouched data?
+# cor(all.iris.files$opacity, all.iris.files$opacity.RC.corrected) #0.798
+# #what is the spatial bias before and after?
+# all.iris.files[,colony.size:=size] #this function requires an extra column
+# plot.spatial.bias(all.iris.files, colnames.to.plot = c("opacity","opacity.RC.corrected"), 
+#   output.filename.prefix = "spatial bias", max.point.size = 6, average.metric = "median")
+# all.iris.files[,colony.size:=NULL] #we now remove the extra column
+# 
+# #opacity.RC.corrected looks much better (see pdf files)
+# #this is what I will use as opacity, and store the original opacity in a new
+# column opacity.raw
+# all.iris.files[,opacity.raw:=opacity]
+# all.iris.files[,opacity:=opacity.RC.corrected]
+# 
+# saveRDS(all.iris.files, "output/rdata/all.iris.files.outerRC.corrected.Rdata")
+```
+
+## Plate-to-plate correction
+
+This step corrects for the fact that some plates may have higher mean values.  
+If this step is not performed, then larger colonies on plates with higher mean
+values will be conflated with higher fitness values.
+
+```{r plate corrections, warning=F}
+#plate correction: do some plates have greater median?  ####
+all.iris.files = readRDS("output/rdata/all.iris.files.filtered3.Rdata")
+
+median.to.set = round(median(all.iris.files$opacity, na.rm=T), -2)
+
+all.iris.files[,opacity.plate.corrected:=scale.multiplicative(x=opacity, target.values=median.to.set), by=filename]
+all.iris.files[,opacity:=opacity.plate.corrected]
+
+# colors = rep("gray77", all.iris.files$filename %>% unique() %>% length)
+# names(colors) = all.iris.files$filename %>% unique()
+
+(ggplot(all.iris.files, aes(x=opacity.raw))+
+    geom_density(aes(color=filename), alpha=0.2, size=0.15)+
+    theme_bw()+
+    scale_color_grey()+
+    #scale_color_manual(values = colors)+
+    theme(legend.position = "none")+
+    ggtitle("Plate distribution before correction")) %>% plotly::ggplotly()
+
+(ggplot(all.iris.files, aes(x=opacity))+
+    geom_density(aes(color=filename), alpha=0.2, size=0.15)+
+    theme_bw()+
+    scale_color_grey()+
+    theme(legend.position = "none")+
+    ggtitle("Plate distribution after correction")) %>% plotly::ggplotly()
+
+saveRDS(all.iris.files, "output/rdata/all.iris.files.plate.corrected.Rdata")
+```
+
+# Drug interaction score calculation
+
+In this section the following values are calculated independently per mutant:  
+1. F-values
+2. epsilon scores 
+3. epsilon score statistics (t-test)
+   
+For an overview of the process alongside mathematical formulas, please see the
+related [Evernote note](https://www.evernote.com/shard/s40/sh/443ababc-9281-4379-888d-64976c0d809d/1317a3c8cde83a09bc3a7e6f191ee411)
+I made for Ana-Rita's screen.
+
+
+## F-value calculation
+F-values are the normalized fitness score, given as a ratio of:  
+
+* the fitness measurement of a colony (e.g. colony opacity) under a specific
+  stress (single or double drug stess), versus 
+* the median fitness measurement of the same mutant under no drug stress
+  (control)  
+ 
+
+$$f_{condition} = \frac{ opacity_{condition}} {opacity_{control}}$$
+
+
+```{r match condition and control, warning=F}
+#match each condition to its control plate  ####
+#end result of this step should be a table with only few columns:
+#condition, colony, biorep, condition.opacity,
+#control.opacity
+all.iris.files = readRDS("output/rdata/all.iris.files.plate.corrected.Rdata")
+
+#TODO: match controls "manually" for Vallo's screen
+
+#there's 2 LB "conditions", each with 5 replicates
+#as control for each plate position, I'll take the median of both LB conditions
+#across all 5 replicates
+
+control.medians = all.iris.files[str_detect(condition, "noAb")] %>% 
+  group_by(media, colony) %>% 
+  summarize(
+    control.median = median(opacity, na.rm=T),
+    count = sum(!is.na(opacity))
+  )
+
+condition.iris.files = all.iris.files[!str_detect(condition, "noAb")]
+
+condition.vs.control = merge(condition.iris.files, control.medians, by=c("media", "colony"))
+
+#sanity check #1
+# nrow(condition.vs.control)==nrow(condition.iris.files)
+
+#sanity check #2
+# Determine if range of vector is FP 0.
+zero_range <- function(x, tol = .Machine$double.eps ^ 0.5) {
+  if (length(x) == 1) return(TRUE)
+  x <- range(x) / mean(x)
+  isTRUE(all.equal(x[1], x[2], tolerance = tol))
+}
+# zero_range(condition.vs.control[condition=="LB-Polymyxin2"][colony==30405]$control.median)
+
+
+saveRDS(condition.vs.control, "output/rdata/condition.vs.control.Rdata")
+```
+
+
+```{r calculate Fvalues, warning=F}
+#calculate "Fvalue" value for each condititon and mutant ####
+# F.condition = Opacity.condition / Opacity.control
+# control = matching LB plate
+#set NA if plate is missing/wet (missing means value is not there anyway, so no
+#option but ignore it)
+condition.vs.control = readRDS("output/rdata/condition.vs.control.Rdata")
+
+#remember: opacity is replaced by the RC corrected opacity
+condition.vs.control[,f.condition:=opacity/control.median]
+
+
+# dim(condition.vs.control[is.na(f.condition)])[1] / dim(condition.vs.control)[1]
+#0.22% of F-values are NA
+```
+
+Sanity check: `r (100*dim(condition.vs.control[is.na(f.condition)])[1] /
+dim(condition.vs.control)[1] )%>% round(2)`% of all F-values are missing (due
+to lack of replicates).
+ 
+
+## Epsilon score calculation
+
+Epsilon scores are a measure of drug interactions based on F-values (see above).  
+ 
+$$\varepsilon = f_{double\,condition} - f_{single\,condition\,1} \times
+f_{single\,condition\,2}$$
+
+
+```{r calculate epsilon per condition, warning=F}
+#calculate epsilon per mutant in condition ####
+
+#remove control value columns
+condition.vs.control = condition.vs.control %>% select(-control.median, -count)
+
+drug.merge = 
+  condition.vs.control %>% 
+  filter(str_detect(condition, "Rifampicin16Polymyxin2")) %>% 
+  select(colony, biorep, media,
+         combination.opacity=opacity, combination.f=f.condition) %>% 
+  merge(
+    
+    condition.vs.control %>% 
+      filter(antibiotic=="Rifampicin16") %>% 
+      select(colony, biorep, media,
+             Rifampicin16.opacity=opacity, Rifampicin16.f=f.condition) 
+    
+  ) %>% 
+  
+  merge(
+    
+    condition.vs.control %>% 
+      filter(antibiotic=="Polymyxin2") %>% 
+      select(colony, biorep, media,
+             Polymyxin2.opacity=opacity, Polymyxin2.f=f.condition) 
+    
+  ) %>% 
+  data.table()
+
+
+
+#this table will bring f.values of drug12, drug1, and drug2 in different
+#columns, so it will be easy to then perform the t-test
+drug.merge[,f.single.conditions:=Rifampicin16.f*Polymyxin2.f]
+drug.merge[,epsilon:=combination.f-f.single.conditions]
+
+
+#sanity check:
+#make violin plots for all observations (incl all replicates)
+(ggplot(drug.merge %>% filter(media=="LB"), aes(x="Rifampicin16Polymyxin2",
+                                                y=epsilon))+ 
+    geom_violin(scale = "width", trim=T, adjust = .5, aes(alpha=0.2), size=0.1,
+                fill="gray50")+
+    geom_hline(yintercept = 0, color="black", linetype="dashed", size=0.5)+
+    theme_bw()+
+    theme(legend.position='none')+
+    ggtitle("Rifampicin16Polymyxin2 LB epsilon")+
+    ggsave("Rifampicin16Polymyxin2.LB.epsilon.pdf", width=6, height=8)
+) %>%
+plotly::ggplotly()
+
+
+(ggplot(drug.merge %>% filter(media=="LBpH5.5"),
+        aes(x="Rifampicin16Polymyxin2", y=epsilon))+ 
+    geom_violin(scale = "width", trim=T, adjust = .5, aes(alpha=0.2), size=0.1,
+                fill="gray50")+
+    geom_hline(yintercept = 0, color="black", linetype="dashed", size=0.5)+
+    theme_bw()+
+    theme(legend.position='none')+
+    ggtitle("Rifampicin16Polymyxin2 LB pH5.5 epsilon")+
+    ggsave("Rifampicin16Polymyxin2.LB.pH5.5.epsilon.pdf", width=6, height=8)
+) %>% plotly::ggplotly()
+
+
+drug.merge[,per.combination.mean.epsilon:=mean(epsilon, na.rm=T), by=media]
+
+#both distributions are near-zero centerd as expected
+#the pH5.5 combination has some strong negatives
+
+
+saveRDS(drug.merge, "output/rdata/drug.merge.Rdata")
+```
+
+
+```{r add gene names, warning=F}
+#add gene names
+
+drug.merge = readRDS("output/rdata/drug.merge.Rdata")
+
+#you can get this file here: 
+#https://www.dropbox.com/s/e515cklqik7463g/PA14_computational_v2_updated_annotations.xlsx?dl=0
+PA14.coordinates = 
+  openxlsx::read.xlsx("input/PA14_computational_v2_updated_annotations.xlsx") %>% 
+  select(
+    plate = "1536.plate", 
+    row = "1536.row", 
+    column = "1536.column", 
+    locus = '"Active".Gene.Locus', 
+    gene.id = '"Active".GeneID', 
+    gene.name = '"Active".Gene.Name',
+    PAO1.ortholog = 'PAO1.ortholog.of."Active".gene',
+    Tn.pos.bp = 'Tn.insertion.position.within."Active".Gene.(bp)'
+  ) %>% 
+  mutate(
+    colony = plate*10000 + row*100 + column
+  ) %>% data.table
+
+# add information about n of unique Tn mutants per gene
+PA14.coordinates[!is.na(gene.id), Tn.per.gene:=uniqueN(Tn.pos.bp), locus]
+PA14.coordinates[, Tn.mutant.id:=paste(locus, Tn.pos.bp, sep='.')]
+PA14.coordinates[!is.na(gene.id), copy.n:=uniqueN(colony), Tn.mutant.id]
+PA14.coordinates[!is.na(gene.id), copy.id:=seq_len(.N), Tn.mutant.id]
+
+drug.merge = merge(drug.merge, PA14.coordinates, by="colony",
+                   all.x=T)
+
+saveRDS(drug.merge, "output/rdata/drug.merge.names.Rdata")
+```
+
+## Epsilon score statistics
+Some genes have several mutants, 58%, 36%, 6%, 0.4% of genes have 1, 2, 3, or 4
+unique Tn mutants, respectively. In addition, library contains some mutants in
+replicates (86%, 14% and 0.4% have 1, 2, or 3 replicates, respectively.
+
+```{r}
+prop.table(table(drug.merge[media=='LB', Tn.per.gene]))*100
+prop.table(table(drug.merge[media=='LB', copy.n]))*100
+```
+
+If the mutants behave concordantly, we get stronger estimate of the phenotype.
+Let's, however, calculate the stats both per gene and per unique Tn mutants to
+see if Tn mutants resolve into different phenotypes. 
+
+
+```{r perform t tests, warning=F}
+#perform t.test ####
+#null hypothesis F12 = F1*F2
+#in other words epsilon = F12-F1*F2 = 0
+
+drug.merge = readRDS("output/rdata/drug.merge.names.Rdata")
+
+#perform a t-test per PA14 id and per media, expected average epsilon is the
+#per.combination.mean.epsilon
+
+#compare each gene's epsilon to condition mean -- this is a one-sample t-test
+#note: I add unique otherwise per.combination.mean.epsilon would be a vector of
+#values, we don't want that
+drug.merge[,c("t.test.statistic", "t.test.pvalue") := my.t.test(epsilon, mu=unique(per.combination.mean.epsilon)), 
+           by=list(Tn.mutant.id, media)]
+
+drug.merge[,c("t.test.statistic.gene", "t.test.pvalue.gene") := my.t.test(epsilon, mu=unique(per.combination.mean.epsilon)), 
+           by=list(locus, media)]
+
+#also get how many non-NA values each test is calculated on
+drug.merge[,t.test.sample.size:=length(which(!is.na(epsilon))), 
+           by=list(Tn.mutant.id, media)]
+
+drug.merge[,t.test.sample.size.gene:=length(which(!is.na(epsilon))), 
+           by=list(locus, media)]
+
+#also calculate a median per gene in condition
+drug.merge[,epsilon.median.mutant.condition:=median(epsilon, na.rm=T), 
+           by=list(Tn.mutant.id, media)]
+
+drug.merge[,epsilon.median.gene.condition:=median(epsilon, na.rm=T), 
+           by=list(locus, media)]
+
+drug.merge[,epsilon.median.condition:=median(epsilon, na.rm=T), by=list(media)]
+
+#sanity check:
+#how many values is each t.test calculated on?
+# data.table(table(drug.merge$t.test.sample.size)) #"empty" gene name has to be
+# kicked out
+# data.table(table(drug.merge[gene.name!="EMPTY"]$t.test.sample.size)) #after
+# this, there's still a lot of genes that have a LOT of replicates (e.g. 25)
+
+# drug.merge %>% 
+#   filter(locus!="EMPTY") %>% 
+#   filter(t.test.sample.size>20) %>% 
+#   select(gene.name, locus, PAO1.ortholog, t.test.sample.size, media) %>% 
+#   unique()
+
+#shrink the effect sizes using the James-Stein estimator
+my.james.stein.estimator = function(effect.size){
+  shrinkage.parameter = 1 - (length(effect.size)-2)*var(effect.size, na.rm = T)/(sum(effect.size, na.rm = T)^2)
+  return(shrinkage.parameter * effect.size)
+}
+
+my.cohen.d.wrapper = function(this.genes.values, all.genes.values){
+  cohen.d(d=this.genes.values, f=all.genes.values) %$% estimate 
+}
+
+# drug.merge = 
+# drug.merge %>% 
+#   filter(media=="LB") %>% 
+#   group_by(locus) %>% 
+#   mutate(
+#     cohen.d.effect.size = cohen.d(d = c(epsilon), f=drug.merge[media=="LB"]$epsilon %>% na.omit()) %$% estimate
+#     #effect.size.James.Stein = my.james.stein.estimator(cohen.d.effect.size)
+#   ) %>% 
+#   data.table()
+
+saveRDS(drug.merge, "output/rdata/drug.merge.2.Rdata")
+
+```
+
+```{r correct.p.values}
+drug.merge = readRDS("output/rdata/drug.merge.2.Rdata")
+#do we really have so many plates for those (+ matching controls?)
+
+#we kick out the "empty" gene name
+condition.gene.t.test.results = drug.merge[,
+  c("Tn.mutant.id", "gene.name", "colony", "locus", "media",
+    "Tn.per.gene", "copy.n", "copy.id",
+    "t.test.statistic", "t.test.pvalue", "t.test.sample.size",
+    "t.test.statistic.gene", "t.test.pvalue.gene", "t.test.sample.size.gene",
+    "epsilon.median.mutant.condition", "epsilon.median.gene.condition") ,with=F]
+condition.gene.t.test.results =
+  condition.gene.t.test.results[!duplicated(condition.gene.t.test.results[,-c("colony")])]
+
+
+# Kick out every gene with less than 4 observations
+# That sort of filtering can be done down the road...
+# condition.gene.t.test.results =
+#   condition.gene.t.test.results %>% 
+#   filter(t.test.sample.size>=4) %>% 
+#   data.table()
+
+
+#do a multiple testing correction per condition
+condition.gene.t.test.results[,t.test.q.value:=p.adjust(t.test.pvalue,
+                                                        method="BH"), by=media]
+condition.gene.t.test.results[,t.test.q.value.gene:=p.adjust(t.test.pvalue.gene,
+                                                        method="BH"), by=media]
+
+#do also a multiple testing correction using the new IHW method, per media,
+#this is shown to be much more powerful
+#Here I get a warning about IHW only having one bin
+condition.gene.t.test.results[,t.test.IHW.adj.p.value :=
+                              adj_pvalues(ihw(t.test.pvalue, t.test.statistic,
+                                              alpha = 0.05)), by=media]
+condition.gene.t.test.results[,t.test.IHW.adj.p.value.gene :=
+                              adj_pvalues(ihw(t.test.pvalue.gene, t.test.statistic.gene,
+                                              alpha = 0.05)), by=media]
+
+condition.gene.t.test.results =
+  condition.gene.t.test.results[!duplicated(condition.gene.t.test.results[,c("Tn.mutant.id","media"),
+                                            with=F])]
+
+#sanity check:
+#how many genes has each condition t.tests for?
+# data.table(table(condition.gene.t.test.results$media)) #4370 or 4372
+# data.table(table(condition.gene.t.test.results$t.test.sample.size))
+#how many t-tests failed (after filtering for number of observations)?
+# condition.gene.t.test.results[is.na(t.test.statistic)] #none
+```
+
+# Results visualization
+
+## Per-media epsilon violin plots
+
+```{r make violin plots, warning=F}
+#make violin plot ####
+
+condition.gene.t.test.results[,gene.name.to.show:=gene.name]
+condition.gene.t.test.results[is.na(gene.name.to.show)
+                              ,gene.name.to.show:=locus]
+
+#make the violin plot
+(ggplot(condition.gene.t.test.results, aes(media, epsilon.median.gene.condition))+ 
+    geom_violin(scale = "width", trim=T, adjust = .5, aes(fill=media),
+                size=0.1, alpha=0.5, show.legend=F)+
+    geom_point(data=condition.gene.t.test.results[t.test.q.value<0.05],
+               aes(y=epsilon.median.gene.condition), size=0.1, color="red2")+
+    # geom_point(data=condition.gene.t.test.results[t.test.q.value>=0.05][abs(t.test.statistic)>10],
+    #            aes(y=epsilon.median.gene.condition), size=0.1, color="black")+
+    ggrepel::geom_text_repel(data=condition.gene.t.test.results[t.test.q.value<0.05],
+                             aes(y=epsilon.median.gene.condition,
+                                 label=gene.name.to.show), nudge_x=0.25,
+                             size=2, alpha=1, segment.size = 0.2,
+                             color="red2")+
+    # ggrepel::geom_text_repel(data=condition.gene.t.test.results[t.test.q.value>=0.05][abs(t.test.statistic)>10],
+    #                          aes(y=epsilon.median.gene.condition,
+    #                              label=gene.name.to.show), nudge_x=0.25,
+    #                          size=2, alpha=1, segment.size = 0.2,
+    #                          color="black")+
+    geom_hline(yintercept = 0, color="black", linetype="dashed", size=0.3)+
+    theme_bw()+
+    theme(legend.position='bottom')+
+    scale_y_continuous(name = "epsilon (median per gene)")+
+    scale_x_discrete(name = "media")) #%>% plotly::ggplotly()
+
+ggsave("output/pdf/per.gene.median.epsilon.2.pdf", width=6, height=6)
+```
+
+## Condition comparison
+
+In order to visually identify mutants which change epsilon sign among the two
+conditions, I draw lines between mutants in 3 hit sets:  
+  
+1. q-value under 0.10 **and** t-statistic over ±10
+2. top/bottom-5 genes based on their median epsilon
+3. q-value under 0.05
+
+```{r compare conditions, warning=F}
+#check out changes between conditions ####
+
+condition.gene.t.test.results[t.test.q.value<0.10 &
+                              abs(t.test.statistic)>10,
+                            gene.color:="1.q<0.10&|t|>10"]
+condition.gene.t.test.results[t.test.q.value.gene<0.10 &
+                              abs(t.test.statistic.gene)>10,
+                            gene.color.gene:="1.q<0.10&|t|>10"]
+
+condition.gene.t.test.results =
+  condition.gene.t.test.results %>% 
+  group_by(media) %>% 
+  mutate(
+    gene.color = ifelse(frank(epsilon.median.mutant.condition)<=5 |
+                        frank(-epsilon.median.mutant.condition)<=5, "2.top 5",
+                      gene.color), 
+    gene.color.gene = ifelse(frank(epsilon.median.gene.condition)<=5 |
+                        frank(-epsilon.median.gene.condition)<=5, "2.top 5",
+                      gene.color)) %>% 
+  ungroup() %>% 
+  data.table()
+
+# condition.gene.t.test.results[media=="LB" &
+#                               (frank(epsilon.median.Tn.mutant.condition)<5 |
+#                                frank(-epsilon.median.Tn.mutant.condition)<5),
+#                               gene.color:="2.top 5"]
+# condition.gene.t.test.results[media=="LBpH5.5" & 
+#                               (frank(epsilon.median.Tn.mutant.condition)<5 | 
+#                                frank(-epsilon.median.Tn.mutant.condition)<5), 
+#                               gene.color:="2.top 5"]
+
+
+condition.gene.t.test.results[t.test.q.value<0.05,
+                              gene.color:="3.q<0.05"]
+condition.gene.t.test.results[t.test.q.value.gene<0.05,
+                              gene.color.gene:="3.q<0.05"]
+# condition.gene.t.test.results[,gene.color:=factor(gene.color, levels =
+#                                                   c("1.q<0.05", "2.top 5",
+#                                                     "3.q<0.10"))]
+
+condition.comparison = 
+  merge(
+
+    condition.gene.t.test.results[media=="LB"] %>% 
+      select( Tn.mutant.id, t.test.statistic, t.test.pvalue,
+             t.test.sample.size, epsilon.median.mutant.condition, gene.color),
+
+    condition.gene.t.test.results[media=="LBpH5.5"] %>% 
+      select(Tn.mutant.id, t.test.statistic, t.test.pvalue,
+             t.test.sample.size, epsilon.median.mutant.condition, gene.color),
+        
+    by="Tn.mutant.id", suffixes=c(".LB", ".LBpH5.5")
+  )
+
+condition.comparison[,gene.color:=max(gene.color.LB, gene.color.LBpH5.5,
+                                      na.rm=T), by="Tn.mutant.id"]
+
+
+ggplot(condition.gene.t.test.results, aes(media, epsilon.median.mutant.condition))+ 
+  geom_violin(scale = "width", trim=T, adjust = .5, aes(fill=media), size=0.1,
+              alpha=0.5, show.legend=F)+
+  ggrepel::geom_text_repel(
+    data=condition.gene.t.test.results[!is.na(gene.color)],
+    aes(y=epsilon.median.mutant.condition, label=gene.name.to.show,
+        color=gene.color), nudge_x=0.25, size=2, alpha=1, segment.size = 0.2)+
+  geom_point(data=condition.gene.t.test.results[!is.na(gene.color)],
+             aes(y=epsilon.median.mutant.condition, color=gene.color), size=0.1)+
+  geom_segment(data=condition.comparison[gene.color %in% c("3.q<0.05", "2.top 5")], 
+               aes(x=1, xend=2, y=epsilon.median.mutant.condition.LB,
+                   yend=epsilon.median.mutant.condition.LBpH5.5), size=0.1,
+               color="black", alpha=0.5)+
+  geom_hline(yintercept = 0, color="black", linetype="dashed", size=0.3)+
+  theme_bw()+
+  theme(legend.position='bottom')+
+  guides(colour = guide_legend(override.aes = list(size=3)))+
+  scale_y_continuous(name = "epsilon (median per gene)")+
+  scale_x_discrete(name = "media")+
+  scale_color_manual(values = c("1.q<0.10&|t|>10"="black", "3.q<0.05"="red2",
+                                "2.top 5"="blue"), name="hit") #media
+  
+ggsave("output/pdf/per.gene.median.epsilon.lines.pdf", width=6, height=6)
+```
+
+```{r save results, warning=F}
+#save results to disk
+
+saveRDS(condition.gene.t.test.results,
+        "output/rdata/condition.gene.t.test.results.2.Rdata")
+
+for (this.condition in unique(condition.gene.t.test.results$media)) {
+  write.csv(
+    condition.gene.t.test.results[complete.cases(condition.gene.t.test.results)
+      ][media==this.condition
+        ][,-c("media"),with=F
+          ][order(t.test.IHW.adj.p.value)],
+    paste0("output/csv/per.condition.epsilon.phenotypes/", 
+           this.condition, ".genes.sorted.by.IHW.p.value.2.csv") 
+  )
+}
+```
+
+
+# Next steps
+
+Next steps include comparing the double-drug results with the single-drug data.  
+This would identify mutants that are more resistant to any single drug.  
