@@ -85,58 +85,62 @@ two clinical isolates of _A. baumannii_, _E. cloacae_, and _K. pneumoniae_.
 ## SFig1 
 
 ```{r}
+theme_set(theme_pdf())
+
 sub = subset(dat, strain == 'ATCC27853' & (d1 == 0 | d2 == 0))
 
 p1 = function() pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30)
 p2 = function() pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L')
 
 # pH
-foo = fread("input/dat/raw/2018-07-11_pa278553_growth_pH.csv")
+foo = fread("input/dat/raw/growth_and_pH.tsv")
 
-foo = foo[time_h > 0, .(
+foo = foo[time_h >= 0 & overnight_medium == 'pH7.4', .(
   od = gmu(od620),
   od.ci = gci(od620),
   ph = mean(pH),
   ph.ci = ci(pH)
-  ), time_h]
+  ), .(growth_medium, time_h)]
 
-pltPH = function(x, y, ci, geom=T, col='grey20', ...) {
-  plot(x, y, type='l', yaxt='n', col = col, ...)
-  points(x, y, pch=19, col=col)
 
-  if(geom) {
-    arrows(x0=x, y0=y/ci, x1=x, y1=y*ci, 
-      code=3, angle=90, length=0.0, col=col)
-  } else {
-    arrows(x0=x, y0=y-ci, x1=x, y1=y+ci, 
-      code=3, angle=90, length=0.0, col=col)
-  }
+p0 = foo %>% 
+  mutate(
+    growth_medium = relevel(factor(growth_medium), 'pH7.4'),
+    time_h = ifelse(time_h > 20, 20, time_h),
+    NULL
+    ) %>% 
+  ggplot(aes(time_h, od, shape = growth_medium)) +
+  scale_x_continuous(breaks = c(0, 5, 10, 20), labels = c(seq(0, 10, 5), 24), limits = c(0, 20)) +
+  scale_shape_manual(name = '', values = c(19, 22, 15), labels = c('pH 7.4', 'pH 5.5',
+      'pH 5.5 buffered')) +
+  theme(legend.position = 'top')
 
-}
+p3 = p0 + 
+  scale_y_continuous(trans='log2', breaks = c(0.001, 0.01, 0.1, 1), limits = c(0.001, 10)) + 
+  geom_point(size=.point_size, col='grey20') +
+  geom_pointrange(aes(ymin = od*od.ci, ymax = od/od.ci)) +
+  geom_line(col='grey20') +
+  labs(x = 'Time, h', y = expression('OD'[620]))
 
-p3 = function() {
-  par(lwd=1.5, cex=1.25, tcl=-0.25, #pty='s', # asp = 1
-            mar=c(3.1, 4.1, 0.5, 2.5), 
-            mgp=c(2, 0.75, 0)  # closeness of axis title, label, line
-  )
-  with(foo, {
-    pltPH(time_h, od, od.ci, log='y', ylab = expression('OD'[620]), xlab = 'Time, h')
-    magicaxis::magaxis(2, prettybase=1, las=1, tcl=-0.3)
+p4 = p0 %+% aes(y = ph) + 
+  scale_y_continuous(position = 'right') +
+  geom_point(size=.point_size, col=cbPalette[3]) +
+  geom_line(col=cbPalette[3]) +
+  geom_pointrange(aes(ymin = ph-ph.ci, ymax = ph + ph.ci), col=cbPalette[3]) +
+  theme(legend.position = 'none',
+    axis.title.y.right=element_text(color = cbPalette[3]),
+    axis.text.y.right=element_text(color = cbPalette[3]),
+    axis.ticks.y.right=element_line(color = cbPalette[3])
+  ) +
+  labs(x = '', y = 'pH')
 
-    par(new=TRUE)
-    pltPH(time_h, ph, ph.ci, geom=F, bty='n', col=cbPalette[3], 
-      axes=FALSE, ylab='', xlab='', ylim=c(5.5, 7.5)
-    )
-    mtext("pH", side=4, col=cbPalette[3], line=2.1) 
-    axis(4, at = seq(5.5, 7.5, 0.5), col=cbPalette[3],
-      col.axis=cbPalette[3], las=1)
-  })
-}
+aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
 
-plot_grid(ggdraw(p1), ggdraw(p2), ggdraw(p3),
-  labels = 'AUTO', label_fonface='normal', align='hv'
+plot_grid(
+  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]), labels = 'AUTO', align = 'v'
 )
-ggsave('output/fig/monotherapy_dose-response.png', width=10, height=9)
+
+ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.png', width=10, height=9)
 ```
 
 
