@@ -1,0 +1,193 @@
+#Manual quality control file; observations to be moved from final analysis,,,,
+#If column and row is indicated as NA (about 15 of them), the whole plate,,,
+#should be removed.,,,,
+file,row,column,issue,notes
+LB-noAb1-010.JPG.iris,1,48,iris missed the colony,
+LB-noAb2-006.JPG.iris,19,19,iris missed the colony,
+LB-noAb2-006.JPG.iris,32,48,iris missed the colony,
+LB-noAb2-007.JPG.iris,9,48,iris missed the colony,
+LB-noAb2-007.JPG.iris,10,48,iris missed the colony,
+LB-noAb2-007.JPG.iris,26,44,iris missed the colony,
+LB-noAb2-008.JPG.iris,7,48,iris missed the colony,
+LB-noAb2-008.JPG.iris,12,48,iris missed the colony,
+LB-noAb2-008.JPG.iris,15,48,iris missed the colony,
+LB-noAb2-008.JPG.iris,26,44,iris missed the colony,
+LB-noAb2-008.JPG.iris,27,48,iris missed the colony,
+LB-noAb2-008.JPG.iris,32,45,iris missed the colony,
+LB-noAb2-008.JPG.iris,32,48,iris missed the colony,
+LB-noAb2-009.JPG.iris,13,48,iris missed the colony,
+LB-noAb2-009.JPG.iris,26,44,iris missed the colony,
+LB-noAb2-009.JPG.iris,32,40,iris missed the colony,
+LB-noAb2-009.JPG.iris,32,46,iris missed the colony,
+LB-noAb2-009.JPG.iris,32,48,iris missed the colony,
+LB-noAb2-011.JPG.iris,17,14,iris missed the colony,
+LB-noAb2-014.JPG.iris,29,2,not pinned,
+LB-noAb2-014.JPG.iris,29,3,not pinned,
+LB-noAb2-014.JPG.iris,30,1,not pinned,
+LB-noAb2-014.JPG.iris,30,2,not pinned,
+LB-noAb2-014.JPG.iris,30,3,not pinned,
+LB-noAb2-014.JPG.iris,31,1,not pinned,
+LB-noAb2-014.JPG.iris,31,2,not pinned,
+LB-noAb2-014.JPG.iris,31,3,not pinned,
+LBpH5.5-noAb1-017.JPG.iris,15,38,iris missed the colony,small and weak colony
+LBpH5.5-noAb1-017.JPG.iris,17,21,iris missed the colony,small and weak colony
+LBpH5.5-noAb1-018.JPG.iris,15,34,iris missed the colony,small and weak colony
+LBpH5.5-noAb1-018.JPG.iris,15,38,iris missed the colony,small and weak colony
+LBpH5.5-noAb1-018.JPG.iris,16,37,iris quantified contamination,colony+contaminating colony
+LBpH5.5-noAb1-018.JPG.iris,29,35,iris quantified contamination,colony+contaminating colony
+LBpH5.5-noAb1-020.JPG.iris,15,34,iris missed the colony,small and weak colony
+LBpH5.5-noAb1-020.JPG.iris,17,21,iris missed the colony,small and weak colony
+LBpH5.5-noAb2-007.JPG.iris,29,13,swarming,
+LBpH5.5-noAb2-007.JPG.iris,29,14,swarming,
+LBpH5.5-noAb2-007.JPG.iris,29,15,swarming,
+LBpH5.5-noAb2-007.JPG.iris,30,13,swarming,
+LBpH5.5-noAb2-007.JPG.iris,30,14,swarming,
+LBpH5.5-noAb2-007.JPG.iris,30,15,swarming,
+LBpH5.5-noAb2-007.JPG.iris,30,16,swarming,
+LBpH5.5-noAb2-007.JPG.iris,31,14,swarming,
+LBpH5.5-noAb2-007.JPG.iris,31,15,swarming,
+LBpH5.5-noAb2-007.JPG.iris,31,16,swarming,
+LBpH5.5-noAb2-007.JPG.iris,31,17,swarming,
+LBpH5.5-noAb2-007.JPG.iris,32,16,swarming,
+LBpH5.5-noAb2-007.JPG.iris,32,17,swarming,
+LBpH5.5-noAb2-007.JPG.iris,32,18,swarming,
+LBpH5.5-Polymyxin2-004.JPG.iris,17,44,iris quantified contamination,
+LBpH5.5-Polymyxin2-004.JPG.iris,21,32,iris quantified contamination,
+LBpH5.5-Polymyxin2-005.JPG.iris,1,47,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,2,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,6,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,7,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,9,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,10,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,12,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,14,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,22,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,24,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,26,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,27,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,29,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,31,1,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-005.JPG.iris,32,48,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-010.JPG.iris,1,28,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-010.JPG.iris,4,32,iris missed the colony,swarming colony
+LBpH5.5-Polymyxin2-010.JPG.iris,21,26,iris quantified contamination,
+LBpH5.5-Polymyxin2-020.JPG.iris,15,30,iris missed the colony,
+LBpH5.5-Polymyxin2-020.JPG.iris,28,32,iris missed the colony,
+LBpH5.5-Polymyxin4-006.JPG.iris,1,1,iris missed the colony,
+LBpH5.5-Polymyxin4-013.JPG.iris,7,2,iris missed the colony,
+LBpH5.5-Rifampicin16-006.JPG.iris,4,32,iris missed the colony,huge and diffuse colony
+LBpH5.5-Rifampicin16-008.JPG.iris,4,32,iris missed the colony,huge and diffuse colony
+LBpH5.5-Rifampicin16-009.JPG.iris,1,48,iris missed the colony,
+LBpH5.5-Rifampicin16-010.JPG.iris,4,32,iris missed the colony,huge and diffuse colony
+LBpH5.5-Rifampicin16Polymyxin2-002.JPG.iris,25,24,iris quantified contamination,
+LBpH5.5-Rifampicin16Polymyxin2-004.JPG.iris,27,20,iris quantified contamination,
+LBpH5.5-Rifampicin16Polymyxin2-006.JPG.iris,NA,NA,moderate swarming,normalize (median polish or alike) or remove the whole plate
+LBpH5.5-Rifampicin16Polymyxin2-008.JPG.iris,9,3,iris missed the colony,
+LBpH5.5-Rifampicin16Polymyxin2-009.JPG.iris,NA,NA,mild swarming,normalize (median polish or alike) or remove the whole plate
+LBpH5.5-Rifampicin16Polymyxin2-019.JPG.iris,NA,NA,moderate/heavy swarming,normalize (median polish or alike) or remove the whole plate
+LBpH5.5-Rifampicin16Polymyxin2-020.JPG.iris,NA,NA,moderate/heavy swarming,normalize (median polish or alike) or remove the whole plate
+LBpH5.5-Rifampicin16Polymyxin2-020.JPG.iris,27,47,iris missed the colony,
+LBpH5.5-Rifampicin32-012.JPG.iris,1,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,2,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,3,6,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,3,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,6,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,8,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,9,7,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,9,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,10,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,11,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,12,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,13,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,14,8,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,14,9,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,14,10,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,15,10,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,16,10,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,15,11,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,15,12,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,15,13,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,31,29,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,32,29,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,3,37,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,37,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,37,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,37,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,3,38,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,38,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,38,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,38,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,38,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,39,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,8,39,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,40,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,8,40,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,41,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,41,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,41,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,8,41,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,42,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,42,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,42,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,7,42,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,8,42,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,43,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,43,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,43,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,44,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,44,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,44,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,4,45,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,45,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,45,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,5,46,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,6,46,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,9,48,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,10,48,plate defect,
+LBpH5.5-Rifampicin32-012.JPG.iris,11,48,plate defect,
+LBpH5.5-Rifampicin32-018.JPG.iris,7,26,contamination,
+LB-Polymyxin2-001.JPG.iris,31,6,pinning defect,
+LB-Polymyxin2-001.JPG.iris,32,6,pinning defect,
+LB-Polymyxin2-011.JPG.iris,32,44,iris missed the colony,
+LB-Polymyxin2-014.JPG.iris,NA,NA,heavy_swarming,remove the whole plate
+LB-Polymyxin4-007.JPG.iris,NA,NA,moderate swarming,normalize (median polish or alike) or remove the whole plate
+LB-Polymyxin4-008.JPG.iris,NA,NA,moderate swarming,normalize (median polish or alike) or remove the whole plate
+LB-Polymyxin4-009.JPG.iris,NA,NA,mild swarming,normalize (median polish or alike) or remove the whole plate
+LB-Rifampicin16-006.JPG.iris,19,31,iris missed the colony,
+LB-Rifampicin16-006.JPG.iris,26,44,iris missed the colony,
+LB-Rifampicin16-007.JPG.iris,15,13,iris missed the colony,
+LB-Rifampicin16-014.JPG.iris,8,48,iris missed the colony,
+LB-Rifampicin16-014.JPG.iris,17,48,iris missed the colony,
+LB-Rifampicin16-014.JPG.iris,18,48,iris missed the colony,
+LB-Rifampicin16-014.JPG.iris,19,48,iris missed the colony,
+LB-Rifampicin16-014.JPG.iris,32,48,iris missed the colony,
+LB-Rifampicin16Polymyxin2-006.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin16Polymyxin2-007.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin16Polymyxin2-008.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin16Polymyxin2-009.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin16Polymyxin2-014.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin32-006.JPG.iris,NA,NA,heavy swarming,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,15,13,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,30,18,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,31,20,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,32,22,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,32,24,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,26,24,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,28,28,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,31,29,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-006.JPG.iris,26,44,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-007.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin32-008.JPG.iris,NA,NA,heavy swarming,remove the whole plate
+LB-Rifampicin32-009.JPG.iris,15,13,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,32,1,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,32,22,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,32,23,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,32,24,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,32,32,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-009.JPG.iris,26,44,iris missed the colony,I’m afraid we have to keep the plate
+LB-Rifampicin32-016.JPG.iris,1,1,iris missed the colony,

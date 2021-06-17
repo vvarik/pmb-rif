@@ -240,3 +240,15 @@ remNonCharcoal = function (dat) {
   ## apply the filter
   dat[!idx, ]
 }
+
+
+#' @export
+remBadPlates = function (dat) {
+  bad.plates = 
+    fread("input/dat/raw/iris_files/qc.csv", skip = 3) %>% 
+    filter(is.na(row)) %>% 
+    #filter(notes=="remove the whole plate")
+    filter(!str_detect(notes, "normalize"))
+  
+  dat[!filename %in% bad.plates$file]
+}
