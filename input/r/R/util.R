@@ -252,3 +252,19 @@ remBadPlates = function (dat) {
   
   dat[!filename %in% bad.plates$file]
 }
+
+
+#' @export
+flagBadColonies = function (dat) {
+
+  bad.colonies = 
+    fread("input/dat/raw/iris_files/qc.csv", skip = 3) %>% 
+    filter(!is.na(row)) %>% 
+    dplyr::select(filename=file, row, column) %>% 
+    mutate(filtered.out=T)
+
+   merge(dat, bad.colonies, by=c("filename", "row", "column"), 
+     all.x=T)
+  
+}
+
