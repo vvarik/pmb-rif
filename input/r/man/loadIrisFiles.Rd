@@ -6,6 +6,11 @@
 \usage{
 loadIrisFiles(folder.path, keep.folder.name = F)
 }
+\arguments{
+\item{folder.path}{Path to folder}
+
+\item{keep.folder.name}{Boolean, defaults to FALSE}
+}
 \description{
 Load all iris files
 }

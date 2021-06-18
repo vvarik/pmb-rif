@@ -1,8 +1,8 @@
 #' Load iris files 
 #'
 #' Load all iris files
-#' @param folder.path
-#' @param keep.folder.name
+#' @param folder.path Path to folder
+#' @param keep.folder.name Boolean, defaults to FALSE
 #' @export
 loadIrisFiles = function(folder.path, keep.folder.name = F){
 
