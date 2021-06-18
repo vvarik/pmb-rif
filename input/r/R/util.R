@@ -274,3 +274,20 @@ turnBadColoniesToNAs = function (dat) {
   dat[filtered.out==T, opacity:=NA]
   dat[filtered.out==T, size:=NA]
 }
+
+
+#' @export
+setMisdetectedColoniesToNAs = function (dat) {
+  
+  # Find the mutants that are absent only a few times (and thus probably a
+  # misdetection than an empty spot). Absent mutants have size zero.
+  arbitrary.threshold = 0.4
+  colonies.sometimes.missing = 
+    dat[, .(frequency.absent = nrow(.SD[size==0])/.N), colony] %>% 
+    .[frequency.absent > 0 & frequency.absent < arbitrary.threshold] %>% 
+    .[, colony]
+  
+  #set to NA these possible misdetections
+  dat[size==0 & colony %in% colonies.sometimes.missing, c('opacity', 'size') := NA ]
+
+}
