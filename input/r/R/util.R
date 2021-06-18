@@ -334,3 +334,20 @@ getPairwiseReplicateCorrelations = function(dat) {
   }
   return(rbindlist(correlations))
 }
+
+
+#' @export
+getCandidateFilesToKickOut = function(dat) {
+  #Count number of times a specific filename has correlations under a threshold
+  #vs over the threshold (all times). Kick out filenames that have 2
+  #correlations under 0.5 (disagree with both other replicates)
+  bad.files = data.table(table(c(dat[correlation<0.5]$filename.A, 
+                                 dat[correlation<0.5]$filename.B)))
+  all.files = data.table(table(c(dat$filename.A, 
+                                 dat$filename.B)))
+  setnames(bad.files, c("filename", "times.discordant"))
+  setnames(all.files, c("filename", "times.present"))
+  out = merge(bad.files, all.files, by="filename")
+  out[,ratio.discordant.vs.all:=times.discordant/times.present]
+  return(out)
+}
