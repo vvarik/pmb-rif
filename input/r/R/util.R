@@ -291,3 +291,46 @@ setMisdetectedColoniesToNAs = function (dat) {
   dat[size==0 & colony %in% colonies.sometimes.missing, c('opacity', 'size') := NA ]
 
 }
+
+
+#' @export
+getPairwiseReplicateCorrelations = function(dat) {
+  #get all replicate correlations per condition, and per plate number
+
+  correlations = list()
+
+  for(cond in unique(dat$condition)){
+    for(plate in unique(dat$plate.number)){
+      #get all pairwise combinations of the conditions
+      sset = dat[condition==cond][plate.number==plate]
+      length(unique(sset$biorep))
+  
+      if(length(unique(sset$biorep))<2){
+        #there's no replicate reproducibility with one replicate
+        cat(paste0("Warning: only one replicate for ", cond, " in library plate", plate))
+        cat("\n")
+        next
+      }
+      
+      rep.pairs = combn(unique(sset$biorep), 2)
+      
+      for(k in 1:dim(rep.pairs)[2]){
+        this.correlation = cor(
+          sset[biorep==rep.pairs[1,k]]$opacity,
+          sset[biorep==rep.pairs[2,k]]$opacity,
+          use="na.or.complete"
+        )
+        
+        correlations = c(correlations, 
+          list(data.table(correlation=this.correlation,
+            replicate.A = rep.pairs[1,k],
+            replicate.B = rep.pairs[2,k],
+            filename.A = as.character(unique(sset[biorep==rep.pairs[1,k]]$filename)),
+            filename.B = as.character(unique(sset[biorep==rep.pairs[2,k]]$filename)),
+            condition = cond,
+            plate.number = plate)))
+      }
+    }
+  }
+  return(rbindlist(correlations))
+}
