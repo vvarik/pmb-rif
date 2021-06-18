@@ -351,3 +351,11 @@ getCandidateFilesToKickOut = function(dat) {
   out[,ratio.discordant.vs.all:=times.discordant/times.present]
   return(out)
 }
+
+
+#' @export
+correctOpacityForPlates = function (dat) {
+  dat[, opacity.raw := opacity]  #store original
+  median.to.set = round(median(dat$opacity, na.rm=T), -2)
+  dat[,opacity:=scaleMult(x=opacity, target.values=median.to.set), by=filename]
+}
