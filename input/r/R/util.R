@@ -359,3 +359,20 @@ correctOpacityForPlates = function (dat) {
   median.to.set = round(median(dat$opacity, na.rm=T), -2)
   dat[,opacity:=scaleMult(x=opacity, target.values=median.to.set), by=filename]
 }
+
+
+#' @export
+long2wide = function(dat) {
+  #There's 2 LB "conditions", each with 5 replicates as control for each plate
+  #position. Take the median of both LB conditions across five replicates.
+  control.medians = dat[grepl('noAb', condition), .(
+    control.median = as.numeric(median(opacity, na.rm=T)),
+    count = sum(!is.na(opacity))
+    ), .(media, colony)]
+  
+  condition.iris.files = dat[!grepl('noAb', condition)]
+  
+  condition.vs.control = merge(condition.iris.files, control.medians, by=c("media", "colony"))
+
+  return(condition.vs.control)
+}
