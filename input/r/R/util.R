@@ -406,3 +406,27 @@ getEpsilons = function (dat) {
   
 }
 
+
+#' @export
+addAnnotation = function (dat) {
+  PA14.map = fread('input/dat/raw/PA14_computational_v2_updated_annotations.csv') %>% 
+    .[,.(
+      plate = `1536 plate`, 
+      row = `1536 row`, 
+      column = `1536 column`, 
+      locus = `""Active"" Gene Locus`, 
+      gene.id = `""Active"" GeneID`, 
+      gene.name = `""Active"" Gene Name`,
+      PAO1.ortholog = `PAO1 ortholog of ""Active"" gene`,
+      Tn.pos.bp = `Tn insertion position within ""Active"" Gene (bp)` 
+    )] %>% 
+    .[,colony := plate*10000 + row*100 + column]
+  
+  # add information about n of unique Tn mutants per gene
+  PA14.map[!is.na(gene.id), Tn.per.gene:=uniqueN(Tn.pos.bp), locus]
+  PA14.map[, Tn.mutant.id:=paste(locus, Tn.pos.bp, sep='.')]
+  PA14.map[!is.na(gene.id), copy.n:=uniqueN(colony), Tn.mutant.id]
+  PA14.map[!is.na(gene.id), copy.id:=seq_len(.N), Tn.mutant.id]
+  
+  merge(dat, PA14.map, by='colony', all.x=T)
+}
