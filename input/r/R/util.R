@@ -376,3 +376,33 @@ long2wide = function(dat) {
 
   return(condition.vs.control)
 }
+
+
+#' @export
+getEpsilons = function (dat) {
+  out = setkey(dat, NULL)
+
+  out = out[grepl("Rifampicin16Polymyxin2", condition), 
+    .(colony, biorep, media, combination.opacity=opacity,
+      combination.f=f.condition)] %>% 
+
+    merge(out[antibiotic=="Rifampicin16", 
+      .(colony, biorep, media, Rifampicin16.opacity=opacity,
+        Rifampicin16.f=f.condition)]) %>% 
+
+    merge(out[antibiotic=="Polymyxin2", 
+      .(colony, biorep, media, Polymyxin2.opacity=opacity,
+        Polymyxin2.f=f.condition)]) 
+  
+  
+  #this table will bring f.values of drug12, drug1, and drug2 in different
+  #columns, so it will be easy to then perform the t-test
+  out[,expected.f:=Rifampicin16.f*Polymyxin2.f]
+  out[,epsilon:=combination.f-expected.f]
+  
+  out[,media.mean.epsilon:=mean(epsilon, na.rm=T), by=media]
+  
+  return(out)
+  
+}
+
