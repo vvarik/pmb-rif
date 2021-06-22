@@ -430,3 +430,40 @@ addAnnotation = function (dat) {
   
   merge(dat, PA14.map, by='colony', all.x=T)
 }
+
+#' @export
+tTest = function (dat) {
+#compare each gene's epsilon to medium's mean epsilon -- a one-sample t-test
+
+  .tTest = function(x, ...){
+    try({
+      result = t.test(x, ...)
+      return(list(as.numeric(result$statistic), result$p.value))
+    },silent=T)
+    return(list(NA_real_, NA_real_))
+  }
+
+  dat[,c("t.test.statistic", "t.test.pvalue") := .tTest(epsilon,
+    mu=unique(media.mean.epsilon)), .(Tn.mutant.id, media)]
+  
+  dat[,c("t.test.statistic.gene", "t.test.pvalue.gene") := .tTest(epsilon,
+    mu=unique(media.mean.epsilon)), .(locus, media)]
+  
+  #also get how many non-NA values each test is calculated on
+  dat[,t.test.sample.size:=length(which(!is.na(epsilon))), 
+    .(Tn.mutant.id, media)]
+  
+  dat[,t.test.sample.size.gene:=length(which(!is.na(epsilon))), 
+    .(locus, media)]
+  
+  #also calculate a median per gene in condition
+  dat[,epsilon.median.mutant.condition:=median(epsilon, na.rm=T), 
+    .(Tn.mutant.id, media)]
+  
+  dat[,epsilon.median.gene.condition:=median(epsilon, na.rm=T), 
+    .(locus, media)]
+  
+  dat[,epsilon.median.condition:=median(epsilon, na.rm=T), .(media)]
+}
+
+
