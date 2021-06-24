@@ -427,6 +427,9 @@ addAnnotation = function (dat) {
   PA14.map[, Tn.mutant.id:=paste(locus, Tn.pos.bp, sep='.')]
   PA14.map[!is.na(gene.id), copy.n:=uniqueN(colony), Tn.mutant.id]
   PA14.map[!is.na(gene.id), copy.id:=seq_len(.N), Tn.mutant.id]
+
+  PA14.map[,gene.name.to.show := ifelse(gene.name=='', gsub('PA14_', '', locus),
+    gene.name)]
   
   merge(dat, PA14.map, by='colony', all.x=T)
 }
