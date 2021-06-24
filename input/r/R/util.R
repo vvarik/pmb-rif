@@ -473,11 +473,11 @@ tTest = function (dat) {
 #' @export
 getTTestResults = function (dat) {
   out = dat[,
-    .(Tn.mutant.id, gene.name, colony, locus, media,
-      Tn.per.gene, copy.n, copy.id,
-      t.test.statistic, t.test.pvalue, t.test.sample.size,
-      t.test.statistic.gene, t.test.pvalue.gene, t.test.sample.size.gene,
-      epsilon.median.mutant.condition, epsilon.median.gene.condition)]
+    .(Tn.mutant.id, gene.name, gene.name.to.show, colony, locus, media,
+      Tn.per.gene, copy.n, copy.id, t.test.statistic, t.test.pvalue,
+      t.test.sample.size, t.test.statistic.gene, t.test.pvalue.gene,
+      t.test.sample.size.gene, epsilon.median.mutant.condition,
+      epsilon.median.gene.condition)]
   
    out[!duplicated(out)]
   
