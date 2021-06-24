@@ -481,3 +481,20 @@ getTTestResults = function (dat) {
 }
 
 
+#' @export
+correctForMultipleTesting = function (dat) {
+  #do a multiple testing correction per media
+
+  dat[,t.test.q.value:=p.adjust(t.test.pvalue, method="BH"), media]
+  dat[,t.test.q.value.gene:=p.adjust(t.test.pvalue.gene, method="BH"), media]
+  
+  #do also a multiple testing correction using the new IHW method
+  dat[,t.test.IHW.adj.p.value := IHW::adj_pvalues(IHW::ihw(t.test.pvalue,
+      t.test.statistic, alpha = 0.05)), media]
+  dat[,t.test.IHW.adj.p.value.gene :=
+    IHW::adj_pvalues(IHW::ihw(t.test.pvalue.gene, t.test.statistic.gene, 
+        alpha = 0.05)), media]
+  
+  unique(dat, by = c('Tn.mutant.id', 'media'))
+  
+}
