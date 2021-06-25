@@ -40,7 +40,14 @@ theme_update(
 )
 ```
 
-```{r prep}
+# Combinations
+
+We studied the potential of the rifampicin-polymyxin B combination against
+intra- and extracellular forms of bacteria: three _P. aeruginosa_ strains, 
+two clinical isolates of _A. baumannii_, _E. cloacae_, and _K. pneumoniae_.
+
+
+```{r}
 dat = readRDS('../analysis/data/r_obj/pmb-rif_all-clean.rds')
 dat[, effect := round(effect, 3)]
 
@@ -59,25 +66,86 @@ dat[is.na(effect), effect := -4.5]
 # Response surface analysis
 # rs = getRS(dat, 'rs')
 
-# # Time-kill ------------------------------
-# 
-# dtk = fread('input/dat/time-kill.tsv') %>% 
-#   remNonCharcoal()
-# 
-# .myLabels = c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
-#   "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
-# 
-# dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
-# xaxs = c(0, 2, 4, 6, 10)
-# xlabs = c(0, 2, 4, 6, 24)
-# dtk[, group := factor(group, levels=1:8, labels=.myLabels)]
 ```
 
-# Combination
 
-We studied the potential of the rifampicin-polymyxin B combination against
-intra- and extracellular forms of bacteria: three _P. aeruginosa_ strains, 
-two clinical isolates of _A. baumannii_, _E. cloacae_, and _K. pneumoniae_.
+# Reverse genetics
+
+```{r}
+dat = loadIrisFiles("input/dat/raw/iris_files") %>% 
+  addIrisVars() %>% 
+  # Manual curation by visual inspection of images
+  remBadPlates() %>% 
+  flagBadColonies() %>% 
+  turnBadColoniesToNAs() %>% 
+  # Automatic curation by numbers
+  setMisdetectedColoniesToNAs() %>%   # colonies missing from 60% of plates
+  # plate-to-plate correction, brings plate opacities to same median
+  correctOpacityForPlates()
+
+rep.correlations = getPairwiseReplicateCorrelations(dat)
+candidate.files.to.kick.out = getCandidateFilesToKickOut(rep.correlations)
+candidate.files.to.kick.out[ratio.discordant.vs.all==1, filename]
+# [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
+
+# Fitness ----------------------------------------
+condition.vs.control = long2wide(dat)  # also average controls using median
+#calculate Fitness for each condititon and mutant ####
+# F.condition = Opacity.condition / Opacity.control
+#remember: opacity is replaced by the corrected opacity
+condition.vs.control[,f.condition:=opacity/control.median]
+# dim(condition.vs.control[is.na(f.condition)])[1] / dim(condition.vs.control)[1]
+#0.22% of F-values are NA
+
+# Epsilon ----------------------------------------
+drug.merge = getEpsilons(condition.vs.control)
+
+drug.merge = addAnnotation(drug.merge)
+drug.merge = tTest(drug.merge)
+condition.gene.t.test.results = getTTestResults(drug.merge) %>% 
+  correctForMultipleTesting()
+```
+
+```{r}
+tmp = condition.gene.t.test.results %>% 
+  mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
+      t.test.q.value)) %>% 
+  mutate(showname = ifelse(
+      (t.test.q.value < 0.05 & gene.name != '') | t.test.q.value < 0.01 ,
+      T, F)) 
+
+(p0 = filter(tmp, media == 'LB') %>%  
+  {
+  ggplot(., aes(epsilon.median.mutant.condition, -log10(t.test.q.value), col = t.test.q.value < 0.05)) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c('grey70', 'grey20')) +
+  ggrepel::geom_text_repel(data= . %>% .[(showname)], size = 6,
+    aes(label=gene.name.to.show), box.padding=0.75, seed=3) +
+  lims(x = c(-0.8, 0.6)) +
+  labs(x = 'Shift in Bliss score', y = expression('log'[10]*'(p-value)')) +
+  theme(aspect.ratio = 1, legend.position = 'none')
+
+})
+
+# ggsave('output/fig/ChemGen_LB.svg', width=5, height=5)
+
+p0 %+% filter(tmp, media == 'LBpH5.5')
+# ggsave('output/fig/ChemGen_LBpH5.5.svg', width=5, height=5)
+```
+
+```{r}
+getGenes = function (dat) {
+  out = list()
+  for(i in unique(dat$media))
+    out[[i]] = unique(dat[t.test.q.value < 0.05 & media == i], by='locus') %>%
+      .[, (gene.name.to.show)]
+  return(out)
+}
+
+
+foo = getGenes(condition.gene.t.test.results)
+vtable = gplots::venn(foo)
+```
 
 
 # Supplementary figures
@@ -144,17 +212,20 @@ ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.png', width=10, height=
 ```
 
 
-# Time-kill
+## Time-kill
 
 ```{r}
+# # Time-kill ------------------------------
+# 
+# dtk = fread('input/dat/time-kill.tsv') %>% 
+#   remNonCharcoal()
+# 
+# .myLabels = c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
+#   "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
+# 
+# dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
+# xaxs = c(0, 2, 4, 6, 10)
+# xlabs = c(0, 2, 4, 6, 24)
+# dtk[, group := factor(group, levels=1:8, labels=.myLabels)]
 
 ```
-
-
-
-# Chemical genetic screen
-
-```{r}
-
-```
-
