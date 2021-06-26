@@ -526,3 +526,13 @@ addFitness = function (dat) {
   
   merge(dat, lut, all.x=T)
 }
+
+
+#' @export
+remDissimilarExperimentalConditions = function (dat) {
+  dat[date != '2019-12-01'] %>%  # o/n cells there, different inhibition
+  .[!(rat == 8 & cond_f %in% c('combo', 'RIF'))] %>% 
+  # remove the data of slowly growin mutant in first experiment; in second
+  # experiment, I grew the culture o/n prior to performing the experiment.
+  .[!(mut == 28 & !date %in%  c('2019-12-08', '2019-12-20', '2019-12-21'))]
+}
