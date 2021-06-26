@@ -502,9 +502,17 @@ correctForMultipleTesting = function (dat) {
   
 }
 
+# Reverse Genetics Validation --------------------
 
 #' @export
 addDrugRatio = function (dat) {
   lut = dat[step == 1 & cond == 3, .(rat = unique(c2/c1)), date]
   dat[lut, on = 'date']
 }
+
+
+#' @export
+addAUC = function (dat) {
+  dat[, AUC:=DescTools::AUC(time_h, OD620), .(date, well)]
+}
+
