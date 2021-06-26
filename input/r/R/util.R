@@ -516,3 +516,13 @@ addAUC = function (dat) {
   dat[, AUC:=DescTools::AUC(time_h, OD620), .(date, well)]
 }
 
+
+#' @export
+addFitness = function (dat) {
+  # full growth of strain, OD_bug
+  dat[, AUC_bug  := gmu(AUC[step == 8]), .(date, mut, time_h)]
+  # fitness, fit_AUC
+  lut = dat[, .(fit_AUC=gmu(AUC/AUC_bug)), .(date, mut, cond, step)]
+  
+  merge(dat, lut, all.x=T)
+}
