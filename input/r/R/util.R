@@ -501,3 +501,10 @@ correctForMultipleTesting = function (dat) {
   unique(dat, by = c('Tn.mutant.id', 'media'))
   
 }
+
+
+#' @export
+addDrugRatio = function (dat) {
+  lut = dat[step == 1 & cond == 3, .(rat = unique(c2/c1)), date]
+  dat[lut, on = 'date']
+}
