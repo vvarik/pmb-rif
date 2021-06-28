@@ -522,7 +522,9 @@ addFitness = function (dat) {
   # full growth of strain, OD_bug
   dat[, AUC_bug  := gmu(AUC[step == 8]), .(date, mut, time_h)]
   # fitness, fit_AUC
-  lut = dat[, .(fit_AUC=gmu(AUC/AUC_bug)), .(date, mut, cond, step)]
+  lut = dat[, .(fit_AUC=gmu(AUC/AUC_bug), AUC_bug), 
+    .(date, mut, cond, step, time_h)]
+  lut[, fit_AUC := ifelse(AUC_bug < 1, NA, fit_AUC)]
   
   merge(dat, lut, all.x=T)
 }
