@@ -538,3 +538,25 @@ remDissimilarExperimentalConditions = function (dat) {
   # experiment, I grew the culture o/n prior to performing the experiment.
   .[!(mut == 28 & !date %in%  c('2019-12-08', '2019-12-20', '2019-12-21'))]
 }
+
+
+#' @export
+fitPa14MutDR = function(mydat, x=dose, y=fit_AUC,
+                 curveid=grp, ...) {
+  # Fit dose-responses of fitness
+  y = deparse(substitute(y))
+  x = deparse(substitute(x))
+  curveid = substitute(curveid)
+  eq = reformulate(x, response=y)
+
+  try(
+    drm(eq, curveid=eval(curveid), data=mydat,
+    fct=LL2.4(names=c("hill", "Emax", "Emin", "logEC50"),
+                    fixed=c(NA, NA, NA, NA)),
+    pmodels = data.frame(eval(curveid), 1, 1, eval(curveid)),
+    lowerl=c(1, 0, -Inf, -Inf),
+    upperl=c(10, Inf, 1.2, Inf),
+    ...
+    ) 
+  )
+}
