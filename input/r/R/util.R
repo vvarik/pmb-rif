@@ -560,3 +560,19 @@ fitPa14MutDR = function(mydat, x=dose, y=fit_AUC,
     ) 
   )
 }
+
+
+#' @export
+pltPa14MutDR = function(mydat, cex=1.5, ylim=c(0,1.1), lty=1, 
+                 showname = TRUE, ...
+) {
+  plottype = substitute(plottype)
+  mut_name = unique(mydat$origData$mut)
+  label_x = 'PMB, RIF/48, µg/mL'
+  try({
+    plot(mydat, cex.axis=1.5, lty=lty, ylim=ylim, cex=cex,
+         xlab=label_x, ylab='Fitness', broken=TRUE, ...
+    ) 
+    if(showname) mtext(mut_name)
+  })
+}
