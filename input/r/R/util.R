@@ -585,12 +585,36 @@ pltPA14MutDR = function(mydat, cex=1.5, ylim=c(0,1.1), lty=1,
 
 #' @export
 addPA14MutAnnotation = function (dat) {
-  candidates = fread('input/dat/mut_to_validate.csv') %>% 
-    .[, .(plt96, well96, mut=no)]
-  pa14_map = getPA14Map()
-  setkey(pa14_map, plt96, well96)
-  lut = pa14_map[candidates] %>% .[, .(mut, gene)]
+  candidates = fread('input/dat/raw/pa14_mut_to_validate.csv') %>% 
+    .[, .(locus, mut=no)]
+  pa14_map = getPA14Map() %>% 
+    .[, gene := ifelse(gene.name=='', locus, gene.name)]
+  setkey(pa14_map, locus)
+  lut = pa14_map[candidates, on = 'locus'][, .(mut, gene)] %>% 
+    unique(., by = 'mut')
+  lut[is.na(gene), gene := 'wild-type']
   setkey(lut, mut)
-  lut[dat]
+  dat[lut]
 }
 
+
+#' @export
+plt45PA14MutantDR = function () {
+  setPar(mfrow = c(5, 9))
+  for (i in 1:45) {
+    lapply(fit[1], pltPA14MutDR, xlim=c(0.3, 10), lwd=6, 
+      pch = 19, type = 'none', main = unique(fit[[i]]$ori$gene),
+      col=scales::alpha(cbPalette[c(3, 1, 2)], 0.5), 
+      showname = FALSE, 
+      legend = FALSE, axes = FALSE
+    )
+    axis(side = 1, at = c(0.3, 1, 3, 10))
+    my_ylab = c(0.0,  0.5, 1.0)
+    axis(2, las = 1, at = my_ylab, labels = my_ylab)
+    # axis(side = 2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1.0))
+    lapply(fit[i], pltPA14MutDR, showname = FALSE,
+      xlim=c(0.3, 10), col=cbPalette[c(3, 1, 2)], 
+      cex=1.5, pch = 19, add = T, legendPos = c(12, 1.15)
+    )
+  }
+}
