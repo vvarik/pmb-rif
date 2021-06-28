@@ -408,7 +408,7 @@ getEpsilons = function (dat) {
 
 
 #' @export
-addAnnotation = function (dat) {
+getPA14Map = function () {
   PA14.map = fread('input/dat/raw/PA14_computational_v2_updated_annotations.csv') %>% 
     .[,.(
       plate = `1536 plate`, 
@@ -430,9 +430,15 @@ addAnnotation = function (dat) {
 
   PA14.map[,gene.name.to.show := ifelse(gene.name=='', gsub('PA14_', '', locus),
     gene.name)]
-  
+}
+
+
+#' @export
+addAnnotation = function (dat) {
+  PA14.map = getPA14Map()
   merge(dat, PA14.map, by='colony', all.x=T)
 }
+
 
 #' @export
 tTest = function (dat) {
