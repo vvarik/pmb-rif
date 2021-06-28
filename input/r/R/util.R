@@ -582,3 +582,15 @@ pltPa14MutDR = function(mydat, cex=1.5, ylim=c(0,1.1), lty=1,
     if(showname) mtext(mut_name)
   })
 }
+
+#' @export
+addPA14MutAnnotation = function (dat) {
+  candidates = fread('input/dat/mut_to_validate.csv') %>% 
+    .[, .(plt96, well96, mut=no)]
+  pa14_map = getPA14Map()
+  setkey(pa14_map, plt96, well96)
+  lut = pa14_map[candidates] %>% .[, .(mut, gene)]
+  setkey(lut, mut)
+  lut[dat]
+}
+
