@@ -513,7 +513,7 @@ addDrugRatio = function (dat) {
 
 #' @export
 addAUC = function (dat) {
-  dat[, AUC:=DescTools::AUC(time_h, OD620), .(date, well)]
+  dat[, AUC:=cumAUC(time_h, OD620), .(date, well)]
 }
 
 
