@@ -547,7 +547,7 @@ remDissimilarExperimentalConditions = function (dat) {
 
 
 #' @export
-fitPa14MutDR = function(mydat, x=dose, y=fit_AUC,
+fitPA14MutDR = function(mydat, x=dose, y=fit_AUC,
                  curveid=grp, ...) {
   # Fit dose-responses of fitness
   y = deparse(substitute(y))
@@ -569,7 +569,7 @@ fitPa14MutDR = function(mydat, x=dose, y=fit_AUC,
 
 
 #' @export
-pltPa14MutDR = function(mydat, cex=1.5, ylim=c(0,1.1), lty=1, 
+pltPA14MutDR = function(mydat, cex=1.5, ylim=c(0,1.1), lty=1, 
                  showname = TRUE, ...
 ) {
   plottype = substitute(plottype)
