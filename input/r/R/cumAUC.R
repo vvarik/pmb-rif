@@ -5,12 +5,10 @@
 #' @examples
 #' cumAUC(subset(beaver1, day == 346))
 #' @export
-cumAUC = function (dat, x, y) {
-  pars = as.list(match.call()[-1]) %>% lapply(., as.character)
-
-  out = vector(length = nrow(dat))
-  for(i in seq_along(dat[, pars$x])) {
-    out[i] = DescTools::AUC(dat[, pars$x][1:i], dat[, pars$y][1:i])
+cumAUC = function (x, y) {
+  out = vector(length = length(x))
+  for(i in seq_along(x)) {
+    out[i] = DescTools::AUC(x[1:i], y[1:i])
   }
   out
 }

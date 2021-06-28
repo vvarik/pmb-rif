@@ -4,7 +4,7 @@
 \alias{cumAUC}
 \title{Cumulative Area Under the Curve}
 \usage{
-cumAUC(dat, x, y)
+cumAUC(x, y)
 }
 \arguments{
 \item{dat}{}
