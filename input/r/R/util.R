@@ -633,7 +633,7 @@ plt45PA14MutantComparisonToLoeweNull = function(fname) {
   vec = c(vec1, vec2)
 
   setPar()
-  par(mfrow=c(5,9))
+  par(mfrow=c(8,6))
   for (i in vec) {
     foo = rsl[['wt']]$offAxisTable
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
