@@ -604,7 +604,7 @@ plt45PA14MutantDR = function () {
   for (i in 1:45) {
     lapply(fit[1], pltPA14MutDR, xlim=c(0.3, 10), lwd=6, 
       pch = 19, type = 'none', main = unique(fit[[i]]$ori$gene),
-      col=scales::alpha(cbPalette[c(3, 1, 2)], 0.5), 
+      col=scales::alpha(cbPalette[c(3, 1, 2)], 0.75), 
       showname = FALSE, 
       legend = FALSE, axes = FALSE
     )
@@ -627,14 +627,19 @@ plt45PA14MutantComparisonToLoeweNull = function(fname) {
   rsl = readRDS(fname) %>% lapply(., function(x) x$rsl)
   names(rsl) = mutants 
   
+  # order
+  vec1 = c(1, 24, 31, 33, 2, 17, 29, 35, 5, 6, 13, 15, 20, 40, 45)
+  vec2 = setdiff(1:45, vec1)
+  vec = c(vec1, vec2)
+
   setPar()
   par(mfrow=c(5,9))
-  for (i in 1:45) {
+  for (i in vec) {
     foo = rsl[['wt']]$offAxisTable
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
     lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), 
       main = unique(fit[[i]]$ori$gene), showname=F,
-      type = 'none', lwd = 6, col=alpha(cbPalette, 0.5), axes
+      type = 'none', lwd = 6, col=alpha(cbPalette, 0.75), axes
       = FALSE, cex=1.5, pch = 19, legendPos = c(1, 0.5))
     plot(fit[[1]], level = 'combo', add = TRUE, col = cbPalette, cex = 1.5, pch=19)
     
@@ -649,7 +654,7 @@ plt45PA14MutantComparisonToLoeweNull = function(fname) {
         bty ='n',
         lwd = c(4, 1, 4, 1),
         col = c(
-          alpha(cbPalette[1], 0.5), 
+          alpha(cbPalette[1], 0.75), 
           alpha(cbPalette[1], 1)
         )
       )
@@ -674,7 +679,7 @@ plt45PA14MutantComparisonToLoeweNull = function(fname) {
       bty ='n',
       lwd = c(4, 1, 4, 1),
       col = c(
-        alpha(cbPalette[2], 0.5),
+        alpha(cbPalette[2], 0.75),
         alpha(cbPalette[2], 1)
       )
     )
