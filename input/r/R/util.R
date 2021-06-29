@@ -618,3 +618,66 @@ plt45PA14MutantDR = function () {
     )
   }
 }
+
+
+#' @export
+plt45PA14MutantComparisonToLoeweNull = function(fname) {
+  mutants = c('wt', 1:27, 29:45)  # mut 28 failed
+  fname = paste0('input/dat/rds/', fname, '.rds') 
+  rsl = readRDS(fname) %>% lapply(., function(x) x$rsl)
+  names(rsl) = mutants 
+  
+  setPar()
+  par(mfrow=c(5,9))
+  for (i in 1:45) {
+    foo = rsl[['wt']]$offAxisTable
+    bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
+    lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), 
+      main = unique(fit[[i]]$ori$gene), showname=F,
+      type = 'none', lwd = 6, col=alpha(cbPalette, 0.5), axes
+      = FALSE, cex=1.5, pch = 19, legendPos = c(1, 0.5))
+    plot(fit[[1]], level = 'combo', add = TRUE, col = cbPalette, cex = 1.5, pch=19)
+    
+    axis(side = 1, at = c(0.3, 1, 3, 10))
+    my_ylab = c(0.0,  0.5, 1.0)
+    axis(2, las = 1, at = my_ylab, labels = my_ylab)
+    # axis(side = 2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1.0))
+
+    if(i == 1) {
+      legend(0.7, 1.15, 
+        legend = c('wt null', 'wt real'), 
+        bty ='n',
+        lwd = c(4, 1, 4, 1),
+        col = c(
+          alpha(cbPalette[1], 0.5), 
+          alpha(cbPalette[1], 1)
+        )
+      )
+      next
+    }
+  
+    if(i != 29) {
+      foo = rsl[[i]]$offAxisTable
+      bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
+      lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), type = 'none', lwd = 6,
+             col=alpha(cbPalette[2], 0.5), add = TRUE,
+             cex=1.5, pch = 19, legendPos = c(1, 0.5))
+    }
+    
+    lapply(fit[i], pltPA14MutDR, showname = F, 
+      level = 'combo', xlim=c(0.3, 10),
+      col=cbPalette[2], cex=1.5, pch = 19, add = T, 
+      legendPos = c(1, 0.5)
+    )
+    legend(0.7, 1.15, 
+      legend = c('mut null', 'mut real'), 
+      bty ='n',
+      lwd = c(4, 1, 4, 1),
+      col = c(
+        alpha(cbPalette[2], 0.5),
+        alpha(cbPalette[2], 1)
+      )
+    )
+  
+  }
+}
