@@ -599,9 +599,34 @@ addPA14MutAnnotation = function (dat) {
 
 
 #' @export
-plt45PA14MutantDR = function () {
-  setPar(mfrow = c(5, 9))
-  for (i in 1:45) {
+plt45PA14MutantDR = function (organize=T) {
+
+  # order
+  if(organize == T) {
+    vec = c('relA', 'PA14_02150', 'PA14_26590', 'lldP', 'PA14_03760',
+      'PA14_56840', 'PA14_66480', 'PA14_60490', 'wild-type', 'maiA', 'pmbA',
+      'PA14_43270', 'PA14_43670', 'PA14_51310', 'PA14_62230', 'ahpF', 'fdnH',
+      'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE', 'PA14_11130',
+      'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680', 'PA14_19150',
+      'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960', 'PA14_34820',
+      'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900', 'PA14_47260',
+      'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520', 'PA14_65670',
+      'PA14_68670'
+    )
+    foo = sapply(fit, function(x) unique(x$orig$gene))
+    idx = c(101:103, match(vec, foo))
+  } else {
+    idx = seq_along(fit)
+  }
+
+  setPar(mfrow = c(8, 6))
+  for (i in idx) {
+
+    if(i > 100) {
+      plot.new()
+      next
+    }
+
     lapply(fit[1], pltPA14MutDR, xlim=c(0.3, 10), lwd=6, 
       pch = 19, type = 'none', main = unique(fit[[i]]$ori$gene),
       col=scales::alpha(cbPalette[c(3, 1, 2)], 0.75), 
@@ -621,21 +646,40 @@ plt45PA14MutantDR = function () {
 
 
 #' @export
-plt45PA14MutantComparisonToLoeweNull = function(fname) {
-  mutants = c('wt', 1:27, 29:45)  # mut 28 failed
+plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
+  #mutants = c('wt', 1:27, 29:45)  # mut 28 failed
   fname = paste0('input/dat/rds/', fname, '.rds') 
   rsl = readRDS(fname) %>% lapply(., function(x) x$rsl)
-  names(rsl) = mutants 
-  
+  #names(rsl) = mutants 
+
   # order
-  vec1 = c(1, 24, 31, 33, 2, 17, 29, 35, 5, 6, 13, 15, 20, 40, 45)
-  vec2 = setdiff(1:45, vec1)
-  vec = c(vec1, vec2)
+  if(organize == T) {
+    vec = c('relA', 'PA14_02150', 'PA14_26590', 'lldP', 'PA14_03760',
+      'PA14_56840', 'PA14_66480', 'PA14_60490', 'wild-type', 'maiA', 'pmbA',
+      'PA14_43270', 'PA14_43670', 'PA14_51310', 'PA14_62230', 'ahpF', 'fdnH',
+      'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE', 'PA14_11130',
+      'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680', 'PA14_19150',
+      'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960', 'PA14_34820',
+      'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900', 'PA14_47260',
+      'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520', 'PA14_65670',
+      'PA14_68670'
+    )
+    foo = sapply(fit, function(x) unique(x$orig$gene))
+    idx = c(101:103, match(vec, foo))
+  } else {
+    idx = seq_along(fit)
+  }
 
   setPar()
   par(mfrow=c(8,6))
-  for (i in vec) {
-    foo = rsl[['wt']]$offAxisTable
+  for (i in idx) {
+
+    if(i > 100) {
+      plot.new()
+      next
+    }
+
+    foo = rsl[[1]]$offAxisTable  # wild-type
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
     lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), 
       main = unique(fit[[i]]$ori$gene), showname=F,
