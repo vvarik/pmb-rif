@@ -730,3 +730,57 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
   
   }
 }
+
+
+#' @export
+getPa14RS = function (dat) {
+  dat_rs = dat[time_h == 14] %>% 
+    .[, mut := mut + 1] %>% 
+    dplyr::select(mut, d1 = c1, d2 = c2, ab1 = abb1, ab2 = abb2, effect =
+      fit_AUC, cond) %>% 
+    as.data.frame()  # some point down the road handles only df's without complaint
+  
+  # there is a problem with mut24
+  #dat_rs = dat_rs[dat_rs$mut != 23, ]
+
+  cores_n = parallel::detectCores()
+  doParallel::registerDoParallel(cores_n)
+  `%dopar%` = foreach::`%dopar%`
+
+  set.seed(9)
+  rs = foreach::foreach (i = unique(dat_rs$mut)) %dopar% {
+  # for (i in 1:3) {
+    cat('Working on', i, '\n')
+    ## Select experiment
+    data = subset(dat_rs, mut==i)
+    data = data[complete.cases(data), ]
+  
+    ## Fit joint marginal model
+    marginal_fit = BIGL::fitMarginals(data, method='nlslm')
+    ## Predict response surface based on generalized Loewe model
+    rs_loewe = try(BIGL::fitSurface(data, marginal_fit, null_model='loewe2',
+                      statistic = "both", B.CP = 500,
+                      parallel = FALSE))
+  
+    rs_bliss = try(BIGL::fitSurface(data, marginal_fit, null_model='bliss',
+                      statistic = "both", B.CP = 500,
+                      parallel = FALSE))
+    # MeanR, tests the overall fit of the data to zero interaction model
+    # MaxR identifies concentrations where synergy or antagonism is present
+    maxR_loewe = tryCatch(summary(rs_loewe[['maxR']])[['totals']], error=function(err) NA)
+    maxR_bliss = tryCatch(summary(rs_bliss[['maxR']])[['totals']],
+    error=function(err) NA)
+    
+    list(
+      mth = marginal_fit,  # monotherapy
+      rsl = rs_loewe,
+      rsb = rs_bliss,
+      maxRl = maxR_loewe,
+      maxRb = maxR_bliss
+    )
+  
+  }
+  doParallel::stopImplicitCluster()
+
+  return(rs)
+}
