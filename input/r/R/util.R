@@ -542,7 +542,7 @@ remDissimilarExperimentalConditions = function (dat) {
   .[!(rat == 8 & cond_f %in% c('combo', 'RIF'))] %>% 
   # remove the data of slowly growin mutant in first experiment; in second
   # experiment, I grew the culture o/n prior to performing the experiment.
-  .[!(mut == 28 & !date %in%  c('2019-12-08', '2019-12-20', '2019-12-21'))]
+  .[!(mut == 28 & !date %in% as.Date(c('2019-12-08', '2019-12-20', '2019-12-21')))]
 }
 
 
