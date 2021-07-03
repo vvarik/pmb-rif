@@ -647,10 +647,11 @@ plt45PA14MutantDR = function (organize=T) {
 
 #' @export
 plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
-  #mutants = c('wt', 1:27, 29:45)  # mut 28 failed
   fname = paste0('input/dat/rds/', fname, '.rds') 
   rsl = readRDS(fname) %>% lapply(., function(x) x$rsl)
-  #names(rsl) = mutants 
+
+  # mut 28 failed surface analysis
+  fitNew = fit[-29]
 
   # order
   if(organize == T) {
@@ -663,15 +664,14 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
       'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900', 'PA14_47260',
       'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520', 'PA14_65670',
       'PA14_68670'
-    )
-    foo = sapply(fit, function(x) unique(x$orig$gene))
+   )
+    foo = sapply(fitNew, function(x) unique(x$orig$gene))
     idx = c(101:103, match(vec, foo))
   } else {
-    idx = seq_along(fit)
+    idx = seq_along(fitNew)
   }
 
-  setPar()
-  par(mfrow=c(8,6))
+  setPar(mfrow=c(8,6))
   for (i in idx) {
 
     if(i > 100) {
@@ -682,10 +682,10 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
     foo = rsl[[1]]$offAxisTable  # wild-type
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
     lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), 
-      main = unique(fit[[i]]$ori$gene), showname=F,
+      main = unique(fitNew[[i]]$ori$gene), showname=F,
       type = 'none', lwd = 6, col=alpha(cbPalette, 0.75), axes
       = FALSE, cex=1.5, pch = 19, legendPos = c(1, 0.5))
-    plot(fit[[1]], level = 'combo', add = TRUE, col = cbPalette, cex = 1.5, pch=19)
+    plot(fitNew[[1]], level = 'combo', add = TRUE, col = cbPalette, cex = 1.5, pch=19)
     
     axis(side = 1, at = c(0.3, 1, 3, 10))
     my_ylab = c(0.0,  0.5, 1.0)
@@ -705,15 +705,13 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
       next
     }
   
-    if(i != 29) {
-      foo = rsl[[i]]$offAxisTable
-      bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
-      lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), type = 'none', lwd = 6,
-             col=alpha(cbPalette[2], 0.5), add = TRUE,
-             cex=1.5, pch = 19, legendPos = c(1, 0.5))
-    }
+    foo = rsl[[i]]$offAxisTable
+    bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
+    lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), type = 'none', lwd = 6,
+           col=alpha(cbPalette[2], 0.5), add = TRUE,
+           cex=1.5, pch = 19, legendPos = c(1, 0.5))
     
-    lapply(fit[i], pltPA14MutDR, showname = F, 
+    lapply(fitNew[i], pltPA14MutDR, showname = F, 
       level = 'combo', xlim=c(0.3, 10),
       col=cbPalette[2], cex=1.5, pch = 19, add = T, 
       legendPos = c(1, 0.5)
