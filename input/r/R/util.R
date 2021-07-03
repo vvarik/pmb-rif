@@ -538,11 +538,11 @@ addFitness = function (dat) {
 
 #' @export
 remDissimilarExperimentalConditions = function (dat) {
-  dat[date != '2019-12-01'] %>%  # o/n cells there, different inhibition
+  dat[!(mut!=28 & date == '2019-12-01')] %>%  # o/n cells there, different inhibition
   .[!(rat == 8 & cond_f %in% c('combo', 'RIF'))] %>% 
-  # remove the data of slowly growin mutant in first experiment; in second
-  # experiment, I grew the culture o/n prior to performing the experiment.
-  .[!(mut == 28 & !date %in% as.Date(c('2019-12-08', '2019-12-20', '2019-12-21')))]
+  # for slowly growing mutant, I grew the culture o/n prior to performing the
+  # experiment on the following dates
+  .[!(mut == 28 & !date %in% as.Date(c('2019-12-01', '2019-12-08', '2019-12-20', '2019-12-21')))]
 }
 
 
