@@ -151,6 +151,21 @@ vtable = gplots::venn(foo)
 We validate the sensitivity of identified candidate mutants in low throughput
 and in liquid medium. Fixed ratio design.
 
+```{r}
+dat = fread('input/dat/raw/pa14_mut_pmb_rif.csv') %>% 
+  addDrugRatio() %>% 
+  addAUC() %>% 
+  addFitness() %>% 
+  remDissimilarExperimentalConditions()
+
+dat[, dose:= ifelse(cond_f %in% c('PMB', 'combo'), d1, d2)]
+dat_lst  = split(dat, dat$mut)
+fit = lapply(dat_lst, fitPA14MutDR, curveid = cond_f)
+```
+
+
+
+
 # Supplementary Figures
 
 ## Dose Response And pH
