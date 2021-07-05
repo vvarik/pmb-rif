@@ -149,21 +149,44 @@ vtable = gplots::venn(foo)
 # Screen Validation
 
 We validate the sensitivity of identified candidate mutants in low throughput
-and in liquid medium. Fixed ratio design.
+and in liquid medium. Fixed ratio design [Tallarida et al 1997](https://doi.org/10.1016/s0024-3205(97)01030-8).
 
 ```{r}
 dat = fread('input/dat/raw/pa14_mut_pmb_rif.csv') %>% 
   addDrugRatio() %>% 
   addAUC() %>% 
   addFitness() %>% 
-  remDissimilarExperimentalConditions()
+  remDissimilarExperimentalConditions() %>% 
+  addPA14MutAnnotation()
 
 dat[, dose:= ifelse(cond_f %in% c('PMB', 'combo'), d1, d2)]
 dat_lst  = split(dat, dat$mut)
 fit = lapply(dat_lst, fitPA14MutDR, curveid = cond_f)
+
+# Loewe response surface ------------------------------
+# rs = getPa14RS(dat)
+
+# We use a stored older result
+rsl = readRDS('input/dat/rds/2020-01-02_rs_pa14.rds') %>% lapply(., function(x) x$rsl)
+foo = lapply(rsl, function(x) summary(x$maxR)$totals) %>% rbindlist(idcol='mut')
+# Mutant numbering is potential source of confusion; hence I assign here
+# manually: wild-type is coded as mut 0, fitting of mut 28 failed
+foo[, mut := c(0:27, 29:45)]  
+arrange(foo, Syn) %>% print(20)
+unique(dat[mut %in% c(23, 31, 33)], by = 'gene')
+unique(dat[mut %in% c(1, 16, 29, 35)], by = 'gene')
+unique(dat[mut %in% c(4, 5, 14, 19, 40, 45, 12)], by = 'gene')
 ```
 
+```{r}
+svg('output/fig/SFig_45PA14MutDoseResponses.svg', 12, 16)
+plt45PA14MutantDR()
+dev.off()
 
+svg('output/fig/SFig_45PA14MutCompLoeweNull.svg', 12, 16)
+plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
+dev.off()
+```
 
 
 # Supplementary Figures
