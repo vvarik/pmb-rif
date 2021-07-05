@@ -641,7 +641,7 @@ plt45PA14MutantDR = function (organize=T) {
 
     lapply(fit[1], pltPA14MutDR, xlim=c(0.3, 10), lwd=6, 
       pch = 19, type = 'none', main = unique(fit[[i]]$ori$gene),
-      col=scales::alpha(cbPalette[c(3, 1, 2)], 0.75), 
+      col=scales::alpha(drugCols[c('PmbWt','RifWt','CmbWt')], 0.75), 
       showname = FALSE, 
       legend = FALSE, axes = FALSE
     )
@@ -649,9 +649,12 @@ plt45PA14MutantDR = function (organize=T) {
     my_ylab = c(0.0,  0.5, 1.0)
     axis(2, las = 1, at = my_ylab, labels = my_ylab)
     # axis(side = 2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1.0))
+
+    if(i == 1) next
+
     lapply(fit[i], pltPA14MutDR, showname = FALSE,
-      xlim=c(0.3, 10), col=cbPalette[c(3, 1, 2)], 
-      cex=1.5, pch = 19, add = T, legendPos = c(12, 1.15)
+      xlim=c(0.3, 10), col=drugCols[c('PmbMono', 'RifMono', 'Cmb')], 
+      cex=1.5, pch = 19, add = T, legend = F # legendPos = c(12, 1.15)
     )
   }
 }
@@ -707,47 +710,27 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
     lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), 
       main = unique(fitNew[[i]]$ori$gene), showname=F,
-      type = 'none', lwd = 6, col=alpha(cbPalette, 0.75), axes
+      type = 'none', lwd = 6, col=alpha(drugCols[c('LoeweNullWt')], 0.75), axes
       = FALSE, cex=1.5, pch = 19, legendPos = c(1, 0.5))
-    plot(fitNew[[1]], level = 'combo', add = TRUE, col = cbPalette, cex = 1.5, pch=19)
+    plot(fitNew[[1]], level = 'combo', add = TRUE, col = drugCols[c('CmbWt')], 
+      cex = 1.5, pch=19)
     
     axis(side = 1, at = c(0.3, 1, 3, 10))
     my_ylab = c(0.0,  0.5, 1.0)
     axis(2, las = 1, at = my_ylab, labels = my_ylab)
     # axis(side = 2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1.0))
 
-    if(i == 1) {
-      legend(0.7, 1.15, 
-        legend = c('wt null', 'wt real'), 
-        bty ='n',
-        lwd = c(4, 1, 4, 1),
-        col = c(
-          alpha(cbPalette[1], 0.75), 
-          alpha(cbPalette[1], 1)
-        )
-      )
-      next
-    }
+    if(i == 1) next
   
     foo = rsl[[i]]$offAxisTable
     bar = list(drm(predicted ~ d1, data = foo, fct = LL2.4()))
     lapply(bar, pltPA14MutDR, xlim=c(0.3, 3), type = 'none', lwd = 6,
-           col=alpha(cbPalette[2], 0.5), add = TRUE,
-           cex=1.5, pch = 19, legendPos = c(1, 0.5))
+           col=alpha(drugCols[c('LoeweNullMut')], 0.5), add = TRUE,
+           cex=1.5, pch = 19)
     
     lapply(fitNew[i], pltPA14MutDR, showname = F, 
       level = 'combo', xlim=c(0.3, 10),
-      col=cbPalette[2], cex=1.5, pch = 19, add = T, 
-      legendPos = c(1, 0.5)
-    )
-    legend(0.7, 1.15, 
-      legend = c('mut null', 'mut real'), 
-      bty ='n',
-      lwd = c(4, 1, 4, 1),
-      col = c(
-        alpha(cbPalette[2], 0.75),
-        alpha(cbPalette[2], 1)
-      )
+      col=drugCols[c('Cmb')], cex=1.5, pch = 19, add = T
     )
   
   }
