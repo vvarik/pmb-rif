@@ -603,15 +603,27 @@ plt45PA14MutantDR = function (organize=T) {
 
   # order
   if(organize == T) {
-    vec = c('relA', 'PA14_02150', 'PA14_26590', 'lldP', 'PA14_03760',
-      'PA14_56840', 'PA14_66480', 'PA14_60490', 'wild-type', 'maiA', 'pmbA',
-      'PA14_43270', 'PA14_43670', 'PA14_51310', 'PA14_62230', 'ahpF', 'fdnH',
-      'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE', 'PA14_11130',
-      'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680', 'PA14_19150',
-      'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960', 'PA14_34820',
-      'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900', 'PA14_47260',
-      'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520', 'PA14_65670',
-      'PA14_68670'
+    vec = c(
+      # no synergy
+      'relA', 'PA14_02150', 'PA14_26590',           
+
+      # less than wild-type
+      'lldP', 'PA14_56840', 'PA14_66480', 'PA14_60490', 
+
+      # wild-type
+      'wild-type',                                 
+
+      # more than wild-type 
+      'maiA', 'pmbA', 'PA14_03760', 'PA14_43270',   
+      'PA14_43670', 'PA14_51310', 'PA14_62230',   
+
+      # same as wild-type
+      'ahpF', 'fdnH', 'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE',
+      'PA14_11130', 'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680',
+      'PA14_19150', 'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960',
+      'PA14_34820', 'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900',
+      'PA14_47260', 'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520',
+      'PA14_65670', 'PA14_68670'
     )
     foo = sapply(fit, function(x) unique(x$orig$gene))
     idx = c(101:103, match(vec, foo))
@@ -655,16 +667,28 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
 
   # order
   if(organize == T) {
-    vec = c('relA', 'PA14_02150', 'PA14_26590', 'lldP', 'PA14_03760',
-      'PA14_56840', 'PA14_66480', 'PA14_60490', 'wild-type', 'maiA', 'pmbA',
-      'PA14_43270', 'PA14_43670', 'PA14_51310', 'PA14_62230', 'ahpF', 'fdnH',
-      'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE', 'PA14_11130',
-      'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680', 'PA14_19150',
-      'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960', 'PA14_34820',
-      'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900', 'PA14_47260',
-      'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520', 'PA14_65670',
-      'PA14_68670'
-   )
+    vec = c(
+      # no synergy
+      'relA', 'PA14_02150', 'PA14_26590',           
+
+      # less than wild-type
+      'lldP', 'PA14_56840', 'PA14_66480', 'PA14_60490', 
+
+      # wild-type
+      'wild-type',                                 
+
+      # more than wild-type 
+      'maiA', 'pmbA', 'PA14_03760', 'PA14_43270',   
+      'PA14_43670', 'PA14_51310', 'PA14_62230',   
+
+      # same as wild-type
+      'ahpF', 'fdnH', 'mexB', 'mmsR', 'mucB', 'pilF', 'pmrB', 'purE',
+      'PA14_11130', 'PA14_12450', 'PA14_15540', 'PA14_17990', 'PA14_18680',
+      'PA14_19150', 'PA14_19670', 'PA14_21710', 'PA14_22120', 'PA14_26960',
+      'PA14_34820', 'PA14_36150', 'PA14_37120', 'PA14_40730', 'PA14_42900',
+      'PA14_47260', 'PA14_49880', 'PA14_53380', 'PA14_59630', 'PA14_65520',
+      'PA14_65670', 'PA14_68670'
+    )
     foo = sapply(fitNew, function(x) unique(x$orig$gene))
     idx = c(101:103, match(vec, foo))
   } else {
