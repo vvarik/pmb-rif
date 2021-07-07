@@ -173,19 +173,21 @@ foo = lapply(rsl, function(x) summary(x$maxR)$totals) %>% rbindlist(idcol='mut')
 # manually: wild-type is coded as mut 0, fitting of mut 28 failed
 foo[, mut := c(0:27, 29:45)]  
 arrange(foo, Syn) %>% print(20)
-unique(dat[mut %in% c(23, 31, 33)], by = 'gene')
-unique(dat[mut %in% c(1, 16, 29, 35)], by = 'gene')
-unique(dat[mut %in% c(4, 5, 14, 19, 40, 45, 12)], by = 'gene')
+
+tmpFun = function (x) unique(dat[mut %in% x], by = 'gene')$gene
+tmpFun(c(23, 31, 33))  # no synergy
+tmpFun(c(1, 16, 29, 35))  # less synergy than wt
+tmpFun(c(4, 5, 14, 19, 40, 45, 12))  # more synergy
 ```
 
 ```{r}
-svg('output/fig/SFig_45PA14MutDoseResponses.svg', 12, 16)
+#svg('output/fig/SFig_45PA14MutDoseResponses.svg', 12, 16)
 plt45PA14MutantDR()
-dev.off()
+#dev.off()
 
-svg('output/fig/SFig_45PA14MutCompLoeweNull.svg', 12, 16)
+#svg('output/fig/SFig_45PA14MutCompLoeweNull.svg', 12, 16)
 plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
-dev.off()
+#dev.off()
 ```
 
 
@@ -256,17 +258,41 @@ plot_grid(
 ## Time-kill
 
 ```{r}
-# # Time-kill ------------------------------
-# 
-# dtk = fread('input/dat/time-kill.tsv') %>% 
-#   remNonCharcoal()
-# 
-# .myLabels = c("neg", "RIF 0.3x MIC", "PMB 1x MIC", "combination", 
-#   "RIF 3x MIC", "PMB 10x MIC", "PMB 0.3x MIC", "PMB 3x MIC")
-# 
-# dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
-# xaxs = c(0, 2, 4, 6, 10)
-# xlabs = c(0, 2, 4, 6, 24)
-# dtk[, group := factor(group, levels=1:8, labels=.myLabels)]
+# Time-kill ------------------------------
+dtk = fread('input/dat/raw/time-kill.csv') %>% 
+  remNonCharcoal() %>% 
+  .[author == 'vv']
 
+dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
+dtk[, group := factor(group, labels=c("neg", "low RIF", "low PMB",
+    "low RIF + low PMB", "10x higher RIF", "10x higher PMB", "low PMB", "10x higher PMB"))]
+dtk[, outl := isOutlier(effect), .(broth, group, time_h)]
+dtk[(outl)]
+
+myColors = rep(drugCols[c(7, 1, 5, 3, 1, 5)], 3)
+names(myColors) = NULL
+
+dtk[!(outl)] %>% 
+  group_by(broth, group, new_time_h) %>% 
+  summarise(response=mean(effect, na.rm=T), ci=se(effect)) %>% 
+  ggplot(aes(new_time_h, response, group=interaction(broth, group), shape=broth, color=group)) + 
+  geom_line(na.rm=T) +
+  geom_pointrange(aes(ymin = response - ci, ymax = response + ci), size=1, fatten=5, fill='white') + 
+  scale_shape_manual(name = '', values=c(19, 21, 22)) +
+  facet_wrap(vars(group), nrow=1) +
+  scale_color_manual(name="", values=myColors, guide=F) +
+  scale_x_continuous(breaks=c(0, 2, 4, 6, 10), labels=c(0, 2, 4, 6, 24)) +
+  scale_y_continuous(breaks=-4:4) +
+  labs(x = 'Time, h', y = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')) +
+  theme(legend.position='top')
+```
+
+```{r}
+dtk %>% 
+  ggplot(aes(new_time_h, effect, group=interaction(broth, group), shape=broth, color=outl)) + 
+  geom_point(size=2) +
+  facet_grid(broth ~ group) 
+
+dtk[group == 'neg' & broth == 'MHBII_pH7.4' & new_time_h == 10]
+dtk[group == 'neg' & broth == 'MHBII_pH7.4' & new_time_h == 10]
 ```
