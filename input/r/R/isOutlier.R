@@ -63,9 +63,9 @@ isOutlier = function(x, method = 'mad', alpha = 0.05, pvalue = FALSE,
       else out = outl 
 
   } else if(method == 'mad') {
-      med = median(x)
+      med = median(x, na.rm=T)
       dev = abs(x - med)
-      mad = median(dev)
+      mad = median(dev, na.rm=T)
       modified_z_score = 0.6745 * dev / mad
       out = modified_z_score > thr
 
