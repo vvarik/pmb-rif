@@ -608,7 +608,7 @@ plt45PA14MutantDR = function (organize=T) {
       'relA', 'PA14_02150', 'PA14_26590',           
 
       # less than wild-type
-      'lldP', 'PA14_56840', 'PA14_66480', 'PA14_60490', 
+      'lldP', 'PA14_56840', 'PA14_60490', 'PA14_66480', 
 
       # wild-type
       'wild-type',                                 
@@ -675,7 +675,7 @@ plt45PA14MutantComparisonToLoeweNull = function(fname, organize=T) {
       'relA', 'PA14_02150', 'PA14_26590',           
 
       # less than wild-type
-      'lldP', 'PA14_56840', 'PA14_66480', 'PA14_60490', 
+      'lldP', 'PA14_56840', 'PA14_60490', 'PA14_66480', 
 
       # wild-type
       'wild-type',                                 
