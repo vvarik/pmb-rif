@@ -261,30 +261,11 @@ plot_grid(
 # Time-kill ------------------------------
 dtk = fread('input/dat/raw/time-kill.csv') %>% 
   remNonCharcoal() %>% 
-  .[author == 'vv']
+  .[author == 'vv'] %>% 
+  addNewVariablesToTimeKill()
 
-dtk[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
-dtk[, group := factor(group, labels=c("neg", "low RIF", "low PMB",
-    "low RIF + low PMB", "10x higher RIF", "10x higher PMB", "low PMB", "10x higher PMB"))]
-dtk[, outl := isOutlier(effect), .(broth, group, time_h)]
-dtk[(outl)]
-
-myColors = rep(drugCols[c(7, 1, 5, 3, 1, 5)], 3)
-names(myColors) = NULL
-
-dtk[!(outl)] %>% 
-  group_by(broth, group, new_time_h) %>% 
-  summarise(response=mean(effect, na.rm=T), ci=se(effect)) %>% 
-  ggplot(aes(new_time_h, response, group=interaction(broth, group), shape=broth, color=group)) + 
-  geom_line(na.rm=T) +
-  geom_pointrange(aes(ymin = response - ci, ymax = response + ci), size=1, fatten=5, fill='white') + 
-  scale_shape_manual(name = '', values=c(19, 21, 22)) +
-  facet_wrap(vars(group), nrow=1) +
-  scale_color_manual(name="", values=myColors, guide=F) +
-  scale_x_continuous(breaks=c(0, 2, 4, 6, 10), labels=c(0, 2, 4, 6, 24)) +
-  scale_y_continuous(breaks=-4:4) +
-  labs(x = 'Time, h', y = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')) +
-  theme(legend.position='top')
+pltTimeKill(dtk)
+ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
 ```
 
 ```{r}

@@ -789,3 +789,32 @@ getPa14RS = function (dat) {
 
   return(rs)
 }
+
+
+#' @export
+addNewVariablesToTimeKill = function (dat) {
+  dat[, new_time_h := ifelse(time_h == 24, 10, time_h)] 
+  dat[, group := factor(group, labels=c("no drug", "low RIF", "low PMB",
+      "low RIF + low PMB", "10x higher RIF", "10x higher PMB", "low PMB", "10x higher PMB"))]
+  dat[, outl := isOutlier(effect), .(broth, group, time_h)]
+}
+
+
+#' @export
+pltTimeKill = function (dat) {
+  myColors = rep(drugCols[c(7, 1, 5, 3, 1, 5)], 3)
+  names(myColors) = NULL
+  dat[!(outl) & !(group == 'low RIF' & new_time_h %in% c(0.5, 0.75))] %>% 
+    group_by(broth, group, new_time_h) %>% 
+    summarise(response=mean(effect, na.rm=T), ci=se(effect)) %>% 
+    ggplot(aes(new_time_h, response, group=interaction(broth, group), shape=broth, color=group)) + 
+    geom_line(na.rm=T, size = 0.75) +
+    geom_pointrange(aes(ymin = response - ci, ymax = response + ci), size=0.75, fatten=5, fill='white') + 
+    scale_shape_manual(name = '', values=c(19, 21, 22)) +
+    facet_wrap(vars(group), nrow=1) +
+    scale_color_manual(name="", values=myColors, guide=F) +
+    scale_x_continuous(breaks=c(0, 2, 4, 6, 10), labels=c(0, 2, 4, 6, 24)) +
+    scale_y_continuous(breaks=-4:4) +
+    labs(x = 'Time, h', y = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')) +
+    theme(legend.position='top', strip.text.x = element_text(size = 16))
+}
