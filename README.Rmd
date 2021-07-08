@@ -69,6 +69,68 @@ dat[is.na(effect), effect := -4.5]
 ```
 
 
+# Dose Response And pH
+
+```{r}
+theme_set(theme_pdf())
+
+sub = subset(dat, strain == 'ATCC27853' & (d1 == 0 | d2 == 0))
+
+p1 = function() pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30)
+p2 = function() pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L')
+
+# pH
+foo = fread("input/dat/raw/growth_and_pH.tsv")
+
+foo = foo[time_h >= 0 & overnight_medium == 'pH7.4', .(
+  od = gmu(od620),
+  od.ci = gci(od620),
+  ph = mean(pH),
+  ph.ci = ci(pH)
+  ), .(growth_medium, time_h)]
+
+
+p0 = foo %>% 
+  mutate(
+    growth_medium = relevel(factor(growth_medium), 'pH7.4'),
+    time_h = ifelse(time_h > 20, 20, time_h),
+    NULL
+    ) %>% 
+  ggplot(aes(time_h, od, shape = growth_medium)) +
+  scale_x_continuous(breaks = c(0, 5, 10, 20), labels = c(seq(0, 10, 5), 24), limits = c(0, 20)) +
+  scale_shape_manual(name = '', values = c(19, 22, 15), labels = c('pH 7.4', 'pH 5.5',
+      'pH 5.5 buffered')) +
+  theme(legend.position = 'top')
+
+p3 = p0 + 
+  scale_y_continuous(trans='log2', breaks = c(0.001, 0.01, 0.1, 1), limits = c(0.001, 10)) + 
+  geom_point(size=.point_size, col='grey20') +
+  geom_pointrange(aes(ymin = od*od.ci, ymax = od/od.ci)) +
+  geom_line(col='grey20') +
+  labs(x = 'Time, h', y = expression('OD'[620]))
+
+p4 = p0 %+% aes(y = ph) + 
+  scale_y_continuous(position = 'right') +
+  geom_point(size=.point_size, col=cbPalette[3]) +
+  geom_line(col=cbPalette[3]) +
+  geom_pointrange(aes(ymin = ph-ph.ci, ymax = ph + ph.ci), col=cbPalette[3]) +
+  theme(legend.position = 'none',
+    axis.title.y.right=element_text(color = cbPalette[3]),
+    axis.text.y.right=element_text(color = cbPalette[3]),
+    axis.ticks.y.right=element_line(color = cbPalette[3])
+  ) +
+  labs(x = '', y = 'pH')
+
+aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
+
+plot_grid(
+  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]), labels = 'AUTO', align = 'v'
+)
+
+# ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.png', width=10, height=9)
+```
+
+
 # Reverse Genetics Screen
 
 To account for the synergy in molecular terms—beyond a nonspecific increase in membrane permeability by polymyxin B—we turned to chemical genetics [Brochado and Typas, 2013](https://doi.org/10.1016/j.mib.2013.01.008). Working with ordered PA14 transposon library [Liberati et al., 2006](https://doi.org/10.1073/pnas.0511100103), we derived a growth measure for monotherapies and combinations using colony opacity [Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14). To account for plate-to-plate variation, the opacity was multiplicatively corrected. This results in zero-centering of the Bliss scores, which were derived next. The significance of difference from zero Bliss score, for any mutant, was estimated by a T-test (5 biological replicates) and corrected for multiple testing (Benjamini-Hochberg).
@@ -191,68 +253,6 @@ plt45PA14MutantDR()  # dose-responses
 # We'll use a snapshot of results from 2021-01-02
 plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
 #dev.off()
-```
-
-
-# Dose Response And pH
-
-```{r}
-theme_set(theme_pdf())
-
-sub = subset(dat, strain == 'ATCC27853' & (d1 == 0 | d2 == 0))
-
-p1 = function() pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30)
-p2 = function() pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L')
-
-# pH
-foo = fread("input/dat/raw/growth_and_pH.tsv")
-
-foo = foo[time_h >= 0 & overnight_medium == 'pH7.4', .(
-  od = gmu(od620),
-  od.ci = gci(od620),
-  ph = mean(pH),
-  ph.ci = ci(pH)
-  ), .(growth_medium, time_h)]
-
-
-p0 = foo %>% 
-  mutate(
-    growth_medium = relevel(factor(growth_medium), 'pH7.4'),
-    time_h = ifelse(time_h > 20, 20, time_h),
-    NULL
-    ) %>% 
-  ggplot(aes(time_h, od, shape = growth_medium)) +
-  scale_x_continuous(breaks = c(0, 5, 10, 20), labels = c(seq(0, 10, 5), 24), limits = c(0, 20)) +
-  scale_shape_manual(name = '', values = c(19, 22, 15), labels = c('pH 7.4', 'pH 5.5',
-      'pH 5.5 buffered')) +
-  theme(legend.position = 'top')
-
-p3 = p0 + 
-  scale_y_continuous(trans='log2', breaks = c(0.001, 0.01, 0.1, 1), limits = c(0.001, 10)) + 
-  geom_point(size=.point_size, col='grey20') +
-  geom_pointrange(aes(ymin = od*od.ci, ymax = od/od.ci)) +
-  geom_line(col='grey20') +
-  labs(x = 'Time, h', y = expression('OD'[620]))
-
-p4 = p0 %+% aes(y = ph) + 
-  scale_y_continuous(position = 'right') +
-  geom_point(size=.point_size, col=cbPalette[3]) +
-  geom_line(col=cbPalette[3]) +
-  geom_pointrange(aes(ymin = ph-ph.ci, ymax = ph + ph.ci), col=cbPalette[3]) +
-  theme(legend.position = 'none',
-    axis.title.y.right=element_text(color = cbPalette[3]),
-    axis.text.y.right=element_text(color = cbPalette[3]),
-    axis.ticks.y.right=element_line(color = cbPalette[3])
-  ) +
-  labs(x = '', y = 'pH')
-
-aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
-
-plot_grid(
-  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]), labels = 'AUTO', align = 'v'
-)
-
-# ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.png', width=10, height=9)
 ```
 
 
