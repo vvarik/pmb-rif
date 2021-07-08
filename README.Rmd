@@ -94,7 +94,7 @@ candidate.files.to.kick.out[ratio.discordant.vs.all==1, filename]
 condition.vs.control = long2wide(dat)  # also average controls using median
 #remember: opacity was replaced by the corrected opacity
 condition.vs.control[,f.condition:=opacity/control.median]
-dim(condition.vs.control[is.na(f.condition)])[1] / dim(condition.vs.control)[1]
+# dim(condition.vs.control[is.na(f.condition)])[1] / dim(condition.vs.control)[1]
 # [1] 0.02289894  #2.2% of fitness values are NA
 
 # Epsilon ----------------------------------------
