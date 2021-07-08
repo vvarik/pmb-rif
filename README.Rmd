@@ -194,9 +194,7 @@ plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
 ```
 
 
-# Supplementary Figures
-
-## Dose Response And pH
+# Dose Response And pH
 
 ```{r}
 theme_set(theme_pdf())
@@ -258,24 +256,13 @@ plot_grid(
 ```
 
 
-## Time-kill
+# Time-kill
 
 ```{r}
-# Time-kill ------------------------------
-dtk = fread('input/dat/raw/time-kill.csv') 
-dtk = dtk[author == 'vv']
-
-plot_grid(
+dtk = fread('input/dat/raw/time-kill.csv') %>% 
   remNonCharcoal() %>% 
-  addNewVariablesToTimeKill() %>% 
-  pltTimeKill(),
-  dtk = fread('input/dat/raw/time-kill.csv') %>% 
-  remNonCharcoal() %>% 
-  addNewVariablesToTimeKill() %>% 
-  pltTimeKill(), 
-  nrow=2
-)
+  addNewVariablesToTimeKill()
 
-
+pltTimeKill(dtk)
 #ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
 ```
