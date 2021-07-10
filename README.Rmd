@@ -233,7 +233,7 @@ We will do two things:
 ## Cell components
 
 ```{r topGO_signif_cell_components}
-dat = chem.gen.res
+cgr = chem.gen.res
 
 # GO terms need to be in certain format for topGO
 pa14_go = fread('input/ucbpp-pa14_go.csv')
@@ -244,14 +244,14 @@ gene2GO <- tapply(gene_go$'Accession', gene_go$'Locus Tag', function(x) x)
 
 # Focus on the genes (alternative would be to take the strongest affected
 # mutant of each gene). But that would probably introduce systematic error.
-setkey(dat, media, gene)
-dat = dat[!duplicated(dat)]
+setkey(cgr, media, gene)
+cgr = cgr[!duplicated(cgr)]
 
 # ------------------------------------------------------------------------------
 # For LB
 # ------------------------------------------------------------------------------
 fdr_cutoff = 0.05
-tmp = dat[media=='LB' & !is.na(t.test.q.value.gene)]  # KS test below fails with NAs
+tmp = cgr[media=='LB' & !is.na(t.test.q.value.gene)]  # KS test below fails with NAs
 gene_list <- ifelse(tmp$t.test.q.value.gene<fdr_cutoff, 1, 0)
 names(gene_list) <- tmp$locus
 
