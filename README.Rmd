@@ -208,6 +208,119 @@ foo = getGenes(condition.gene.t.test.results)
 vtable = gplots::venn(foo)
 ```
 
+# Enrichment analysis
+
+With the following, we bring some biological knowledge into the analysis. This
+will get us at the level of processes/compartments as opposed to individual
+genes. The following analysis is performed at the level of a gene. We will
+focus on LB beacuse we have more data from there which is also more reliable
+(75% of the unique hits come from LB; there is less variance). In addition, our
+results suggest, the effect of pH on synergy is questionable in PA14.
+
+We will do two things:
+
+1. Gene Set Enrichment Analysis (GSEA) using GO terms from [pseudomonas.com
+   website](https://www.pseudomonas.com/) and Kologorov-Smirnov testing for
+   statistical significance estimation. Although most common approach, it has
+   been critizised for example
+   [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3134237/). 
+
+2. Protein-protein interaction (PPI) analysis using impressive STRING database.
+   There was no data on PA14, so we will use PAO1 data to build and analyse the
+   network onto which we then map PA14 orthologs. 
+
+
+## Cell components
+
+```{r topGO_signif_cell_components}
+dat = condition.gene.t.test.results
+
+# GO terms need to be in certain format for topGO
+pa14_go = fread('input/ucbpp-pa14_go.csv')
+gene_go = pa14_go[ , c('Locus Tag', 'Accession')] 
+
+# Create list with element for each gene, containing vectors with all terms for each gene
+gene2GO <- tapply(gene_go$'Accession', gene_go$'Locus Tag', function(x) x)
+
+# Focus on the genes (alternative would be to take the strongest affected
+# mutant of each gene). But that would probably introduce systematic error.
+setkey(dat, media, gene)
+dat = dat[!duplicated(dat)]
+
+# ------------------------------------------------------------------------------
+# For LB
+# ------------------------------------------------------------------------------
+fdr_cutoff = 0.05
+tmp = dat[media=='LB' & !is.na(t.test.q.value.gene)]  # KS test below fails with NAs
+gene_list <- ifelse(tmp$t.test.q.value.gene<fdr_cutoff, 1, 0)
+names(gene_list) <- tmp$locus
+
+
+# Create topGOData object. Ontology can be one of: BP - biological process, CC
+# - cellular component, BP - molecular function
+GOdata <- new("topGOdata",
+    ontology = "CC",
+    allGenes = gene_list,
+    geneSelectionFun = function(x) (x==1),
+    annot = annFUN.gene2GO, 
+    gene2GO = gene2GO)
+
+# Kolmogorov-Smirnov testing. topGO preferentially tests more specific terms,
+# utilizing the topology of the GO graph. Details on algorithms:
+# https://academic.oup.com/bioinformatics/article/22/13/1600/193669
+resultKS <- runTest(GOdata, algorithm = 'weight01', statistic = "ks")
+tab = GenTable(GOdata, raw.p.value = resultKS, topNodes = length(resultKS@score), numChar = 120)
+DT::datatable(
+  data.table(tab), caption='Table 2. Affected cell components.'
+  #options = list(dom = 'ft', ordering=F)
+)
+
+cell_com = tab[1:5, c('GO.ID', 'Term', 'raw.p.value')]
+# par(cex=0.3)
+# showSigOfNodes(GOdata, score(resultKS), firstSigNodes = 3, useInfo = "def")
+# par(cex = 1)
+
+
+# resultFisher <- runTest(GOdata, algorithm = "elim", statistic = "fisher")
+# tab <- GenTable(GOdata, raw.p.value = resultFisher, topNodes = length(resultFisher@score),
+#                 numChar = 120)
+# head(tab, 15)
+```
+
+## Biological processes
+
+```{r topGO_signif_biological_processes}
+
+# ------------------------------------------------------------------------------
+# For LB
+# ------------------------------------------------------------------------------
+
+GOdata <- new("topGOdata",
+    ontology = "BP",
+    allGenes = gene_list,
+    geneSelectionFun = function(x) (x==1),
+    annot = annFUN.gene2GO, 
+    gene2GO = gene2GO)
+
+# Kolmogorov-Smirnov testing. topGO preferentially tests more specific terms,
+# utilizing the topology of the GO graph. Details on algorithms:
+# https://academic.oup.com/bioinformatics/article/22/13/1600/193669
+resultKS <- runTest(GOdata, algorithm = 'weight01', statistic = "ks")
+tab = GenTable(GOdata, raw.p.value = resultKS, topNodes = length(resultKS@score), numChar = 120)
+
+bio_proc = tab[1:5, c('GO.ID', 'Term', 'raw.p.value')]
+
+# resultFisher <- runTest(GOdata, algorithm = "weight01", statistic = "fisher")
+# tab <- GenTable(GOdata, raw.p.value = resultFisher, topNodes = length(resultFisher@score),
+#                 numChar = 120)
+
+DT::datatable(
+  data.table(tab), caption='Table 3. Affected biological processes.'
+  #options = list(dom = 'ft', ordering=F)
+)
+```
+
+
 # Screen Validation
 
 We validate the sensitivity of identified candidate mutants in low
