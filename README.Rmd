@@ -164,12 +164,12 @@ drug.merge = getEpsilons(condition.vs.control)
 
 drug.merge = addAnnotation(drug.merge)
 drug.merge = tTest(drug.merge)
-condition.gene.t.test.results = getTTestResults(drug.merge) %>% 
+chem.gen.res = getTTestResults(drug.merge) %>% 
   correctForMultipleTesting()
 ```
 
 ```{r revgen-volc}
-tmp = condition.gene.t.test.results %>% 
+tmp = chem.gen.res %>% 
   mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
       t.test.q.value)) %>% 
   mutate(showname = ifelse(
@@ -204,7 +204,7 @@ getGenes = function (dat) {
   return(out)
 }
 
-foo = getGenes(condition.gene.t.test.results)
+foo = getGenes(chem.gen.res)
 vtable = gplots::venn(foo)
 ```
 
@@ -233,7 +233,7 @@ We will do two things:
 ## Cell components
 
 ```{r topGO_signif_cell_components}
-dat = condition.gene.t.test.results
+dat = chem.gen.res
 
 # GO terms need to be in certain format for topGO
 pa14_go = fread('input/ucbpp-pa14_go.csv')
