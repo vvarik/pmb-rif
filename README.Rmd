@@ -265,4 +265,9 @@ dtk = fread('input/dat/raw/time-kill.csv') %>%
 
 pltTimeKill(dtk)
 #ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
+
+# Print out the concentrations used
+unique(dtk[time_h > 0], by = c('broth', 'group')) %>% 
+  .[, .(broth, group, d_1, d_2)] %>% 
+  .[order(group)]
 ```
