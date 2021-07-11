@@ -821,7 +821,9 @@ pltTimeKill = function (dat) {
 
 
 #' @export
-getCellComponentGO = function (dat) {
+getTopGO = function (dat) {
+
+  out = vector('list', length=2)
 
   # GO terms need to be in certain format for topGO
   pa14_go = fread('input/dat/raw/ucbpp-pa14_go.csv')
@@ -838,7 +840,6 @@ getCellComponentGO = function (dat) {
   gene_list = ifelse(tmp$t.test.q.value.gene<fdr_cutoff, 1, 0)
   names(gene_list) = tmp$locus
   
-  
   # Create topGOData object. Ontology can be one of: BP - biological process, CC
   # - cellular component, BP - molecular function
   GOdata = new("topGOdata",
@@ -854,9 +855,28 @@ getCellComponentGO = function (dat) {
   # https://academic.oup.com/bioinformatics/article/22/13/1600/193669
   resultKS = runTest(GOdata, algorithm = 'weight01', statistic = "ks")
 
-  GenTable(GOdata, raw.p.value = resultKS, 
+  out[['CC']] = GenTable(GOdata, raw.p.value = resultKS, 
     topNodes = length(resultKS@score), numChar = 120
   )
+  
+
+  GOdata = new("topGOdata",
+      ontology = "BP",
+      allGenes = gene_list,
+      geneSelectionFun = function(x) (x==1),
+      annot = annFUN.gene2GO, 
+      gene2GO = gene2GO)
+  
+  # Kolmogorov-Smirnov testing. topGO preferentially tests more specific terms,
+  # utilizing the topology of the GO graph. Details on algorithms:
+  # https://academic.oup.com/bioinformatics/article/22/13/1600/193669
+  resultKS = runTest(GOdata, algorithm = 'weight01', statistic = "ks")
+
+  out[['BP']] = GenTable(GOdata, raw.p.value = resultKS, 
+    topNodes = length(resultKS@score), numChar = 120
+  )
+  
+  out
   
 }
 

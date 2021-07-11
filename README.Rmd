@@ -230,51 +230,23 @@ We will do two things:
    network onto which we then map PA14 orthologs. 
 
 
-## Cell components
-
-```{r topGO_signif_cell_components}
+```{r topGO}
 library('topGO')
-tab = getCellComponentGO(chem.gen.res)
 
-tab[1:5, c('GO.ID', 'Term', 'raw.p.value')] %>% 
+tab = getTopGO(chem.gen.res)
+
+# cell components
+tab[['CC']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
   mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
 
 # par(mfrow=c(1,1), cex=0.3)
 # showSigOfNodes(GOdata, score(resultKS), firstSigNodes = 3, useInfo = "def")
+
+# biological processes
+tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
+  mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
 ```
 
-## Biological processes
-
-```{r topGO_signif_biological_processes}
-
-# ------------------------------------------------------------------------------
-# For LB
-# ------------------------------------------------------------------------------
-
-GOdata <- new("topGOdata",
-    ontology = "BP",
-    allGenes = gene_list,
-    geneSelectionFun = function(x) (x==1),
-    annot = annFUN.gene2GO, 
-    gene2GO = gene2GO)
-
-# Kolmogorov-Smirnov testing. topGO preferentially tests more specific terms,
-# utilizing the topology of the GO graph. Details on algorithms:
-# https://academic.oup.com/bioinformatics/article/22/13/1600/193669
-resultKS <- runTest(GOdata, algorithm = 'weight01', statistic = "ks")
-tab = GenTable(GOdata, raw.p.value = resultKS, topNodes = length(resultKS@score), numChar = 120)
-
-bio_proc = tab[1:5, c('GO.ID', 'Term', 'raw.p.value')]
-
-# resultFisher <- runTest(GOdata, algorithm = "weight01", statistic = "fisher")
-# tab <- GenTable(GOdata, raw.p.value = resultFisher, topNodes = length(resultFisher@score),
-#                 numChar = 120)
-
-DT::datatable(
-  data.table(tab), caption='Table 3. Affected biological processes.'
-  #options = list(dom = 'ft', ordering=F)
-)
-```
 
 
 # Screen Validation
