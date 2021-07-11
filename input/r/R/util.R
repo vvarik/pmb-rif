@@ -818,3 +818,45 @@ pltTimeKill = function (dat) {
     labs(x = 'Time, h', y = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')) +
     theme(legend.position='top', strip.text.x = element_text(size = 16))
 }
+
+
+#' @export
+getCellComponentGO = function (dat) {
+
+  # GO terms need to be in certain format for topGO
+  pa14_go = fread('input/dat/raw/ucbpp-pa14_go.csv')
+  gene_go = pa14_go[ , c('Locus Tag', 'Accession')] 
+  
+  # Create list with element for each gene, containing vectors with all terms for each gene
+  gene2GO = tapply(gene_go$'Accession', gene_go$'Locus Tag', function(x) x)
+  
+  # Focus on the genes 
+  dat = unique(dat, by = c('media', 'gene.name.to.show'))
+  
+  fdr_cutoff = 0.05
+  tmp = dat[media=='LB' & !is.na(t.test.q.value.gene)]  # KS test below fails with NAs
+  gene_list = ifelse(tmp$t.test.q.value.gene<fdr_cutoff, 1, 0)
+  names(gene_list) = tmp$locus
+  
+  
+  # Create topGOData object. Ontology can be one of: BP - biological process, CC
+  # - cellular component, BP - molecular function
+  GOdata = new("topGOdata",
+      ontology = "CC",
+      allGenes = gene_list,
+      geneSelectionFun = function(x) (x==1),
+      annot = annFUN.gene2GO, 
+      gene2GO = gene2GO
+  )
+  
+  # Kolmogorov-Smirnov testing. topGO preferentially tests more specific terms,
+  # utilizing the topology of the GO graph. Details on algorithms:
+  # https://academic.oup.com/bioinformatics/article/22/13/1600/193669
+  resultKS = runTest(GOdata, algorithm = 'weight01', statistic = "ks")
+
+  GenTable(GOdata, raw.p.value = resultKS, 
+    topNodes = length(resultKS@score), numChar = 120
+  )
+  
+}
+
