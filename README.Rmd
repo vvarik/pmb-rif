@@ -228,15 +228,11 @@ critizised for example
 
 ```{r topGO}
 library('topGO')
-
 tab = getTopGO(chem.gen.res)
 
 # cell components
 tab[['CC']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
   mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
-
-# par(mfrow=c(1,1), cex=0.3)
-# showSigOfNodes(GOdata, score(resultKS), firstSigNodes = 3, useInfo = "def")
 
 # biological processes
 tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
