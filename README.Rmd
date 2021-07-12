@@ -283,7 +283,7 @@ V(hit_ppi)$degree = degree(hit_ppi)
 
 # Replace the PAO1 genes with corresponding PA14 ones
 lookup = unique(hits[, .(PAO1.ortholog, gene=gene.name.to.show)], by='PAO1.ortholog')
-V(hit_ppi)$name = left_join(data.table(PAO1.ortholog=V(hit_ppi)$name), lookup)[, 'gene']
+V(hit_ppi)$name = left_join(data.table(PAO1.ortholog=V(hit_ppi)$name), lookup)[, gene]
 
 # The layout is not deterministic - produces different configurations every time
 # Saving the layout in l allows us to get the exact same result multiple times
