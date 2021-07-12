@@ -239,6 +239,310 @@ tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>%
   mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
 ```
 
+# Protein-protein interaction network
+
+Protein-protein interaction (PPI) analysis using impressive STRING database.
+There was no data on PA14, so we will use PAO1 data to build and analyse the
+network onto which we then map PA14 orthologs. 
+
+1. The green nodes are more central and seem to be enriched in regulatory genes; 2. Yellow nodes (froming a group, but maiA seems to belong to it though does not have direct interactions with group members) seem to be related to signal transduction from membrane to the regulatory genes (green)
+3. Light blue nodes are mostly related to metabolism, among them, those in orange-background-group have more membrane related terms than the blue nodes in blue background. 
+4. Orange nodes (icmP, 56840, 47260) have to do with electron transfer
+
+
+```{r ppi, fig.width=10, fig.cap='**FIGURE 4. Protein-protein interaction network analysis of candidate genes.** Clustering of hit proteins based on their interactions reported in various sources and assembled in STRING database.'}
+library(igraph)
+library(stringr)
+
+trace(getTopGO, tracer=browser, at=7)
+
+hits = readRDS('output/rdata/hits.Rdata')
+hit_list = unique(hits$PAO1.ortholog)
+hit_list = hit_list[!is.na(hit_list)]
+
+# bring in the interactome
+filename = '../../../../../../analysis/data/raw/pa_ppi_stringDB_287.protein.links.v11.0.txt'
+string_11_pa <- fread(filename)
+
+#divide score by 1000
+string_11_pa$combined_score <- string_11_pa$combined_score/1000
+
+#strip / trim species ID
+string_11_pa$protein1 <- gsub("287.DR97_", "PA", string_11_pa$protein1, fixed=TRUE)
+string_11_pa$protein2 <- gsub("287.DR97_", "PA", string_11_pa$protein2, fixed=TRUE)
+
+# create an igraph object
+pa_ppi <- graph.data.frame(string_11_pa, directed = FALSE)
+# summary(pa_ppi)
+V(pa_ppi)$degree <- degree(pa_ppi)
+# table(V(pa_ppi)$degree == 0)
+
+# table(E(pa_ppi)$combined_score>1) # sanity check
+# is.simple(pa_ppi)  # is it simple network
+pa_ppi_simple <- igraph::simplify(pa_ppi, remove.multiple=T, remove.loops=T, edge.attr.comb='mean')
+
+# summary(pa_ppi)
+# summary(pa_ppi_simple)
+
+V(pa_ppi_simple)$degree <- degree(pa_ppi_simple)
+# table(V(pa_ppi_simple)$degree == 1)
+
+# overwrite the fixed igraph object
+pa_ppi <- pa_ppi_simple
+
+
+# String score confidence intervals
+# 0.15 low
+# 0.4 medium
+# 0.7 high
+# 0.9 very high
+# filter combined score at 0.400 (medium)
+# table(E(pa_ppi)$combined_score >= 0.4)
+# table(E(pa_ppi)$combined_score >= 0.7)
+
+# get neighbors of a vector of string id's
+# neighbors <- string_db$get_neighbors(main_string_mapping$STRING_id)
+
+# To find the neighbors for multiple nodes, use 'adjacent_vertices()'
+# To find node neighborhoods going more than one step out, use function 'ego()'
+# with parameter 'order' set to the number of steps out to go from the query node(s)
+#adjacent_vertices(pa_ppi, hit_list, mode="all")
+#subgraph(pa_ppi, hit_list)
+#induced.subgraph(graph, which(V(graph)$name %in% string_ids))
+
+# extract network for all the hits in the provided list
+hit_ppi <- induced.subgraph(pa_ppi, which(V(pa_ppi)$name %in% hit_list))
+
+# String scores
+# 0.15 low
+# 0.4 medium
+# 0.7 high
+# 0.9 very high
+# table(E(hit_ppi)$combined_score >= 0.15)
+# store degree on the network (main hit network)
+V(hit_ppi)$degree <- degree(hit_ppi)
+
+hit_ppi_400 = delete.edges(hit_ppi, which(E(hit_ppi)$combined_score <0.4))
+hit_ppi_700 = delete.edges(hit_ppi, which(E(hit_ppi)$combined_score <0.7))
+
+# store degree on the hit_ppi filtered networks
+V(hit_ppi_400)$degree <- degree(hit_ppi_400)
+# table(V(hit_ppi_400)$degree ==0)
+
+V(hit_ppi_700)$degree <- degree(hit_ppi_700)
+# table(V(hit_ppi_700)$degree ==0)
+
+
+# drop disconnected nodes and evaluate the losses
+#hit_ppi_400 = delete.vertices(hit_ppi_400,which(degree(hit_ppi_400)<1))
+#hit_ppi_450 = delete.vertices(hit_ppi_450,which(degree(hit_ppi_450)<1))
+#hit_ppi_700 = delete.vertices(hit_ppi_700,which(degree(hit_ppi_700)<1))
+
+#hit_ppi_700 = delete.vertices(hit_ppi,which(degree(hit_ppi)<1))
+# summary(hit_ppi_400)
+# summary(hit_ppi_700)
+# table(E(hit_ppi)$combined_score < 0.4)
+# table(E(hit_ppi_700)$combined_score < 0.4)
+
+# I'm keeping it at 400 for Cytoscape - can always prune down later
+
+# Count nodes with degree 0
+#sum(V(hit_ppi)$degree==0)
+#sum(V(hit_ppi_700)$degree==0)
+
+
+#------------------------------------------------------------------------------
+# Replace the PAO1 genes with corresponding PA14 ones
+#------------------------------------------------------------------------------
+
+lookup = unique(hits[, .(PAO1.ortholog, gene)], by='PAO1.ortholog')
+V(hit_ppi)$name = left_join(data.table(PAO1.ortholog=V(hit_ppi)$name), lookup)[, 'gene']
+
+
+# Node degrees
+deg <- degree(hit_ppi_400, mode="all")
+#plot(hit_ppi_400, vertex.size=deg*3)
+# hist(deg, breaks=1:vcount(hit_ppi_400)-1, main="Histogram of node degree")
+
+
+# export degree histogram at 400
+# pdf("hit_ppi_400_histogram_degree.pdf") 
+# G.degree.histogram <- hist(deg, breaks=1:vcount(hit_ppi_400)-1, main="Histogram of node degree")
+# dev.off() 
+# 
+# deg.dist <- degree_distribution(hit_ppi_400, cumulative=T, mode="all")
+# plot( x=0:max(deg), y=1-deg.dist, pch=19, cex=1.2, col="orange", 
+#       xlab="Degree", ylab="Cumulative Frequency")
+# 
+# # export degree histogram at 400
+# pdf("hit_ppi_400_histogram_degree_cumulative.pdf") 
+# plot( x=0:max(deg), y=1-deg.dist, pch=19, cex=1.2, col="orange", 
+#       xlab="Degree", ylab="Cumulative Frequency")
+# dev.off()
+# 
+# # degree distribution
+# dd <- degree_distribution(hit_ppi_400)
+# pdf("hit_ppi_400_degree_distribution.pdf") 
+# plot(dd, xlab="Degree", ylab="Frequency")
+# dev.off()
+
+
+
+#---------------------------------------------------------------------------------------
+# The layout is not deterministic - produces different configurations every time
+# Saving the layout in l allows us to get the exact same result multiple times
+# which can be helpful if you want to plot the time evolution of a graph,
+# or different relationships – and want nodes to stay in the same place in multiple plots
+# l <- layout_with_kk(hit_ppi)
+# plot(hit_ppi, layout=l)
+# plot(hit_ppi, layout_with_lgl)
+# 
+# # Let’s take a look at all available layouts in igraph: 
+# layouts <- grep("^layout_", ls("package:igraph"), value=TRUE)[-1]
+# 
+# # Remove layouts that do not apply to our graph.
+# layouts <- layouts[!grepl("bipartite|merge|norm|sugiyama|tree", layouts)]
+# par(mfrow=c(4,4), mar=c(1,1,1,1))
+# for (layout in layouts) {
+# print(layout)
+# l <- do.call(layout, list(hit_ppi))
+# plot(hit_ppi, edge.arrow.mode=0, layout=l, main=layout)
+# }
+# 
+# hs <- hub_score(hit_ppi, weights=NA)$vector
+# as <- authority_score(hit_ppi, weights=NA)$vector
+# 
+# par(mfrow=c(1,2))
+#  plot(pa_ppi, vertex.size=hs*500, main="Hubs")
+#  plot(pa_ppi, vertex.size=as*300, main="Authorities")
+# dev.off()
+
+# extract edge list from igraph with weights
+hit_ppi_400_list <- as.data.frame(cbind( get.edgelist(hit_ppi_400) , E(hit_ppi_400)$combined_score ))
+
+# to round the weight values to 3 decimal places:
+# as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
+#hit_ppi_400_list <- as.data.frame(cbind( get.edgelist(hit_ppi_400) #,round(E(hit_ppi_400)$combined_score, 3 )))
+
+# rename columns
+names(hit_ppi_400_list)[names(hit_ppi_400_list) == 'V1'] <- 'from'
+names(hit_ppi_400_list)[names(hit_ppi_400_list) == 'V2'] <- 'to'
+names(hit_ppi_400_list)[names(hit_ppi_400_list) == 'V3'] <- 'weight'
+
+# write graph
+# write.graph(hit_ppi_400,"hit_ppi_400_net.txt",format="edgelist")
+
+# write the edgelist data frames
+# network_list - unfiltered net
+# write.table(hit_ppi_400_list, file="hit_ppi_400_list_10-07-2019.txt", row.names = F, quote = FALSE, sep="\t")
+
+#plot(hit_ppi_400, edge.width=E(hit_ppi_400)$combined_score, vertex.size=1, vertex.label=NA, layout=layout.fruchterman.reingold)
+
+# in cytoscape annotate the network with cluster information
+# as well as source data information
+
+
+#---------------------------------------------------------------------------------------
+# Communities
+#---------------------------------------------------------------------------------------
+# A number of algorithms aim to detect groups that consist of densely connected nodes
+# with fewer connections across groups.
+
+# Community detection based on edge betweenness (Newman-Girvan)
+# High-betweenness edges are removed sequentially (recalculating at each step)
+# and the best partitioning of the network is selected.
+# pdf('output/pdf/graph.pdf', height=10, width=20)
+par(mfrow=c(1, 2), mar=c(1,3,1,1), cex=0.6)
+set.seed(3)
+ceb <- cluster_edge_betweenness(hit_ppi) 
+dendPlot(ceb, mode="hclust")
+#pdf('fig/ppi_cluster.pdf', width=5, height=5)
+#par(mfrow=c(1, 1), mar=c(1,3,1,1), cex=0.6)
+plot(ceb, hit_ppi)
+#dev.off()
+# dev.off()
+
+#ggsave('fig/cluster.svg', width=10, height=5)
+
+
+# # Let's examine the community detection igraph object:
+# class(ceb)
+# length(ceb)     # number of communities
+# membership(ceb) # community membership for each node
+# crossing(ceb, hit_ppi)   # boolean vector: TRUE for edges across communities
+# # there seems to be a bug here - crossing expects communities but fails saying it requires a vector
+# modularity(ceb) # how modular the graph partitioning is
+
+# High modularity for a partitioning reflects dense connections within communities 
+# and sparse connections across communities.
+
+# Community detection based on propagating labels
+# Assigns node labels, randomizes, and replaces each vertex's label with
+# the label that appears most frequently among neighbors. Repeated until
+# each vertex has the most common label of its neighbors.
+# net.sym = hit_ppi
+# clp <- cluster_label_prop(net.sym)
+# plot(clp, net.sym)
+# 
+# # Community detection based on greedy optimization of modularity
+# cfg <- cluster_fast_greedy(as.undirected(hit_ppi))
+# plot(cfg, as.undirected(hit_ppi))
+#  
+# # We can also plot the communities without relying on their built-in plot:
+# V(hit_ppi)$community <- cfg$membership
+# colrs <- adjustcolor( c("gray50", "tomato", "gold", "yellowgreen"), alpha=.6)
+# plot(hit_ppi, vertex.color=colrs[V(hit_ppi)$community])
+
+
+#---------------------------------------------------------------------------------------
+# K-core decomposition
+#---------------------------------------------------------------------------------------
+# The k-core is the maximal subgraph in which every node has degree of at least k
+# This also means that the (k+1)-core will be a subgraph of the k-core.
+# The result here gives the coreness of each vertex in the network.
+# kc <- coreness(hit_ppi, mode="all")
+# plot(hit_ppi, vertex.size=kc*6, vertex.label=kc, vertex.color=colrs[kc])
+
+```
+
+
+***
+
+
+```{r}
+# bp = pa14_go[Accession %in% bio_proc$GO.ID, 'Gene Name'] 
+# setnames(bp, 'Gene Name', 'gene')
+# 
+# for(i in seq_along(ceb)) {
+#   #print(ceb[[i]])
+#   print(i)
+#   print(pa14_go[pa14_go$"Gene Name" %in% ceb[[i]], 'GO Term'])
+# }
+# 
+# # igraph groups, dirty fix for the name problem
+# g = ceb[1:15]
+# g[[1]][2] = paste0('PA14_', g[[1]][2])
+# g[[2]][4] = paste0('PA14_', g[[2]][4])
+# g[[3]][c(1:2, 4:11)] = paste0('PA14_', g[[3]][c(1:2, 4:11)])
+# g[[4]][c(1:2, 4:6)] = paste0('PA14_', g[[4]][c(1:2, 4:6)])
+# g[[6]][1] = paste0('PA14_', g[[6]][1])
+# g[[7]][c(1, 3:4)] = paste0('PA14_', g[[7]][c(1, 3:4)])
+# g[[8]][1] = paste0('PA14_', g[[8]][1])
+# g[[9]][1] = paste0('PA14_', g[[9]][1])
+# g[[10]][1:6] = paste0('PA14_', g[[10]][1:6])
+# g[[11]][1] = paste0('PA14_', g[[11]][1])
+# g[[13]][1] = paste0('PA14_', g[[13]][1])
+# 
+# cc_list = lapply(seq_along(g), function(x) {
+#             pa14_go[Namespace=='cellular_component' &
+#                     pa14_go$"Gene Name" %in% g[[x]], c('GO Term', 'Gene Name')]})
+# 
+# bp_list = lapply(seq_along(g), function(x) {
+#             pa14_go[Namespace=='biological_process' &
+#                     pa14_go$"Gene Name" %in% g[[x]], c('GO Term', 'Gene Name')]})
+# 
+```
+
 
 
 # Screen Validation
