@@ -836,8 +836,8 @@ getTopGO = function (dat) {
   dat = unique(dat, by = c('media', 'gene.name.to.show'))
   
   fdr_cutoff = 0.05
-  tmp = dat[media=='LB' & !is.na(t.test.q.value.gene)]  # KS test below fails with NAs
-  gene_list = ifelse(tmp$t.test.q.value.gene<fdr_cutoff, 1, 0)
+  tmp = dat[media=='LB' & !is.na(t.test.q.value)]  # KS test below fails with NAs
+  gene_list = ifelse(tmp$t.test.q.value<fdr_cutoff, 1, 0)
   names(gene_list) = tmp$locus
   
   # Create topGOData object. Ontology can be one of: BP - biological process, CC
