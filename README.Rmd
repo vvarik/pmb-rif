@@ -212,22 +212,18 @@ vtable = gplots::venn(foo)
 
 With the following, we bring some biological knowledge into the analysis. This
 will get us at the level of processes/compartments as opposed to individual
-genes. The following analysis is performed at the level of a gene. We will
-focus on LB beacuse we have more data from there which is also more reliable
-(75% of the unique hits come from LB; there is less variance). In addition, our
-results suggest, the effect of pH on synergy is questionable in PA14.
+genes. We will focus on LB beacuse we have more data from there which is also
+more reliable (75% of the unique hits come from LB; there is less variance). In
+addition, our results suggest, the effect of pH on synergy is questionable in
+PA14.
 
-We will do two things:
 
-1. Gene Set Enrichment Analysis (GSEA) using GO terms from [pseudomonas.com
-   website](https://www.pseudomonas.com/) and Kologorov-Smirnov testing for
-   statistical significance estimation. Although most common approach, it has
-   been critizised for example
-   [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3134237/). 
+We did Gene Set Enrichment Analysis (GSEA) using GO terms from [pseudomonas.com
+website](https://www.pseudomonas.com/) and Kologorov-Smirnov testing for
+statistical significance estimation. Although most common approach, it has been
+critizised for example
+[here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3134237/). 
 
-2. Protein-protein interaction (PPI) analysis using impressive STRING database.
-   There was no data on PA14, so we will use PAO1 data to build and analyse the
-   network onto which we then map PA14 orthologs. 
 
 
 ```{r topGO}
