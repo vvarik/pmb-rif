@@ -14,12 +14,14 @@
   ## Colorblind friendly palettes
 
   # The palette with grey:
-  ass('cbPalette', c("#999999", "#E69F00", "#56B4E9", "#CC79A7", "#009E73",
-  "#D55E00", "#F0E442", "#0072B2"))
+  ass('cbPalette', c(grey="#999999", orange="#E69F00", sky_blue="#56B4E9",
+      bluish_green="#CC79A7", yellow="#009E73", blue="#D55E00",
+      vermillion="#F0E442", reddish_purple="#0072B2"))
   
   # The palette with black:
-  ass('cbbPalette', c("#000000", "#E69F00", "#56B4E9", "#CC79A7", "#009E73",
-  "#D55E00", "#F0E442", "#0072B2"))
+  ass('cbbPalette', c(black="#000000", orange="#E69F00", sky_blue="#56B4E9", 
+      bluish_green="#CC79A7", yellow="#009E73", blue="#D55E00", 
+      vermillion="#F0E442", reddish_purple="#0072B2"))
 
   ass('drugCols', 
     c(RifMono = '#a40000', PmbMono = '#e69e00', Cmb = '#000000',
