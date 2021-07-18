@@ -923,3 +923,23 @@ getValidHitTable = function () {
   return(out)
   
 }
+
+
+#' @export
+addEcOrthologs = function (dat) {
+  ort = fread('input/dat/raw/pa14_ecMG1655_orthologs.csv')
+  bar = str_detect(names(ort), 'Locus Tag ')
+  ort = ort[, ..bar]
+  names(ort) = c('locus_ec', 'locus_pa')
+  
+  ec_map = fread('input/dat/raw/ec_genome_ref_2020-01-24.txt') %>% 
+    setnames(., 'Locus tag', 'locus_ec')
+  
+  out = ort[dat, on = c(locus_pa = 'Locus')]
+  
+  out = ec_map[, .(locus_ec, Locus)][out, on = 'locus_ec']
+  out = dplyr::rename(out, EC_gene = Locus, PA_gene=Gene) %>% 
+    .[, -'locus_ec']
+  
+}
+

@@ -356,7 +356,8 @@ plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
 # Validated genes
 
 ```{r}
-baz = getValidHitTable()
+tab = getValidHitTable() %>% 
+  addEcOrthologs()
 
 ort = fread('input/dat/raw/pa14_ecMG1655_orthologs.csv')
 bar = str_detect(names(foo), 'Locus Tag |Description')
