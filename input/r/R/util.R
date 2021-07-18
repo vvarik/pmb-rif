@@ -880,3 +880,46 @@ getTopGO = function (dat) {
   
 }
 
+
+#' @export
+getValidHitTable = function () {
+  tmpFun = function (x) unique(dat[mut %in% x], by = 'gene')$gene
+  valid_hits = data.table(
+    Gene = c(
+      tmpFun(c(23, 31, 33)),  # no synergy
+      tmpFun(c(1, 16, 29, 35)),  # less synergy than wt
+      tmpFun(c(4, 5, 14, 19, 40, 45, 12))  # more synergy
+    ),
+    Synergy = c(
+      rep('none', 3),
+      rep('less', 4),
+      rep('more', 7)
+      )
+  )
+  
+  valid_hits = getPA14Map() %>% 
+    .[, .(Locus=locus, Gene=gene.name.to.show)] %>% 
+    unique() %>% 
+    .[valid_hits, on = 'Gene'] %>% 
+    .[, Locus := ifelse(is.na(Locus), Gene, Locus)]
+  
+  foo = fread('input/dat/raw/PA14_computational_v2_updated_annotations.csv')
+  setnames(foo, c('\"\"Active\"\" Gene Locus', '\"\"Active\"\" Gene Description'),
+      c('Locus', 'Description'))
+  
+  out = foo[, .SD, .SDcols=grepl('Desc|V29|Locus$', names(foo))
+    ][valid_hits, on = 'Locus'] %>% 
+    unique() %>% 
+    .[, Domain := gsub('.*\\|(.*) \\[.*]', '\\1', V29)] %>% 
+    dplyr::select(-'V29')  %>% 
+    mutate(Description =
+      ifelse(grepl('hypothetical|pyrophosphokinase', Description), Domain,
+        Description),
+      Description = gsub('PpGpp', '(p)ppGpp', Description),
+      Description = gsub(' catalytic domain', '', Description)
+    )  %>% 
+    dplyr::select(-Domain)
+
+  return(out)
+  
+}
