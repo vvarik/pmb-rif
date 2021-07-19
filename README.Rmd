@@ -140,7 +140,7 @@ plot_grid(
 
 # Reverse Genetics Screen
 
-To account for the synergy in molecular terms—beyond a nonspecific increase in membrane permeability by polymyxin B—we turned to chemical genetics [Brochado and Typas, 2013](https://doi.org/10.1016/j.mib.2013.01.008). Working with ordered PA14 transposon library [Liberati et al., 2006](https://doi.org/10.1073/pnas.0511100103), we derived a growth measure for monotherapies and combinations using colony opacity [Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14). To account for plate-to-plate variation, the opacity was multiplicatively corrected. This results in zero-centering of the Bliss scores, which were derived next. The significance of difference from zero Bliss score, for any mutant, was estimated by a T-test (5 biological replicates) and corrected for multiple testing (Benjamini-Hochberg).
+To account for the synergy in molecular terms—beyond a nonspecific increase in membrane permeability by polymyxin B—we turned to chemical genetics ([Brochado and Typas, 2013](https://doi.org/10.1016/j.mib.2013.01.008)). Working with ordered PA14 transposon library ([Liberati et al., 2006](https://doi.org/10.1073/pnas.0511100103)), we derived a growth measure for monotherapies and combinations using colony opacity ([Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14)). To account for plate-to-plate variation, the opacity was multiplicatively corrected. This results in zero-centering of the Bliss scores, which were derived next. The significance of difference from zero Bliss score, for any mutant, was estimated by a T-test (5 biological replicates) and corrected for multiple testing (Benjamini-Hochberg).
 
 ```{r include=F}
 dat = loadIrisFiles("input/dat/raw/iris_files") %>% 
