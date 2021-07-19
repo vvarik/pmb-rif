@@ -2,11 +2,13 @@
 -   [Combinations](#combinations)
 -   [Dose Response And pH](#dose-response-and-ph)
 -   [Reverse Genetics Screen](#reverse-genetics-screen)
--   [GO terms](#go-terms)
--   [Protein-protein interaction
-    network](#protein-protein-interaction-network)
+    -   [GO terms](#go-terms)
+    -   [Protein-protein interaction
+        network](#protein-protein-interaction-network)
 -   [Screen Validation](#screen-validation)
--   [Validated genes](#validated-genes)
+    -   [Description and E. coli
+        orthologs](#description-and-e.-coli-orthologs)
+    -   [GO terms](#go-terms-1)
 -   [Time-kill](#time-kill)
 
 # Background
@@ -23,6 +25,8 @@ aeruginosa* strains, two clinical isolates of *A. baumannii*, *E.
 cloacae*, and *K. pneumoniae*.
 
 # Dose Response And pH
+
+![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
 
 # Reverse Genetics Screen
 
@@ -44,7 +48,11 @@ corrected for multiple testing (Benjamini-Hochberg).
 
     ## [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
 
-# GO terms
+![](output/fig/ChemGen_LB.svg)
+
+![](output/fig/ChemGen_LBpH5.5.svg)
+
+## GO terms
 
 With the following, we bring some biological knowledge into the
 analysis. This will get us at the level of processes/compartments as
@@ -150,7 +158,7 @@ Although most common approach, it has been critizised for example
     ## 9  GO:0019354           siroheme biosynthetic process       0.067
     ## 10 GO:0044262 cellular carbohydrate metabolic process       0.074
 
-# Protein-protein interaction network
+## Protein-protein interaction network
 
 Protein-protein interaction (PPI) analysis using STRING database. There
 was no data on PA14, so we will use PAO1 data to build and analyse the
@@ -174,11 +182,7 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 
 ![](output/fig/SFig_45PA14MutCompLoeweNull.svg)
 
-# Validated genes
-
-**Table 1: Mutants with altered RIF-PMB interaction profile and
-corresponding gene in *E. coli*.** Only four genes had designated
-orthologs in *E. coli*.
+## Description and E. coli orthologs
 
 <table>
 <colgroup>
@@ -283,7 +287,7 @@ orthologs in *E. coli*.
 </tbody>
 </table>
 
-**Table 2 : Biological context of mutants.**
+## GO terms
 
 <table>
 <colgroup>

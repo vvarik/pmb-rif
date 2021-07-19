@@ -132,6 +132,7 @@ plot_grid(
 
 # ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.svg', width=10, height=9)
 ```
+![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
 
 
 # Reverse Genetics Screen
@@ -191,14 +192,16 @@ tmp = chem.gen.res %>%
   theme(aspect.ratio = 1, legend.position = 'none')
 
 })
+# ggsave('output/fig/ChemGen_LB.svg', width=5, height=5)
 ```
+![](output/fig/ChemGen_LB.svg)
+
 
 ```{r ChemGen_LBpH5.5}
-# ggsave('output/fig/ChemGen_LB.svg', width=5, height=5)
-
 p0 %+% filter(tmp, media == 'LBpH5.5')
 # ggsave('output/fig/ChemGen_LBpH5.5.svg', width=5, height=5)
 ```
+![](output/fig/ChemGen_LBpH5.5.svg)
 
 ```{r revgen-venn}
 getGenes = function (dat) {
@@ -213,7 +216,7 @@ foo = getGenes(chem.gen.res)
 #vtable = gplots::venn(foo)
 ```
 
-# GO terms
+## GO terms
 
 With the following, we bring some biological knowledge into the analysis. This
 will get us at the level of processes/compartments as opposed to individual
@@ -245,7 +248,7 @@ tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>%
   mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
 ```
 
-# Protein-protein interaction network
+## Protein-protein interaction network
 
 Protein-protein interaction (PPI) analysis using STRING database. There was no
 data on PA14, so we will use PAO1 data to build and analyse the network onto
@@ -366,17 +369,14 @@ foo[, mut := c(0:27, 29:45)]
 ![](output/fig/SFig_45PA14MutCompLoeweNull.svg)
 
 
-# Validated genes
-
-**Table 1: Mutants with altered RIF-PMB interaction profile and corresponding
-gene in _E. coli_.** Only four genes had designated orthologs in _E. coli_.
+## Description and E. coli orthologs
 
 ```{r}
 getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% knitr::kable()
 ```
 
 
-**Table 2 : Biological context of mutants.**
+## GO terms 
 
 ```{r}
 getGoTermTable() %>% knitr::kable()
