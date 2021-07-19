@@ -2,13 +2,16 @@
 -   [Combinations](#combinations)
 -   [Dose Response And pH](#dose-response-and-ph)
 -   [Reverse Genetics Screen](#reverse-genetics-screen)
+    -   [LB](#lb)
+    -   [LB pH 5.5](#lb-ph-5.5)
     -   [GO terms](#go-terms)
     -   [Protein-protein interaction
         network](#protein-protein-interaction-network)
 -   [Screen Validation](#screen-validation)
-    -   [Description and E. coli
-        orthologs](#description-and-e.-coli-orthologs)
-    -   [GO terms](#go-terms-1)
+    -   [Dose-response](#dose-response)
+    -   [Compare to Loewe’s null](#compare-to-loewes-null)
+    -   [Table with E. coli orthologs](#table-with-e.-coli-orthologs)
+    -   [Table with GO terms](#table-with-go-terms)
 -   [Time-kill](#time-kill)
 
 # Background
@@ -48,7 +51,11 @@ corrected for multiple testing (Benjamini-Hochberg).
 
     ## [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
 
+## LB
+
 ![](output/fig/ChemGen_LB.svg)
+
+## LB pH 5.5
 
 ![](output/fig/ChemGen_LBpH5.5.svg)
 
@@ -178,11 +185,15 @@ throughput and in liquid LB medium at pH 7.4. Instead of factorial (i.e.
 checkerboard), we use a fixed ratio design [Tallarida et al
 1997](https://doi.org/10.1016/s0024-3205(97)01030-8).
 
+## Dose-response
+
 ![](output/fig/SFig_45PA14MutDoseResponses.svg)
+
+## Compare to Loewe’s null
 
 ![](output/fig/SFig_45PA14MutCompLoeweNull.svg)
 
-## Description and E. coli orthologs
+## Table with E. coli orthologs
 
 <table>
 <colgroup>
@@ -287,7 +298,7 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 </tbody>
 </table>
 
-## GO terms
+## Table with GO terms
 
 <table>
 <colgroup>
