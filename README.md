@@ -74,96 +74,44 @@ Kologorov-Smirnov testing for statistical significance estimation.
 Although most common approach, it has been critizised for example
 [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3134237/).
 
-<table style="width:100%;">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 73%" />
-<col style="width: 10%" />
-<col style="width: 6%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">GO.ID</th>
-<th style="text-align: left;">Term</th>
-<th style="text-align: left;">raw.p.value</th>
-<th style="text-align: right;">Pvalue</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="GO:0016021" class="uri">GO:0016021</a></td>
-<td style="text-align: left;">integral component of membrane</td>
-<td style="text-align: left;">0.015</td>
-<td style="text-align: right;">0.015</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="GO:0005694" class="uri">GO:0005694</a></td>
-<td style="text-align: left;">chromosome</td>
-<td style="text-align: left;">0.072</td>
-<td style="text-align: right;">0.072</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="GO:0008076" class="uri">GO:0008076</a></td>
-<td style="text-align: left;">voltage-gated potassium channel complex</td>
-<td style="text-align: left;">0.140</td>
-<td style="text-align: right;">0.140</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="GO:0055052" class="uri">GO:0055052</a></td>
-<td style="text-align: left;">ATP-binding cassette (ABC) transporter complex, substrate-binding subunit-containing</td>
-<td style="text-align: left;">0.146</td>
-<td style="text-align: right;">0.146</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="GO:0009289" class="uri">GO:0009289</a></td>
-<td style="text-align: left;">pilus</td>
-<td style="text-align: left;">0.163</td>
-<td style="text-align: right;">0.163</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="GO:0033573" class="uri">GO:0033573</a></td>
-<td style="text-align: left;">high-affinity iron permease complex</td>
-<td style="text-align: left;">0.166</td>
-<td style="text-align: right;">0.166</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="GO:0005839" class="uri">GO:0005839</a></td>
-<td style="text-align: left;">proteasome core complex</td>
-<td style="text-align: left;">0.183</td>
-<td style="text-align: right;">0.183</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="GO:0005960" class="uri">GO:0005960</a></td>
-<td style="text-align: left;">glycine cleavage complex</td>
-<td style="text-align: left;">0.227</td>
-<td style="text-align: right;">0.227</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="GO:0030257" class="uri">GO:0030257</a></td>
-<td style="text-align: left;">type III protein secretion system complex</td>
-<td style="text-align: left;">0.252</td>
-<td style="text-align: right;">0.252</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="GO:0005615" class="uri">GO:0005615</a></td>
-<td style="text-align: left;">extracellular space</td>
-<td style="text-align: left;">0.253</td>
-<td style="text-align: right;">0.253</td>
-</tr>
-</tbody>
-</table>
+**Cell components**
 
-    ##         GO.ID                                    Term raw.p.value
-    ## 1  GO:0009236          cobalamin biosynthetic process       0.017
-    ## 2  GO:0055114             oxidation-reduction process       0.019
-    ## 3  GO:0009116            nucleoside metabolic process       0.024
-    ## 4  GO:0019700   organic phosphonate catabolic process       0.039
-    ## 5  GO:0017000         antibiotic biosynthetic process       0.040
-    ## 6  GO:0070475                   rRNA base methylation       0.050
-    ## 7  GO:0009306                       protein secretion       0.056
-    ## 8  GO:0044010        single-species biofilm formation       0.063
-    ## 9  GO:0019354           siroheme biosynthetic process       0.067
-    ## 10 GO:0044262 cellular carbohydrate metabolic process       0.074
+    ##         GO.ID                                                                                 Term
+    ## 1  GO:0016021                                                       integral component of membrane
+    ## 2  GO:0005694                                                                           chromosome
+    ## 3  GO:0008076                                              voltage-gated potassium channel complex
+    ## 4  GO:0055052 ATP-binding cassette (ABC) transporter complex, substrate-binding subunit-containing
+    ## 5  GO:0009289                                                                                pilus
+    ## 6  GO:0033573                                                  high-affinity iron permease complex
+    ## 7  GO:0005839                                                              proteasome core complex
+    ## 8  GO:0005960                                                             glycine cleavage complex
+    ## 9  GO:0030257                                            type III protein secretion system complex
+    ## 10 GO:0005615                                                                  extracellular space
+    ##    Pvalue
+    ## 1   0.015
+    ## 2   0.072
+    ## 3   0.140
+    ## 4   0.146
+    ## 5   0.163
+    ## 6   0.166
+    ## 7   0.183
+    ## 8   0.227
+    ## 9   0.252
+    ## 10  0.253
+
+\*\* Biological processes\*\*
+
+    ##         GO.ID                                    Term Pvalue
+    ## 1  GO:0009236          cobalamin biosynthetic process  0.017
+    ## 2  GO:0055114             oxidation-reduction process  0.019
+    ## 3  GO:0009116            nucleoside metabolic process  0.024
+    ## 4  GO:0019700   organic phosphonate catabolic process  0.039
+    ## 5  GO:0017000         antibiotic biosynthetic process  0.040
+    ## 6  GO:0070475                   rRNA base methylation  0.050
+    ## 7  GO:0009306                       protein secretion  0.056
+    ## 8  GO:0044010        single-species biofilm formation  0.063
+    ## 9  GO:0019354           siroheme biosynthetic process  0.067
+    ## 10 GO:0044262 cellular carbohydrate metabolic process  0.074
 
 ## Protein-protein interaction network
 
@@ -392,3 +340,9 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 # Time-kill
 
 ![](output/fig/SFig_TimeKill.svg)
+
+<style>
+.table>tbody>tr>td{
+  padding: 1px;
+}
+</style>

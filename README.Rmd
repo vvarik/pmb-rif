@@ -238,20 +238,28 @@ statistical significance estimation. Although most common approach, it has been
 critizised for example
 [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3134237/). 
 
-
+**Cell components**
 
 ```{r topGO}
 library('topGO')
 tab = getTopGO(chem.gen.res)
 
-# cell components
-tab[['CC']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
-  mutate(Pvalue = round(as.numeric(raw.p.value), 4)) %>% 
-  knitr::kable()
+tmpFun = function (dat, name='CC') {
+  dat[[name]][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
+    mutate(Pvalue = round(as.numeric(raw.p.value), 4))  %>% 
+    dplyr::select(-raw.p.value)
+}
 
+tab[['CC']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
+  mutate(Pvalue = round(as.numeric(raw.p.value), 4))  %>% 
+  dplyr::select(-raw.p.value)
+```
+
+** Biological processes**
+
+```{r}
 # biological processes
-tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
-  mutate(raw.p.value = round(as.numeric(raw.p.value), 4))
+tmpFun(tab, 'BP')
 ```
 
 ## Protein-protein interaction network
@@ -410,3 +418,9 @@ dtk = fread('input/dat/raw/time-kill.csv') %>%
 #   .[order(group)]
 ```
 ![](output/fig/SFig_TimeKill.svg)
+
+<style>
+.table>tbody>tr>td{
+  padding: 1px;
+}
+</style>
