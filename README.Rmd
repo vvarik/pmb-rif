@@ -355,11 +355,21 @@ plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
 
 # Validated genes
 
+
+Table 1: Mutants with altered RIF-PMB interaction profile and corresponding gene in _E. coli_.
+
 ```{r}
-tab1 = getValidHitTable() %>% addEcOrthologs()
-tab2 = getGoTermTable()
+getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% knitr::kable()
 ```
 
+Only four genes had designated orthologs in _E. coli_.
+
+
+Table 2 : Biological context of mutants.
+
+```{r}
+getGoTermTable() %>% knitr::kable()
+```
 
 
 # Time-kill
