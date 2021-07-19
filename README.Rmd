@@ -387,7 +387,7 @@ getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% knitr::kable()
 ```
 
 
-## Table with GO terms 
+## GO term table
 
 ```{r}
 getGoTermTable() %>% knitr::kable()

@@ -11,7 +11,7 @@
     -   [Dose-response](#dose-response)
     -   [Compare to Loewe’s null](#compare-to-loewes-null)
     -   [Table with E. coli orthologs](#table-with-e.-coli-orthologs)
-    -   [Table with GO terms](#table-with-go-terms)
+    -   [GO term table](#go-term-table)
 -   [Time-kill](#time-kill)
 
 # Background
@@ -302,7 +302,7 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 </tbody>
 </table>
 
-## Table with GO terms
+## GO term table
 
 <table>
 <colgroup>
