@@ -960,8 +960,6 @@ getGoTermTable = function () {
   bar = fread('input/dat/raw/hits_go_terms_biol_processes.csv') %>% setkey(., 'PA_gene')
   baz = fread('input/dat/raw/hits_go_terms_cellular_component.csv') %>% setkey(., 'PA_gene')
   
-  merge(
-    merge(foo, bar, all = TRUE),
-    baz, all = TRUE 
-  )
+  merge(merge(foo, bar, all = TRUE), baz, all = TRUE) %>% 
+    dplyr::select('PA gene' = PA_gene, Location, Process, Function)
 }
