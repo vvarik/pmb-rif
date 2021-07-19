@@ -15,6 +15,9 @@ We looked for combination therapies of neglected and misused antibiotics.
 Rifampin and polymyxin B combination stood out as a promising approach against
 scpectrum of clinical isolates.
 
+This repository contains all the data and code to reproduce the analysis. For
+details and full captions of figures, consult the publication.
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300, fig.show = "hide")
