@@ -171,12 +171,16 @@ Protein-protein interaction (PPI) analysis using STRING database. There
 was no data on PA14, so we will use PAO1 data to build and analyse the
 network onto which we then map PA14 orthologs.
 
+![](output/fig/SFig_ppi_cluster.svg)
+
 The major graph communities, using (Newman-Girvan’s edge betweenness):
-1. The light blue nodes are central and seem to be enriched in
-regulatory genes. 2. The grey nodes seem to be a signal transduction
-from membrane to the regulatory genes (in light blue). 3. Orange and
-pink nodes are mostly related to metabolism; those in orange have more
-membrane related terms than the pink nodes.
+
+1.  The light blue nodes are central and seem to be enriched in
+    regulatory genes.
+2.  The grey nodes seem to be a signal transduction from membrane to the
+    regulatory genes (in light blue).
+3.  Orange and pink nodes are mostly related to metabolism; those in
+    orange have more membrane related terms than the pink nodes.
 
 # Screen Validation
 

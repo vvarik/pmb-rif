@@ -314,8 +314,10 @@ plot(hit_ppi, vertex.color=cols[V(hit_ppi)$community],
 )
 #dev.off()
 ```
+![](output/fig/SFig_ppi_cluster.svg)
 
 The major graph communities, using (Newman-Girvan's edge betweenness):
+
 1. The light blue nodes are central and seem to be enriched in regulatory genes.
 2. The grey nodes seem to be a signal transduction from membrane to the
    regulatory genes (in light blue).
