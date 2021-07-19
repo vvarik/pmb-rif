@@ -24,7 +24,7 @@ cloacae*, and *K. pneumoniae*.
 
 # Dose Response And pH
 
-![](output/fig/unnamed-chunk-2-1.png)
+![](output/fig/SFig_monotherapy_dose-response_and_pH-1.png)
 
 # Reverse Genetics Screen
 
@@ -46,7 +46,9 @@ corrected for multiple testing (Benjamini-Hochberg).
 
     ## [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
 
-![](output/fig/revgen-volc-1.png)![](output/fig/revgen-volc-2.png)
+![](output/fig/ChemGen_LB-1.png)
+
+![](output/fig/ChemGen_LBpH5.5-1.png)
 
 # GO terms
 
@@ -160,7 +162,7 @@ Protein-protein interaction (PPI) analysis using STRING database. There
 was no data on PA14, so we will use PAO1 data to build and analyse the
 network onto which we then map PA14 orthologs.
 
-![](output/fig/ppi_cluster-1.png)
+![](output/fig/SFig_ppi_cluster-1.png)
 
 The major graph communities, using (Newman-Girvan’s edge betweenness):
 1. The light blue nodes are central and seem to be enriched in
@@ -225,8 +227,9 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 
 # Validated genes
 
-Table 1: Mutants with altered RIF-PMB interaction profile and
-corresponding gene in *E. coli*.
+**Table 1: Mutants with altered RIF-PMB interaction profile and
+corresponding gene in *E. coli*.** Only four genes had designated
+orthologs in *E. coli*.
 
 <table>
 <colgroup>
@@ -331,9 +334,7 @@ corresponding gene in *E. coli*.
 </tbody>
 </table>
 
-Only four genes had designated orthologs in *E. coli*.
-
-Table 2 : Biological context of mutants.
+\*\* Table 2 : Biological context of mutants. \*\*
 
 <table>
 <colgroup>
@@ -422,24 +423,4 @@ Table 2 : Biological context of mutants.
 
 # Time-kill
 
-![](output/fig/unnamed-chunk-7-1.png)
-
-    ##                    broth             group  d_1    d_2
-    ##  1:          MHBII_pH7.4           no drug  0.0  0.000
-    ##  2:        intracellular           no drug  0.0  0.000
-    ##  3: MHBII_pH5.5_MES100mM           no drug  0.0  0.000
-    ##  4:          MHBII_pH7.4           low RIF  4.8  0.000
-    ##  5:        intracellular           low RIF  4.8  0.000
-    ##  6: MHBII_pH5.5_MES100mM           low RIF  2.4  0.000
-    ##  7:          MHBII_pH7.4           low PMB  0.0  1.000
-    ##  8:        intracellular           low PMB  0.0  1.000
-    ##  9: MHBII_pH5.5_MES100mM           low PMB  0.0  0.075
-    ## 10:          MHBII_pH7.4 low RIF + low PMB  4.8  1.000
-    ## 11:        intracellular low RIF + low PMB  4.8  1.000
-    ## 12: MHBII_pH5.5_MES100mM low RIF + low PMB  2.4  0.075
-    ## 13:          MHBII_pH7.4    10x higher RIF 48.0  0.000
-    ## 14:        intracellular    10x higher RIF 48.0  0.000
-    ## 15: MHBII_pH5.5_MES100mM    10x higher RIF 24.0  0.000
-    ## 16:          MHBII_pH7.4    10x higher PMB  0.0 10.000
-    ## 17:        intracellular    10x higher PMB  0.0 10.000
-    ## 18: MHBII_pH5.5_MES100mM    10x higher PMB  0.0  0.750
+![](output/fig/SFig_TimeKill-1.png)
