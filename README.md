@@ -160,7 +160,7 @@ Protein-protein interaction (PPI) analysis using STRING database. There
 was no data on PA14, so we will use PAO1 data to build and analyse the
 network onto which we then map PA14 orthologs.
 
-![](output/fig/ppi-1.png)
+![](output/fig/ppi_cluster-1.png)
 
 The major graph communities, using (Newman-Girvan’s edge betweenness):
 1. The light blue nodes are central and seem to be enriched in
@@ -219,9 +219,9 @@ checkerboard), we use a fixed ratio design [Tallarida et al
     ## 44:  45  Syn   3   0     8
     ## 45:  12  Syn   4   0     8
 
-[]('output/fig/SFig_45PA14MutDoseResponses.svg')
+![]('output/fig/SFig_45PA14MutDoseResponses.svg')
 
-[]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
+![]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
 
 # Validated genes
 

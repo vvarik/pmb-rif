@@ -249,7 +249,7 @@ Protein-protein interaction (PPI) analysis using STRING database. There was no
 data on PA14, so we will use PAO1 data to build and analyse the network onto
 which we then map PA14 orthologs. 
 
-```{r ppi}
+```{r ppi_cluster}
 library(igraph)
 library(stringr)
 
@@ -351,7 +351,7 @@ arrange(foo, Syn) %>% print(20)
 #dev.off()
 ```
 
-[]('output/fig/SFig_45PA14MutDoseResponses.svg')
+![]('output/fig/SFig_45PA14MutDoseResponses.svg')
 
 
 ```{r SFig_45PA14MutCompLoeweNull}
@@ -361,7 +361,7 @@ arrange(foo, Syn) %>% print(20)
 #dev.off()
 ```
 
-[]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
+![]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
 
 
 # Validated genes
