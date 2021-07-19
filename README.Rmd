@@ -356,54 +356,8 @@ plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
 # Validated genes
 
 ```{r}
-tab = getValidHitTable() %>% 
-  addEcOrthologs()
-
-ort = fread('input/dat/raw/pa14_ecMG1655_orthologs.csv')
-bar = str_detect(names(foo), 'Locus Tag |Description')
-ort = ort[, ..bar]
-names(ort) = c('locus_ec', 'desc_ec', 'locus_pa', 'desc_pa')
-
-ec_map = fread('input/dat/raw/ec_genome_ref_2020-01-24.txt') %>% 
-  rename(locus_ec = `Locus tag`)
-
-hits = ort[hits, on = c(locus_pa = 'locus')] %>% 
-  .[, -c('desc_pa')] 
-
-hits = ec_map[, .(locus_ec, Locus)][hits, on = 'locus_ec']
-hits = rename(hits, EC_gene = Locus, PA_gene=gene) %>% 
-  .[, -'locus_ec']
-
-# go terms quick and dirty output, I will concatenate/edit them manually and
-# reload back in below
-pa14_go = fread('data/pa14_go_terms.csv') %>% rename(locus_pa = `Locus Tag`)
-# fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][hits, on = 'locus_pa'][Namespace == 'biological_process'], 'data/hits_go_terms_biol_processes.csv')
-# fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][hits, on = 'locus_pa'][Namespace == 'cellular_component'], 'data/hits_go_terms_cellular_component.csv')
-# fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][hits, on = 'locus_pa'][Namespace == 'molecular_function'], 'data/hits_go_terms_molec_func.csv')
-
-
-# DT::datatable(hits)
-
-hits[2, 1] = paste0("[", hits[2, 1], "](", 'https://ecocyc.org/gene?orgid=ECOLI&id=EG10835' , ")")
-hits[6, 1] = paste0("[", hits[6, 1], "](", 'https://ecocyc.org/gene?orgid=ECOLI&id=G7542' , ")")
-hits[9, 1] = paste0("[", hits[9, 1], "](", 'https://ecocyc.org/gene?orgid=ECOLI&id=EG11768' , ")")
-hits[13, 1] = paste0("[", hits[13, 1], "](", 'https://ecocyc.org/gene?orgid=ECOLI&id=EG10741' , ")")
-
-# hits = pa14_map[, .(PAO1.ortholog, gene)][hits, on = c(gene = 'PA_gene')]  %>% 
-#   rename(locus_pao = PAO1.ortholog)
-# 
-# pa14_pathways = fread('data/pa14_pathways.csv') %>% rename(locus_pao = `Locus Tag`)
-#fwrite(pa14_pathways[, .(`Pathway Name`, locus_pao)][hits, on = 'locus_pao'][!is.na(`Pathway Name`)], 'data/hits_pathways.csv')
-
-foo = fread('data/hits_go_terms_molec_func.csv') %>% setkey(., 'PA_gene')
-bar = fread('data/hits_go_terms_biol_processes.csv') %>% setkey(., 'PA_gene')
-baz = fread('data/hits_go_terms_cellular_component.csv') %>% setkey(., 'PA_gene')
-
-go_terms = merge(
-  merge(foo, bar, all = TRUE),
-  baz, all = TRUE 
-)
-
+tab1 = getValidHitTable() %>% addEcOrthologs()
+tab2 = getGoTermTable()
 ```
 
 

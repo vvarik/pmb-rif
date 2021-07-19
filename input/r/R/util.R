@@ -943,3 +943,23 @@ addEcOrthologs = function (dat) {
   
 }
 
+
+#' @export
+getGoTermTable = function () {
+  # go terms quick and dirty; output -- I will concatenate/edit them manually and
+  # reload back in below
+  # pa14_go = fread('input/dat/raw/ucbpp-pa14_go.csv') %>% 
+  #   dplyr::rename(locus_pa = `Locus Tag`)
+  # fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][tab, on = 'locus_pa'][Namespace == 'biological_process'], 'input/dat/raw/tab_go_terms_biol_processes.csv')
+  # fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][tab, on = 'locus_pa'][Namespace == 'cellular_component'], 'input/dat/raw/tab_go_terms_cellular_component.csv')
+  # fwrite(pa14_go[, .(`GO Term`, Namespace, locus_pa)][tab, on = 'locus_pa'][Namespace == 'molecular_function'], 'input/dat/raw/tab_go_terms_molec_func.csv')
+  
+  foo = fread('input/dat/raw/hits_go_terms_molec_func.csv') %>% setkey(., 'PA_gene')
+  bar = fread('input/dat/raw/hits_go_terms_biol_processes.csv') %>% setkey(., 'PA_gene')
+  baz = fread('input/dat/raw/hits_go_terms_cellular_component.csv') %>% setkey(., 'PA_gene')
+  
+  merge(
+    merge(foo, bar, all = TRUE),
+    baz, all = TRUE 
+  )
+}
