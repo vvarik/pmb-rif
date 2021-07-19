@@ -49,10 +49,20 @@ were derived next. The significance of difference from zero Bliss score,
 for any mutant, was estimated by a T-test (5 biological replicates) and
 corrected for multiple testing (Benjamini-Hochberg).
 
-<img src="output/fig/ChemGen_LB.svg" style="width:10.0%" />
-<img src="output/fig/ChemGen_LBpH5.5.svg" style="width:10.0%" />
-
-LB (left) and LB pH 5.5 (right).
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>LB</strong></th>
+<th style="text-align: left;"><strong>LB pH 5.5</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img src="output/fig/ChemGen_LB.svg" /></td>
+<td style="text-align: left;"><img src="output/fig/ChemGen_LBpH5.5.svg" /></td>
+</tr>
+</tbody>
+</table>
 
 ## GO terms
 

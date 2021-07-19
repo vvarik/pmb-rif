@@ -202,9 +202,10 @@ tmp = chem.gen.res %>%
 p0 %+% filter(tmp, media == 'LBpH5.5')
 # ggsave('output/fig/ChemGen_LBpH5.5.svg', width=5, height=5)
 ```
-![](output/fig/ChemGen_LB.svg){width=10%} ![](output/fig/ChemGen_LBpH5.5.svg){width=10%}
+|**LB**                        |**LB pH 5.5**             |
+|:-----------------------------|:-------------------------|
+![](output/fig/ChemGen_LB.svg) | ![](output/fig/ChemGen_LBpH5.5.svg)
 
-LB (left) and LB pH 5.5 (right).
 
 ```{r revgen-venn}
 getGenes = function (dat) {
