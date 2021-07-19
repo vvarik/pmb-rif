@@ -24,8 +24,6 @@ cloacae*, and *K. pneumoniae*.
 
 # Dose Response And pH
 
-![](output/fig/SFig_monotherapy_dose-response_and_pH-1.png)
-
 # Reverse Genetics Screen
 
 To account for the synergy in molecular terms—beyond a nonspecific
@@ -45,10 +43,6 @@ corrected for multiple testing (Benjamini-Hochberg).
     ## Warning: only one replicate for LB-Rifampicin16Polymyxin2 in library plate2
 
     ## [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
-
-![](output/fig/ChemGen_LB-1.png)
-
-![](output/fig/ChemGen_LBpH5.5-1.png)
 
 # GO terms
 
@@ -161,8 +155,6 @@ Although most common approach, it has been critizised for example
 Protein-protein interaction (PPI) analysis using STRING database. There
 was no data on PA14, so we will use PAO1 data to build and analyse the
 network onto which we then map PA14 orthologs.
-
-![](output/fig/SFig_ppi_cluster-1.png)
 
 The major graph communities, using (Newman-Girvan’s edge betweenness):
 1. The light blue nodes are central and seem to be enriched in

@@ -17,7 +17,7 @@ scpectrum of clinical isolates.
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300, fig.path = "output/fig/")
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300, fig.show = "hide")
 knitr::opts_knit$set(global.par = TRUE)
 library('data.table')
 library('tidyverse')
