@@ -344,7 +344,7 @@ foo = lapply(rsl, function(x) summary(x$maxR)$totals) %>% rbindlist(idcol='mut')
 # Mutant numbering is potential source of confusion; hence I assign here
 # manually: wild-type is coded as mut 0, fitting of mut 28 failed
 foo[, mut := c(0:27, 29:45)]  
-arrange(foo, Syn) %>% print(20)
+#arrange(foo, Syn) %>% print(20)
 ```
 
 ```{r SFig_45PA14MutDoseResponses}
@@ -376,7 +376,7 @@ getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% knitr::kable()
 ```
 
 
-** Table 2 : Biological context of mutants. **
+**Table 2 : Biological context of mutants.**
 
 ```{r}
 getGoTermTable() %>% knitr::kable()
@@ -390,7 +390,7 @@ dtk = fread('input/dat/raw/time-kill.csv') %>%
   remNonCharcoal() %>% 
   addNewVariablesToTimeKill()
 
-pltTimeKill(dtk)
+# pltTimeKill(dtk)
 #ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
 
 # # Print out the concentrations used
@@ -398,3 +398,4 @@ pltTimeKill(dtk)
 #   .[, .(broth, group, d_1, d_2)] %>% 
 #   .[order(group)]
 ```
+![](output/fig/SFig_TimeKill.svg)

@@ -178,49 +178,6 @@ throughput and in liquid LB medium at pH 7.4. Instead of factorial (i.e.
 checkerboard), we use a fixed ratio design [Tallarida et al
 1997](https://doi.org/10.1016/s0024-3205(97)01030-8).
 
-    ##     mut Call Syn Ant Total
-    ##  1:  23 None   0   0     8
-    ##  2:  31 None   0   0     8
-    ##  3:  33 None   0   0     8
-    ##  4:   1  Syn   1   0     8
-    ##  5:  16  Syn   1   0     8
-    ##  6:  29  Syn   1   0     8
-    ##  7:  35  Syn   1   0     8
-    ##  8:   0  Syn   2   0     8
-    ##  9:   2  Syn   2   0     8
-    ## 10:   3  Syn   2   0     8
-    ## 11:   6  Syn   2   0     8
-    ## 12:   7  Syn   2   0     8
-    ## 13:   8  Syn   2   0     8
-    ## 14:   9  Syn   2   0     8
-    ## 15:  10  Syn   2   0     8
-    ## 16:  11  Syn   2   0     8
-    ## 17:  13  Syn   2   0     8
-    ## 18:  15  Syn   2   0     8
-    ## 19:  17  Syn   2   0     8
-    ## 20:  18  Syn   2   0     8
-    ## ---                       
-    ## 26:  26  Syn   2   0     8
-    ## 27:  27  Syn   2   0     8
-    ## 28:  30  Syn   2   0     8
-    ## 29:  32  Syn   2   0     8
-    ## 30:  34  Syn   2   0     8
-    ## 31:  36  Syn   2   0     8
-    ## 32:  37  Syn   2   0     8
-    ## 33:  38  Syn   2   0     8
-    ## 34:  39  Syn   2   0     8
-    ## 35:  41  Syn   2   0     8
-    ## 36:  42  Syn   2   0     8
-    ## 37:  43  Syn   2   0     8
-    ## 38:  44  Syn   2   0     8
-    ## 39:   4  Syn   3   0     8
-    ## 40:   5  Syn   3   0     8
-    ## 41:  14  Syn   3   0     8
-    ## 42:  19  Syn   3   0     8
-    ## 43:  40  Syn   3   0     8
-    ## 44:  45  Syn   3   0     8
-    ## 45:  12  Syn   4   0     8
-
 ![](output/fig/SFig_45PA14MutDoseResponses.svg)
 
 ![](output/fig/SFig_45PA14MutCompLoeweNull.svg)
@@ -334,7 +291,7 @@ orthologs in *E. coli*.
 </tbody>
 </table>
 
-\*\* Table 2 : Biological context of mutants. \*\*
+**Table 2 : Biological context of mutants.**
 
 <table>
 <colgroup>
@@ -423,4 +380,4 @@ orthologs in *E. coli*.
 
 # Time-kill
 
-![](output/fig/SFig_TimeKill-1.png)
+![](output/fig/SFig_TimeKill.svg)
