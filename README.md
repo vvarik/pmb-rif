@@ -219,9 +219,9 @@ checkerboard), we use a fixed ratio design [Tallarida et al
     ## 44:  45  Syn   3   0     8
     ## 45:  12  Syn   4   0     8
 
-![]('output/fig/SFig_45PA14MutDoseResponses.svg')
+![](output/fig/SFig_45PA14MutDoseResponses.svg)
 
-![]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
+![](output/fig/SFig_45PA14MutCompLoeweNull.svg)
 
 # Validated genes
 
