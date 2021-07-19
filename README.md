@@ -20,6 +20,10 @@ We looked for combination therapies of neglected and misused
 antibiotics. Rifampin and polymyxin B combination stood out as a
 promising approach against scpectrum of clinical isolates.
 
+This repository contains all the data and code to reproduce the
+analysis. For details and full captions of figures, consult the
+publication.
+
 # Combinations
 
 We studied the potential of the rifampicin-polymyxin B combination
@@ -46,10 +50,6 @@ corrected. This results in zero-centering of the Bliss scores, which
 were derived next. The significance of difference from zero Bliss score,
 for any mutant, was estimated by a T-test (5 biological replicates) and
 corrected for multiple testing (Benjamini-Hochberg).
-
-    ## Warning: only one replicate for LB-Rifampicin16Polymyxin2 in library plate2
-
-    ## [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
 
 ## LB
 
