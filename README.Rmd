@@ -1,9 +1,12 @@
 ---
 title: RIF and PMB combination
 output: 
-  md_document:
+    md_document:
+      preserve_yaml: FALSE
       fig_width: 7
       fig_height: 5
+      toc: yes
+      toc_depth: 2
 ---
 
 # Background 
@@ -14,7 +17,7 @@ scpectrum of clinical isolates.
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, dpi=300, fig.path = "output/fig/")
 knitr::opts_knit$set(global.par = TRUE)
 library('data.table')
 library('tidyverse')
@@ -205,7 +208,7 @@ getGenes = function (dat) {
 }
 
 foo = getGenes(chem.gen.res)
-vtable = gplots::venn(foo)
+#vtable = gplots::venn(foo)
 ```
 
 # GO terms
@@ -233,7 +236,7 @@ tab = getTopGO(chem.gen.res)
 # cell components
 tab[['CC']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
   mutate(Pvalue = round(as.numeric(raw.p.value), 4)) %>% 
-  kable::kable()
+  knitr::kable()
 
 # biological processes
 tab[['BP']][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
@@ -342,19 +345,26 @@ foo[, mut := c(0:27, 29:45)]
 arrange(foo, Syn) %>% print(20)
 ```
 
-```{r plt45mutPA14}
+```{r SFig_45PA14MutDoseResponses}
 #svg('output/fig/SFig_45PA14MutDoseResponses.svg', 12, 16)
-plt45PA14MutantDR()  # dose-responses
-#dev.off()
-
-#svg('output/fig/SFig_45PA14MutCompLoeweNull.svg', 12, 16)
-# We'll use a snapshot of results from 2021-01-02
-plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
+#plt45PA14MutantDR()  # dose-responses
 #dev.off()
 ```
 
-# Validated genes
+[]('output/fig/SFig_45PA14MutDoseResponses.svg')
 
+
+```{r SFig_45PA14MutCompLoeweNull}
+#svg('output/fig/SFig_45PA14MutCompLoeweNull.svg', 12, 16)
+# We'll use a snapshot of results from 2021-01-02
+#plt45PA14MutantComparisonToLoeweNull('2020-01-02_rs_pa14')
+#dev.off()
+```
+
+[]('output/fig/SFig_45PA14MutCompLoeweNull.svg')
+
+
+# Validated genes
 
 Table 1: Mutants with altered RIF-PMB interaction profile and corresponding gene in _E. coli_.
 
