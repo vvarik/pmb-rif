@@ -3,7 +3,8 @@
 #' Take the variables needed and format otherwise
 #' @export
 prepForRS = function (x, swapnames = F) {
-  x = x[, .(mut, effect, cond, d1, d2, ab1 = abb1, ab2 = abb2)]
+  x = dplyr::select(x, matches('mut|effect|cond|d1|d2|ab1|abb1|ab2|abb2'))
+  setnames(x, c('abb1', 'abb2'), c('ab1', 'ab2'), skip_absent=T)
   
   if(swapnames) {
     old = c('d1', 'd2', 'ab1', 'ab2')
