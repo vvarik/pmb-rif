@@ -426,4 +426,11 @@ getGoTermTable() %>%
   #kableExtra::save_kable('output/fig/table_valid_hit_go.png', font='Verdana')
 ```
 
+# Selected five mutants
+
+```{r surface_analysis}
+dat = fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv')
+dat_rs = prepForRS(dat) %>% setDT()
+rs = getRS(dat_rs, 'rs_6mut')
+```
 
