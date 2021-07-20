@@ -249,14 +249,20 @@ tmpFun = function (dat, name='CC') {
     mutate(`GO.ID` = sub('GO:', '', `GO.ID`)) 
 }
 
-tmpFun(tab)
+tmpFun(tab) %>%
+  knitr::kable()
+  # knitr::kable(format='latex', booktabs=T) %>% 
+  # kableExtra::save_kable('output/fig/table_cell_component.png', font='Verdana')
 ```
 
 ### Biological process
 
 ```{r}
 # biological processes
-tmpFun(tab, 'BP')
+tmpFun(tab, 'BP') %>% 
+  knitr::kable()
+  # knitr::kable(format='latex', booktabs=T) %>% 
+  # kableExtra::save_kable('output/fig/table_biological_process.png', font='Verdana')
 ```
 
 ## Protein-protein interaction network
@@ -388,14 +394,20 @@ foo[, mut := c(0:27, 29:45)]
 ## Table with _E. coli_ orthologs
 
 ```{r}
-getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% knitr::kable()
+getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% 
+  knitr::kable()
+  #knitr::kable(format='latex', booktabs=T) %>% 
+  #kableExtra::save_kable('output/fig/table_valid_hit.png')
 ```
 
 
 ## GO term table
 
 ```{r}
-getGoTermTable() %>% knitr::kable()
+getGoTermTable() %>% 
+  knitr::kable() 
+  #knitr::kable(format='latex', booktabs=T) %>% 
+  #kableExtra::save_kable('output/fig/table_valid_hit_go.png', font='Verdana')
 ```
 
 
