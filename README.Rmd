@@ -246,8 +246,7 @@ tmpFun = function (dat, name='CC') {
   dat[[name]][1:10, c('GO.ID', 'Term', 'raw.p.value')] %>% 
     mutate(Pvalue = round(as.numeric(raw.p.value), 4))  %>% 
     dplyr::select(-raw.p.value) %>% 
-    mutate(`GO.ID` = sub('GO:', '', `GO.ID`)) %>% 
-    knitr::kable()
+    mutate(`GO.ID` = sub('GO:', '', `GO.ID`)) 
 }
 
 tmpFun(tab)
