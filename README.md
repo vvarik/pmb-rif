@@ -37,17 +37,18 @@ cloacae*, and *K. pneumoniae*.
 
 To account for the synergy in molecular terms—beyond a nonspecific
 increase in membrane permeability by polymyxin B—we turned to chemical
-genetics [Brochado and Typas,
-2013](https://doi.org/10.1016/j.mib.2013.01.008). Working with ordered
-PA14 transposon library [Liberati et al.,
-2006](https://doi.org/10.1073/pnas.0511100103), we derived a growth
+genetics ([Brochado and Typas,
+2013](https://doi.org/10.1016/j.mib.2013.01.008)). Working with ordered
+PA14 transposon library ([Liberati et al.,
+2006](https://doi.org/10.1073/pnas.0511100103)), we derived a growth
 measure for monotherapies and combinations using colony opacity
-[Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14). To
-account for plate-to-plate variation, the opacity was multiplicatively
-corrected. This results in zero-centering of the Bliss scores, which
-were derived next. The significance of difference from zero Bliss score,
-for any mutant, was estimated by a T-test (5 biological replicates) and
-corrected for multiple testing (Benjamini-Hochberg).
+([Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14)).
+To account for plate-to-plate variation, the opacity was
+multiplicatively corrected. This results in zero-centering of the Bliss
+scores, which were derived next. The significance of difference from
+zero Bliss score, for any mutant, was estimated by a T-test (5
+biological replicates) and corrected for multiple testing
+(Benjamini-Hochberg).
 
 <table>
 <thead>
@@ -82,68 +83,130 @@ Although most common approach, it has been critizised for example
 ### Cell component
 
 <table>
-<colgroup>
-<col style="width: 8%" />
-<col style="width: 85%" />
-<col style="width: 7%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;">GO.ID</th>
-<th style="text-align: left;">Term</th>
-<th style="text-align: right;">Pvalue</th>
+<tr>
+<th style="text-align:left;">
+GO.ID
+</th>
+<th style="text-align:left;">
+Term
+</th>
+<th style="text-align:right;">
+Pvalue
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">0016021</td>
-<td style="text-align: left;">integral component of membrane</td>
-<td style="text-align: right;">0.015</td>
+<tr>
+<td style="text-align:left;">
+0016021
+</td>
+<td style="text-align:left;">
+integral component of membrane
+</td>
+<td style="text-align:right;">
+0.015
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0005694</td>
-<td style="text-align: left;">chromosome</td>
-<td style="text-align: right;">0.072</td>
+<tr>
+<td style="text-align:left;">
+0005694
+</td>
+<td style="text-align:left;">
+chromosome
+</td>
+<td style="text-align:right;">
+0.072
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0008076</td>
-<td style="text-align: left;">voltage-gated potassium channel complex</td>
-<td style="text-align: right;">0.140</td>
+<tr>
+<td style="text-align:left;">
+0008076
+</td>
+<td style="text-align:left;">
+voltage-gated potassium channel complex
+</td>
+<td style="text-align:right;">
+0.140
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0055052</td>
-<td style="text-align: left;">ATP-binding cassette (ABC) transporter complex, substrate-binding subunit-containing</td>
-<td style="text-align: right;">0.146</td>
+<tr>
+<td style="text-align:left;">
+0055052
+</td>
+<td style="text-align:left;">
+ATP-binding cassette (ABC) transporter complex, substrate-binding
+subunit-containing
+</td>
+<td style="text-align:right;">
+0.146
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0009289</td>
-<td style="text-align: left;">pilus</td>
-<td style="text-align: right;">0.163</td>
+<tr>
+<td style="text-align:left;">
+0009289
+</td>
+<td style="text-align:left;">
+pilus
+</td>
+<td style="text-align:right;">
+0.163
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0033573</td>
-<td style="text-align: left;">high-affinity iron permease complex</td>
-<td style="text-align: right;">0.166</td>
+<tr>
+<td style="text-align:left;">
+0033573
+</td>
+<td style="text-align:left;">
+high-affinity iron permease complex
+</td>
+<td style="text-align:right;">
+0.166
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0005839</td>
-<td style="text-align: left;">proteasome core complex</td>
-<td style="text-align: right;">0.183</td>
+<tr>
+<td style="text-align:left;">
+0005839
+</td>
+<td style="text-align:left;">
+proteasome core complex
+</td>
+<td style="text-align:right;">
+0.183
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0005960</td>
-<td style="text-align: left;">glycine cleavage complex</td>
-<td style="text-align: right;">0.227</td>
+<tr>
+<td style="text-align:left;">
+0005960
+</td>
+<td style="text-align:left;">
+glycine cleavage complex
+</td>
+<td style="text-align:right;">
+0.227
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0030257</td>
-<td style="text-align: left;">type III protein secretion system complex</td>
-<td style="text-align: right;">0.252</td>
+<tr>
+<td style="text-align:left;">
+0030257
+</td>
+<td style="text-align:left;">
+type III protein secretion system complex
+</td>
+<td style="text-align:right;">
+0.252
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0005615</td>
-<td style="text-align: left;">extracellular space</td>
-<td style="text-align: right;">0.253</td>
+<tr>
+<td style="text-align:left;">
+0005615
+</td>
+<td style="text-align:left;">
+extracellular space
+</td>
+<td style="text-align:right;">
+0.253
+</td>
 </tr>
 </tbody>
 </table>
@@ -152,62 +215,128 @@ Although most common approach, it has been critizised for example
 
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;">GO.ID</th>
-<th style="text-align: left;">Term</th>
-<th style="text-align: right;">Pvalue</th>
+<tr>
+<th style="text-align:left;">
+GO.ID
+</th>
+<th style="text-align:left;">
+Term
+</th>
+<th style="text-align:right;">
+Pvalue
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">0009236</td>
-<td style="text-align: left;">cobalamin biosynthetic process</td>
-<td style="text-align: right;">0.017</td>
+<tr>
+<td style="text-align:left;">
+0009236
+</td>
+<td style="text-align:left;">
+cobalamin biosynthetic process
+</td>
+<td style="text-align:right;">
+0.017
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0055114</td>
-<td style="text-align: left;">oxidation-reduction process</td>
-<td style="text-align: right;">0.019</td>
+<tr>
+<td style="text-align:left;">
+0055114
+</td>
+<td style="text-align:left;">
+oxidation-reduction process
+</td>
+<td style="text-align:right;">
+0.019
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0009116</td>
-<td style="text-align: left;">nucleoside metabolic process</td>
-<td style="text-align: right;">0.024</td>
+<tr>
+<td style="text-align:left;">
+0009116
+</td>
+<td style="text-align:left;">
+nucleoside metabolic process
+</td>
+<td style="text-align:right;">
+0.024
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0019700</td>
-<td style="text-align: left;">organic phosphonate catabolic process</td>
-<td style="text-align: right;">0.039</td>
+<tr>
+<td style="text-align:left;">
+0019700
+</td>
+<td style="text-align:left;">
+organic phosphonate catabolic process
+</td>
+<td style="text-align:right;">
+0.039
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0017000</td>
-<td style="text-align: left;">antibiotic biosynthetic process</td>
-<td style="text-align: right;">0.040</td>
+<tr>
+<td style="text-align:left;">
+0017000
+</td>
+<td style="text-align:left;">
+antibiotic biosynthetic process
+</td>
+<td style="text-align:right;">
+0.040
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0070475</td>
-<td style="text-align: left;">rRNA base methylation</td>
-<td style="text-align: right;">0.050</td>
+<tr>
+<td style="text-align:left;">
+0070475
+</td>
+<td style="text-align:left;">
+rRNA base methylation
+</td>
+<td style="text-align:right;">
+0.050
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0009306</td>
-<td style="text-align: left;">protein secretion</td>
-<td style="text-align: right;">0.056</td>
+<tr>
+<td style="text-align:left;">
+0009306
+</td>
+<td style="text-align:left;">
+protein secretion
+</td>
+<td style="text-align:right;">
+0.056
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0044010</td>
-<td style="text-align: left;">single-species biofilm formation</td>
-<td style="text-align: right;">0.063</td>
+<tr>
+<td style="text-align:left;">
+0044010
+</td>
+<td style="text-align:left;">
+single-species biofilm formation
+</td>
+<td style="text-align:right;">
+0.063
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">0019354</td>
-<td style="text-align: left;">siroheme biosynthetic process</td>
-<td style="text-align: right;">0.067</td>
+<tr>
+<td style="text-align:left;">
+0019354
+</td>
+<td style="text-align:left;">
+siroheme biosynthetic process
+</td>
+<td style="text-align:right;">
+0.067
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">0044262</td>
-<td style="text-align: left;">cellular carbohydrate metabolic process</td>
-<td style="text-align: right;">0.074</td>
+<tr>
+<td style="text-align:left;">
+0044262
+</td>
+<td style="text-align:left;">
+cellular carbohydrate metabolic process
+</td>
+<td style="text-align:right;">
+0.074
+</td>
 </tr>
 </tbody>
 </table>
@@ -247,104 +376,208 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 ## Table with *E. coli* orthologs
 
 <table>
-<colgroup>
-<col style="width: 8%" />
-<col style="width: 12%" />
-<col style="width: 8%" />
-<col style="width: 70%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;">EC gene</th>
-<th style="text-align: left;">PA gene</th>
-<th style="text-align: left;">Synergy</th>
-<th style="text-align: left;">Description</th>
+<tr>
+<th style="text-align:left;">
+EC gene
+</th>
+<th style="text-align:left;">
+PA gene
+</th>
+<th style="text-align:left;">
+Synergy
+</th>
+<th style="text-align:left;">
+Description
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_02150</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">Serine phosphatase RsbU, regulator of sigma subunit</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+02150
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:left;">
+Serine phosphatase RsbU, regulator of sigma subunit
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">relA</td>
-<td style="text-align: left;">relA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">(p)ppGpp synthetase</td>
+<tr>
+<td style="text-align:left;">
+relA
+</td>
+<td style="text-align:left;">
+relA
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:left;">
+(p)ppGpp synthetase
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_26590</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">GntR family transcriptional regulator</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+26590
+</td>
+<td style="text-align:left;">
+none
+</td>
+<td style="text-align:left;">
+GntR family transcriptional regulator
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_66480</td>
-<td style="text-align: left;">less</td>
-<td style="text-align: left;">Predicted ATPase involved in chromosome partitioning</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+66480
+</td>
+<td style="text-align:left;">
+less
+</td>
+<td style="text-align:left;">
+Predicted ATPase involved in chromosome partitioning
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_56840</td>
-<td style="text-align: left;">less</td>
-<td style="text-align: left;">Predicted thiol oxidoreductase</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+56840
+</td>
+<td style="text-align:left;">
+less
+</td>
+<td style="text-align:left;">
+Predicted thiol oxidoreductase
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">glcA</td>
-<td style="text-align: left;">lldP</td>
-<td style="text-align: left;">less</td>
-<td style="text-align: left;">L-lactate permease</td>
+<tr>
+<td style="text-align:left;">
+glcA
+</td>
+<td style="text-align:left;">
+lldP
+</td>
+<td style="text-align:left;">
+less
+</td>
+<td style="text-align:left;">
+L-lactate permease
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_60490</td>
-<td style="text-align: left;">less</td>
-<td style="text-align: left;">cytochrome c</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+60490
+</td>
+<td style="text-align:left;">
+less
+</td>
+<td style="text-align:left;">
+cytochrome c
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_03760</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">sodium:solute symporter</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+03760
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+sodium:solute symporter
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">selU</td>
-<td style="text-align: left;">PA14_43270</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">tRNA 2-selenouridine synthase</td>
+<tr>
+<td style="text-align:left;">
+selU
+</td>
+<td style="text-align:left;">
+43270
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+tRNA 2-selenouridine synthase
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_51310</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">Predicted redox protein, regulator of disulfide bond formation</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+51310
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+Predicted redox protein, regulator of disulfide bond formation
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">maiA</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">maleylacetoacetate isomerase</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+maiA
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+maleylacetoacetate isomerase
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_43670</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">sensor/response regulator hybrid</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+43670
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+sensor/response regulator hybrid
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">pmbA</td>
-<td style="text-align: left;">pmbA</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">PmbA protein</td>
+<tr>
+<td style="text-align:left;">
+pmbA
+</td>
+<td style="text-align:left;">
+pmbA
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+PmbA protein
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">PA14_62230</td>
-<td style="text-align: left;">more</td>
-<td style="text-align: left;">Predicted kinase</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+62230
+</td>
+<td style="text-align:left;">
+more
+</td>
+<td style="text-align:left;">
+Predicted kinase
+</td>
 </tr>
 </tbody>
 </table>
@@ -352,86 +585,176 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 ## GO term table
 
 <table>
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 9%" />
-<col style="width: 40%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: left;">PA gene</th>
-<th style="text-align: left;">Location</th>
-<th style="text-align: left;">Process</th>
-<th style="text-align: left;">Function</th>
+<tr>
+<th style="text-align:left;">
+PA gene
+</th>
+<th style="text-align:left;">
+Location
+</th>
+<th style="text-align:left;">
+Process
+</th>
+<th style="text-align:left;">
+Function
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">02150</td>
-<td style="text-align: left;">membrane</td>
-<td style="text-align: left;">signal transduction</td>
-<td style="text-align: left;">catalytic</td>
+<tr>
+<td style="text-align:left;">
+02150
+</td>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+signal transduction
+</td>
+<td style="text-align:left;">
+catalytic
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">03760</td>
-<td style="text-align: left;">membrane</td>
-<td style="text-align: left;">transmembrane transport</td>
-<td style="text-align: left;">transmembrane transporter</td>
+<tr>
+<td style="text-align:left;">
+03760
+</td>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+transmembrane transport
+</td>
+<td style="text-align:left;">
+transmembrane transporter
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">26590</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">regulation of transcription; biosynthesis</td>
-<td style="text-align: left;">catalytic; transcription factor</td>
+<tr>
+<td style="text-align:left;">
+26590
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+regulation of transcription; biosynthesis
+</td>
+<td style="text-align:left;">
+catalytic; transcription factor
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">43270</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">tRNA seleno-modification</td>
-<td style="text-align: left;">transferase for selenium-containing groups</td>
+<tr>
+<td style="text-align:left;">
+43270
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+tRNA seleno-modification
+</td>
+<td style="text-align:left;">
+transferase for selenium-containing groups
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">43670</td>
-<td style="text-align: left;">membrane</td>
-<td style="text-align: left;">signal transduction; phosphorylation</td>
-<td style="text-align: left;">phosphorelay sensor kinase</td>
+<tr>
+<td style="text-align:left;">
+43670
+</td>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+signal transduction; phosphorylation
+</td>
+<td style="text-align:left;">
+phosphorelay sensor kinase
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">56840</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">electron transfer; heme binding</td>
+<tr>
+<td style="text-align:left;">
+56840
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+electron transfer; heme binding
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">60490</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">electron transfer; heme binding</td>
+<tr>
+<td style="text-align:left;">
+60490
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+electron transfer; heme binding
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">lldP</td>
-<td style="text-align: left;">membrane</td>
-<td style="text-align: left;">lactate transport</td>
-<td style="text-align: left;">lactate transmembrane transport</td>
+<tr>
+<td style="text-align:left;">
+lldP
+</td>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+lactate transport
+</td>
+<td style="text-align:left;">
+lactate transmembrane transport
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">maiA</td>
-<td style="text-align: left;">cytoplasm</td>
-<td style="text-align: left;">aromatic amino acid metabolism</td>
-<td style="text-align: left;">catalytic; protein binding</td>
+<tr>
+<td style="text-align:left;">
+maiA
+</td>
+<td style="text-align:left;">
+cytoplasm
+</td>
+<td style="text-align:left;">
+aromatic amino acid metabolism
+</td>
+<td style="text-align:left;">
+catalytic; protein binding
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">pmbA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">peptidoglycan biosynthesis; proteolysis</td>
-<td style="text-align: left;">metallopeptidase</td>
+<tr>
+<td style="text-align:left;">
+pmbA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+peptidoglycan biosynthesis; proteolysis
+</td>
+<td style="text-align:left;">
+metallopeptidase
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">relA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">ppGpp metabolic process</td>
-<td style="text-align: left;">NA</td>
+<tr>
+<td style="text-align:left;">
+relA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ppGpp metabolic process
+</td>
+<td style="text-align:left;">
+NA
+</td>
 </tr>
 </tbody>
 </table>
