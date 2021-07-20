@@ -916,7 +916,8 @@ getValidHitTable = function () {
       ifelse(grepl('hypothetical|pyrophosphokinase', Description), Domain,
         Description),
       Description = gsub('PpGpp', '(p)ppGpp', Description),
-      Description = gsub(' catalytic domain', '', Description)
+      Description = gsub(' catalytic domain', '', Description),
+      Gene = gsub('PA14_', '', Gene)
     )  %>% 
     dplyr::select(-Domain)
 
