@@ -138,6 +138,22 @@ plot_grid(
 ![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
 
 
+# Time-kill
+
+```{r SFig_TimeKill}
+dtk = fread('input/dat/raw/time-kill.csv') %>% 
+  remNonCharcoal() %>% 
+  addNewVariablesToTimeKill()
+
+# pltTimeKill(dtk)
+#ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
+
+# # Print out the concentrations used
+# unique(dtk[time_h > 0], by = c('broth', 'group')) %>% 
+#   .[, .(broth, group, d_1, d_2)] %>% 
+#   .[order(group)]
+```
+![](output/fig/SFig_TimeKill.svg)
 # Reverse Genetics Screen
 
 To account for the synergy in molecular terms—beyond a nonspecific increase in membrane permeability by polymyxin B—we turned to chemical genetics ([Brochado and Typas, 2013](https://doi.org/10.1016/j.mib.2013.01.008)). Working with ordered PA14 transposon library ([Liberati et al., 2006](https://doi.org/10.1073/pnas.0511100103)), we derived a growth measure for monotherapies and combinations using colony opacity ([Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14)). To account for plate-to-plate variation, the opacity was multiplicatively corrected. This results in zero-centering of the Bliss scores, which were derived next. The significance of difference from zero Bliss score, for any mutant, was estimated by a T-test (5 biological replicates) and corrected for multiple testing (Benjamini-Hochberg).
@@ -226,7 +242,7 @@ With the following, we bring some biological knowledge into the analysis. This
 will get us at the level of processes/compartments as opposed to individual
 genes. We will focus on LB beacuse we have more data from there which is also
 more reliable (75% of the unique hits come from LB; there is less variance). In
-addition, our results suggest, the effect of pH on synergy is questionable in
+addition, our results suggest, the effect of pH on synergy is weak in
 PA14.
 
 
@@ -411,19 +427,3 @@ getGoTermTable() %>%
 ```
 
 
-# Time-kill
-
-```{r SFig_TimeKill}
-dtk = fread('input/dat/raw/time-kill.csv') %>% 
-  remNonCharcoal() %>% 
-  addNewVariablesToTimeKill()
-
-# pltTimeKill(dtk)
-#ggsave('output/fig/SFig_TimeKill.svg', width=15, height=5)
-
-# # Print out the concentrations used
-# unique(dtk[time_h > 0], by = c('broth', 'group')) %>% 
-#   .[, .(broth, group, d_1, d_2)] %>% 
-#   .[order(group)]
-```
-![](output/fig/SFig_TimeKill.svg)
