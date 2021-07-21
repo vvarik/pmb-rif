@@ -985,3 +985,13 @@ sav3D = function (name) {
   path = paste0('output/fig/rs/rs', name, '_pH5.5.png')
   rgl.snapshot(path, fmt = "png")
 }
+
+
+#' @export
+addMutGeneNames = function (dat) {
+  data.table(
+    mut     = c(0, 1, 5, 23, 31, 33),
+    strain  = c('PA14_wildtype', 'PA14_66480', 'PA14_43270', 
+      'PA14_02150', 'PA14_52180', 'PA14_26590')
+  )[dat, on = 'mut']
+}
