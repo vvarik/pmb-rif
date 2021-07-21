@@ -77,6 +77,7 @@ rs = readRDS('input/dat/tmp/rs.rds')
 open3d()
 lapply(names(rs), sav3D)
 ```
+![](output/fig/RsAllTheSpeciesStrains_portrait.svg)
 
 
 # Dose Response And pH
