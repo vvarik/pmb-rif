@@ -72,10 +72,10 @@ dat[is.na(effect), effect := -4.5]
 
 # Response surface analysis
 # rs = getRS(dat, 'rs')
-rs = readRDS('input/dat/tmp/rs.rds')
-
-open3d()
-lapply(names(rs), sav3D)
+# rs = readRDS('input/dat/tmp/rs.rds')
+# 
+# open3d()
+# lapply(names(rs), sav3D)
 ```
 ![](output/fig/RsAllTheSpeciesStrains_portrait.svg)
 
