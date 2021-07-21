@@ -964,3 +964,24 @@ getGoTermTable = function () {
   merge(merge(foo, bar, all = TRUE), baz, all = TRUE) %>% 
     dplyr::select('PA gene' = PA_gene, Location, Process, Function)
 }
+
+
+#' @export
+sav3D = function (name) {
+  par3d(windowRect=c(10, 60, 480, 600))
+
+  if(name == 'ATCC27853') {
+    plt3D(rs[['ATCC27853']][[1]]$rsl, xlim=100, ylim=100, show_mono_only=T)
+    rgl.snapshot('output/fig/rs/example.png', fmt='png')
+  }
+
+  plt3D(rs[[name]][[1]]$rsl, xlim=100, ylim=100)
+  path = paste0('output/fig/rs/rs', name, '_intra.png')
+  rgl.snapshot(path, fmt = "png")
+  plt3D(rs[[name]][[3]]$rsl, xlim=100, ylim=100)
+  path = paste0('output/fig/rs/rs', name, '_pH7.4.png')
+  rgl.snapshot(path, fmt = "png")
+  plt3D(rs[[name]][[2]]$rsl, xlim=100, ylim=100)
+  path = paste0('output/fig/rs/rs', name, '_pH5.5.png')
+  rgl.snapshot(path, fmt = "png")
+}

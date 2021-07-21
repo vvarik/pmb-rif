@@ -28,6 +28,7 @@ library('DT')
 library('cowplot')
 library('BIGL')
 library('drc')
+library('rgl')
 
 devtools::document('input/r')
 suppressMessages(devtools::load_all('input/r'))
@@ -71,7 +72,10 @@ dat[is.na(effect), effect := -4.5]
 
 # Response surface analysis
 # rs = getRS(dat, 'rs')
+rs = readRDS('input/dat/tmp/rs.rds')
 
+open3d()
+lapply(names(rs), sav3D)
 ```
 
 
@@ -154,6 +158,7 @@ dtk = fread('input/dat/raw/time-kill.csv') %>%
 #   .[order(group)]
 ```
 ![](output/fig/SFig_TimeKill.svg)
+
 # Reverse Genetics Screen
 
 To account for the synergy in molecular terms—beyond a nonspecific increase in membrane permeability by polymyxin B—we turned to chemical genetics ([Brochado and Typas, 2013](https://doi.org/10.1016/j.mib.2013.01.008)). Working with ordered PA14 transposon library ([Liberati et al., 2006](https://doi.org/10.1073/pnas.0511100103)), we derived a growth measure for monotherapies and combinations using colony opacity ([Kritikos et al., 2017](https://doi.org/10.1038/nmicrobiol.2017.14)). To account for plate-to-plate variation, the opacity was multiplicatively corrected. This results in zero-centering of the Bliss scores, which were derived next. The significance of difference from zero Bliss score, for any mutant, was estimated by a T-test (5 biological replicates) and corrected for multiple testing (Benjamini-Hochberg).
@@ -431,6 +436,10 @@ getGoTermTable() %>%
 ```{r surface_analysis}
 dat = fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv')
 dat_rs = prepForRS(dat) %>% setDT()
-rs = getRS(dat_rs, 'rs_6mut')
+rs6 = getRS(dat_rs, 'rs_6mut')
+```
+
+```{r}
+rsl = lapply(rs6, function(x) x$rsl)
 ```
 
