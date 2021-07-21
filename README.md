@@ -1,6 +1,7 @@
 -   [Background](#background)
 -   [Combinations](#combinations)
 -   [Dose Response And pH](#dose-response-and-ph)
+-   [Time-kill](#time-kill)
 -   [Reverse Genetics Screen](#reverse-genetics-screen)
     -   [GO terms](#go-terms)
     -   [Protein-protein interaction
@@ -10,7 +11,7 @@
     -   [Compare to Loewe’s null](#compare-to-loewes-null)
     -   [Table with *E. coli* orthologs](#table-with-e.-coli-orthologs)
     -   [GO term table](#go-term-table)
--   [Time-kill](#time-kill)
+-   [Selected five mutants](#selected-five-mutants)
 
 # Background
 
@@ -29,9 +30,15 @@ against intra- and extracellular forms of bacteria: three *P.
 aeruginosa* strains, two clinical isolates of *A. baumannii*, *E.
 cloacae*, and *K. pneumoniae*.
 
+![](output/fig/RsAllTheSpeciesStrains_portrait.svg)
+
 # Dose Response And pH
 
 ![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
+
+# Time-kill
+
+![](output/fig/SFig_TimeKill.svg)
 
 # Reverse Genetics Screen
 
@@ -72,7 +79,7 @@ analysis. This will get us at the level of processes/compartments as
 opposed to individual genes. We will focus on LB beacuse we have more
 data from there which is also more reliable (75% of the unique hits come
 from LB; there is less variance). In addition, our results suggest, the
-effect of pH on synergy is questionable in PA14.
+effect of pH on synergy is weak in PA14.
 
 We did Gene Set Enrichment Analysis (GSEA) using GO terms from
 [pseudomonas.com website](https://www.pseudomonas.com/) and
@@ -759,6 +766,4 @@ NA
 </tbody>
 </table>
 
-# Time-kill
-
-![](output/fig/SFig_TimeKill.svg)
+# Selected five mutants
