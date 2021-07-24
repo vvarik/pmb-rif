@@ -435,17 +435,17 @@ getGoTermTable() %>%
 # Selected five mutants
 
 ```{r surface_analysis}
-#rs6 = fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv') %>% 
+#rs = fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv') %>% 
 #  prepForRS()  %>% 
 #  setDT()  %>% 
 #  addMutGeneNames() %>% 
 #  getRS(., 'rs_6mut')
-rs6 = readRDS('input/dat/tmp/rs_6mut.rds')
+rs = readRDS('input/dat/tmp/rs_6mut.rds')
 ```
 
 ```{r}
-rsl = lapply(rs6, function(x) lapply(x, function(y) y$rsl))
+rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
+lapply(rs, names)
 
-names(rs6)
-lapply(rsl, function(x) plt3D(x[[1]]))
+lapply(names(rs), sav3D, xcap=10)
 ```
