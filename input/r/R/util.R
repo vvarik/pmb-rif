@@ -975,15 +975,15 @@ sav3D = function (name, xcap=100, ycap=100) {
     rgl.snapshot('output/fig/rs/example.png', fmt='png')
   }
 
-  plt3D(rs[[name]][[1]]$rsl, xlim=xcap, ylim=ycap)
-  path = paste0('output/fig/rs/rs', name, '_intra.png')
-  rgl.snapshot(path, fmt = "png")
-  plt3D(rs[[name]][[3]]$rsl, xlim=xcap, ylim=ycap)
-  path = paste0('output/fig/rs/rs', name, '_pH7.4.png')
-  rgl.snapshot(path, fmt = "png")
-  plt3D(rs[[name]][[2]]$rsl, xlim=xcap, ylim=ycap)
-  path = paste0('output/fig/rs/rs', name, '_pH5.5.png')
-  rgl.snapshot(path, fmt = "png")
+  for(i in seq_along(rs[[name]])) {
+    if(i == 1) add = '_intra.png'
+    if(i == 3) add = '_pH7.4.png'
+    if(i == 3) add = '_pH5.5.png'
+
+    plt3D(rs[[name]][[i]]$rsl, xlim=xcap, ylim=ycap)
+    path = paste0('output/fig/rs/rs', name, add)
+    rgl.snapshot(path, fmt = "png")
+  }
 }
 
 
