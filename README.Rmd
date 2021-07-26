@@ -452,3 +452,19 @@ lapply(names(rs), sav3D, xcap=10)
 
 ![](output/fig/RsPA14Mutants_portrait.svg)
 
+
+# PMB resistant isolates
+
+```{r}
+dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%  
+  fread() %>% 
+  rename(mut = strain) %>% 
+  prepForRS(swapnames=T) %>% 
+  rename(strain = mut) %>% 
+  setDT()
+
+rs = getRS(dat, 'rs_pmbR_intra')
+lapply(names(rs), sav3D)
+```
+
+![](output/fig/rsPMBr_intra.svg)
