@@ -132,15 +132,46 @@ p4 = p0 %+% aes(y = ph) +
   ) +
   labs(x = '', y = 'pH')
 
+foo = fread('input/dat/raw/charcoal.csv')
+labs = c('RIF, mg/L', 'PMB, mg/L', 
+  rep(expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')'), 2)
+)
+
+tmpFun = function (i) {
+  par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2)
+  if(i == 1) bar = subset(df, ab == 'rif')
+  else bar = subset(df, ab == 'pmb' | (ab == 'rif' & conc == 0))
+
+  # fit char vs no-char but share Emin and EC50 (argument pmodels)
+  fit = drm(response~conc, data=bar, CURVE, 
+    pmodels=data.frame(CURVE,1,1),  
+    fct=LL2.4( fixed=c(1, NA, NA, NA))) 
+  
+  plot(fit, type="average", cex.axis=1.25, cex.lab=1.25, lwd=2, 
+    col='grey30', pch = c(1, 19), lty = 1, asp=1,
+    xlab = labs[i], ylab = labs[i+2], broken=T,
+    ylim=c(-4,4), legendText=c("control", "charcoal")
+  )
+  plot(fit, type="confidence", add=T, legend=F, 
+    col=c('grey70', 'grey10')
+  )
+}
+
+p5 = function() tmpFun(1)
+p6 = function() tmpFun(2)
+
 aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
 
 plot_grid(
-  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]), labels = 'AUTO', align = 'v'
+  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]),
+  plot_grid(ggdraw(p5), ggdraw(p6), nrow=2),
+  labels = 'AUTO', align = 'v'
 )
 
-# ggsave('output/fig/SFig_monotherapy_dose-response_and_pH.svg', width=10, height=9)
+# ggsave('output/fig/SFig_mth_dr_pH_charcoal.svg', width=10, height=9)
 ```
-![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
+
+![](output/fig/SFig_mth_dr_pH_charcoal.svg)
 
 
 # Time-kill
