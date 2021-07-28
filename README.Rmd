@@ -228,6 +228,41 @@ chem.gen.res = getTTestResults(drug.merge) %>%
   correctForMultipleTesting()
 ```
 
+```{r overview_of_hits}
+tmp[t.test.q.value < 0.05 | t.test.q.value.gene < 0.05, .N, media]
+#      media  N
+# 1:      LB 65
+# 2: LBpH5.5 39
+
+# only 3 are shared between the media
+foo = tmp[media == 'LB' & (t.test.q.value < 0.05 | t.test.q.value.gene < 0.05), Tn.mutant.id] 
+bar = tmp[media == 'LBpH5.5' & (t.test.q.value < 0.05 | t.test.q.value.gene < 0.05), Tn.mutant.id] 
+tmp[Tn.mutant.id %in% intersect(foo, bar)]
+
+
+getLocus = function (dat, condition) {
+  unique(dat[eval(parse(text=condition))], by = c('locus'))[, locus] 
+}
+
+by_gene       = getLocus(tmp, 't.test.q.value.gene < 0.05')
+by_mut        = getLocus(tmp, 't.test.q.value < 0.05')
+by_both       = getLocus(tmp, 't.test.q.value < 0.05 | t.test.q.value.gene < 0.05')
+by_gene_only  = setdiff(by_gene, by_mut)
+
+# # 70 hits
+# length(by_both)
+# # 53 from mutants
+# intersect(by_mut, by_both) %>% length()
+# # 17 additional from genes
+# setdiff(by_gene, by_mut) %>% length() 
+# # 31 shared between mutants and genes 
+# intersect(by_gene, by_mut) %>% length()
+```
+
+Of the `r length(by_both)` hits, `r length(intersect(by_mut, by_both))` are from mutant level of analysis and `r length(setdiff(by_gene, by_mut))` come from gene level of analysis. `r length(intersect(by_gene, by_mut))` are shared between mutants and genes i.e. hits regardless if mutant or gene level of analysis is used.
+
+
+
 ```{r ChemGen_LB}
 tmp = chem.gen.res %>% 
   mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
