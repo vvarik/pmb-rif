@@ -5489,18 +5489,22 @@
 <circle cx='216.94' cy='200.24' r='3.02' style='stroke-width: 0.71; stroke: #B3B3B3; fill: #B3B3B3;' />
 <circle cx='244.81' cy='194.44' r='3.02' style='stroke-width: 0.71; stroke: #B3B3B3; fill: #B3B3B3;' />
 <circle cx='213.94' cy='237.86' r='3.02' style='stroke-width: 0.71; stroke: #B3B3B3; fill: #B3B3B3;' />
-<line x1='158.15' y1='110.18' x2='150.10' y2='100.97' style='stroke-width: 1.07; stroke: #333333;' />
-<line x1='189.62' y1='84.13' x2='186.26' y2='97.74' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='140.57' y1='110.20' x2='148.64' y2='100.97' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='189.69' y1='113.60' x2='186.27' y2='99.89' style='stroke-width: 1.07; stroke: #333333;' />
 <line x1='113.06' y1='84.20' x2='115.19' y2='97.72' style='stroke-width: 1.07; stroke: #333333;' />
-<line x1='283.61' y1='100.91' x2='291.70' y2='91.64' style='stroke-width: 1.07; stroke: #333333;' />
-<line x1='190.74' y1='42.68' x2='181.42' y2='53.38' style='stroke-width: 1.07; stroke: #333333;' />
-<line x1='281.95' y1='42.67' x2='272.59' y2='53.39' style='stroke-width: 1.07; stroke: #333333;' />
-<text x='167.44' y='124.42' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='49.26px' lengthAdjust='spacingAndGlyphs'>mazG</text>
-<text x='204.07' y='86.98' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='25.29px' lengthAdjust='spacingAndGlyphs'>fliF</text>
-<text x='97.27' y='86.94' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='27.97px' lengthAdjust='spacingAndGlyphs'>pta</text>
-<text x='274.31' y='115.15' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='41.91px' lengthAdjust='spacingAndGlyphs'>ahpF</text>
-<text x='212.78' y='46.32' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='40.48px' lengthAdjust='spacingAndGlyphs'>fdnH</text>
-<text x='305.49' y='46.32' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='43.49px' lengthAdjust='spacingAndGlyphs'>maiA</text>
+<line x1='305.24' y1='64.66' x2='300.41' y2='55.21' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='283.63' y1='100.88' x2='291.70' y2='91.64' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='162.73' y1='41.50' x2='179.79' y2='53.58' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='266.33' y1='43.76' x2='271.35' y2='53.24' style='stroke-width: 1.07; stroke: #333333;' />
+<line x1='194.91' y1='81.37' x2='186.91' y2='89.99' style='stroke-width: 1.07; stroke: #333333;' />
+<text x='131.29' y='124.44' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='49.26px' lengthAdjust='spacingAndGlyphs'>mazG</text>
+<text x='204.14' y='123.17' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='25.29px' lengthAdjust='spacingAndGlyphs'>fliF</text>
+<text x='97.28' y='86.94' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='27.97px' lengthAdjust='spacingAndGlyphs'>pta</text>
+<text x='306.12' y='78.90' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='54.29px' lengthAdjust='spacingAndGlyphs'>66480</text>
+<text x='274.33' y='115.12' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='41.91px' lengthAdjust='spacingAndGlyphs'>ahpF</text>
+<text x='140.70' y='46.36' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='40.48px' lengthAdjust='spacingAndGlyphs'>fdnH</text>
+<text x='242.78' y='46.32' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='43.49px' lengthAdjust='spacingAndGlyphs'>maiA</text>
+<text x='209.53' y='79.57' text-anchor='middle' style='font-size: 17.07px; fill: #333333; font-family: Arial;' textLength='54.29px' lengthAdjust='spacingAndGlyphs'>26590</text>
 <rect x='71.35' y='23.08' width='272.71' height='272.71' style='stroke-width: 1.92;' />
 </g>
 <g clip-path='url(#cpMC4wMHwzNjAuMDB8MC4wMHwzNjAuMDA=)'>

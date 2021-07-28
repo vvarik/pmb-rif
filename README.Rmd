@@ -268,7 +268,7 @@ tmp = chem.gen.res %>%
   mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
       t.test.q.value)) %>% 
   mutate(showname = ifelse(
-      (t.test.q.value < 0.05 & gene.name != '') | t.test.q.value < 0.01 ,
+      (t.test.q.value < 0.05 & (gene.name != '' | gene.name.to.show %in% c('66480', '26590', '43270', '02150'))) | t.test.q.value < 0.01 ,
       T, F)) 
 
 (p0 = filter(tmp, media == 'LB') %>%  
@@ -276,8 +276,9 @@ tmp = chem.gen.res %>%
   ggplot(., aes(epsilon.median.mutant.condition, -log10(t.test.q.value), col = t.test.q.value < 0.05)) +
   geom_point(size = 2.5) +
   scale_color_manual(values = c('grey70', 'grey20')) +
-  ggrepel::geom_text_repel(data= . %>% .[(showname)], size = 6,
-    aes(label=gene.name.to.show), box.padding=0.75, seed=3) +
+  ggrepel::geom_text_repel(data= . %>% .[(showname)], 
+    aes(label=gene.name.to.show), size = 6,
+    max.overlaps = Inf, box.padding=0.75, seed=3) +
   lims(x = c(-0.8, 0.6)) +
   labs(x = 'Shift in Bliss score', y = expression('log'[10]*'(p-value)')) +
   theme(aspect.ratio = 1, legend.position = 'none')
