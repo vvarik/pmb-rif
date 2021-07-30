@@ -229,6 +229,13 @@ chem.gen.res = getTTestResults(drug.merge) %>%
 ```
 
 ```{r overview_of_hits}
+tmp = chem.gen.res %>% 
+  mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
+      t.test.q.value)) %>% 
+  mutate(showname = ifelse(
+      (t.test.q.value < 0.05 & (gene.name != '' | gene.name.to.show %in% c('66480', '26590', '43270', '02150'))) | t.test.q.value < 0.01 ,
+      T, F)) 
+
 tmp[t.test.q.value < 0.05 | t.test.q.value.gene < 0.05, .N, media]
 #      media  N
 # 1:      LB 65
@@ -264,13 +271,6 @@ Of the `r length(by_both)` hits, `r length(intersect(by_mut, by_both))` are from
 
 
 ```{r ChemGen_LB}
-tmp = chem.gen.res %>% 
-  mutate(t.test.q.value = ifelse(t.test.q.value < 0.001, 0.001,
-      t.test.q.value)) %>% 
-  mutate(showname = ifelse(
-      (t.test.q.value < 0.05 & (gene.name != '' | gene.name.to.show %in% c('66480', '26590', '43270', '02150'))) | t.test.q.value < 0.01 ,
-      T, F)) 
-
 (p0 = filter(tmp, media == 'LB') %>%  
   {
   ggplot(., aes(epsilon.median.mutant.condition, -log10(t.test.q.value), col = t.test.q.value < 0.05)) +
