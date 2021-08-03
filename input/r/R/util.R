@@ -1009,3 +1009,30 @@ getValidatedMutAnnotation = function () {
 }
 
 
+#' @export
+getValidatedMutRes = function () {
+  fname = 'input/dat/rds/2020-01-02_rs_pa14.rds'
+  rsl = readRDS(fname) %>% lapply(., function(x) x$rsl)
+  
+  calls = lapply(rsl, function(x) summary(x$maxR)$totals) %>% 
+    rbindlist(idcol='mut') %>% 
+    .[, mut := c(0:27, 29:45)] %>% 
+    setkey('mut')
+  
+  stats = lapply(rsl, function(x) summary(x$meanR)$res) %>% 
+    rbindlist(idcol=T)  %>% 
+    setnames(., c('mut', 'F', 'Pval')) %>% 
+    mutate(mut = ifelse(mut <= 28, mut - 1, mut))
+
+  annotation = getValidatedMutAnnotation() %>% 
+    mutate(gene = ifelse(is.na(gene), 'wild-type', gene) %>% 
+      gsub('PA14_', '', .)) %>% 
+    setkey(mut)
+
+  out = calls[stats][annotation] %>% 
+    mutate(gene = fct_reorder(gene, Syn, .desc=T))
+
+  # PmrB is twice and will cause problems
+  unique(out, by = 'gene') 
+
+}
