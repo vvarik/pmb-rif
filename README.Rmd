@@ -458,6 +458,11 @@ foo[, mut := c(0:27, 29:45)]
 #arrange(foo, Syn) %>% print(20)
 ```
 
+```{r}
+pltNSynergiesOfValidatedMutants()
+ggsave('output/fig/validated_mutants_synergy_count.svg', w=5, h=10)
+```
+
 ## Dose-response
 
 ```{r SFig_45PA14MutDoseResponses}

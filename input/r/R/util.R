@@ -1036,3 +1036,42 @@ getValidatedMutRes = function () {
   unique(out, by = 'gene') 
 
 }
+
+
+#' @export
+pltNSynergiesOfValidatedMutants = function () {
+
+  plt = getValidatedMutRes() %>% 
+    mutate(
+      my_color = as.factor(Syn),
+      my_color = ifelse(gene == 'wild-type', 6, my_color), 
+      Pval = ifelse(Pval < 0.0001, 0.0001, Pval),
+      Pvalcut = cut(Pval, breaks = c(1, 0.05, 0.01, 0.001, -Inf), 
+        labels = c('∗∗∗', '∗∗', '∗', 'NS'))
+    )
+  
+  plt = plt[order(gene)]
+  myPal = c(cbPalette[c(3, 3, 1, 2, 2)], '#000000')
+  axcol = myPal[plt$my_color]
+  validated_muts = c(1, 5, 23, 31, 33)
+  pointsize = .point_size * 1.5
+  
+  na.omit(plt) %>% {
+    ggplot(., aes(x= Syn, y = gene)) +
+    geom_point(aes(fill = factor(my_color)), 
+      size = pointsize, pch = 21, stroke=0) +
+    geom_point(size = pointsize, pch = 21, stroke = 1) +
+    geom_point(data = .[gene == 'wild-type'], 
+      size = pointsize, pch = 21, stroke = 1, fill = 'white') +
+    geom_point(data = .[mut %in% validated_muts], 
+      size = pointsize * 1.25, stroke = 1.5, pch=1) +
+    scale_fill_manual(values = myPal) +
+    theme(
+      legend.position = 'none',
+      axis.text.y = element_text(colour = axcol),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = "gray70", linetype=2)
+    ) +
+    labs(y = '', x = '# of synergistic concentrations', fill='')
+  }
+}
