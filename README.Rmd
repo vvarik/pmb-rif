@@ -279,7 +279,7 @@ Of the `r length(by_both)` hits, `r length(intersect(by_mut, by_both))` are from
   ggrepel::geom_text_repel(data= . %>% .[(showname)], 
     aes(label=gene.name.to.show), size = 6,
     max.overlaps = Inf, box.padding=0.75, seed=3) +
-  lims(x = c(-0.8, 0.6)) +
+  lims(x = c(-0.8, 0.6), y = c(0, 3)) +
   labs(x = 'Shift in Bliss score', y = expression('log'[10]*'(p-value)')) +
   theme(aspect.ratio = 1, legend.position = 'none')
 
