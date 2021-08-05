@@ -540,3 +540,8 @@ lapply(names(rs), sav3D)
 ```
 
 ![](output/fig/rsPMBr_intra.svg)
+
+
+# Supplementary Membrane Assays
+
+![](output/fig/SFig_MembraneAssays.svg)
