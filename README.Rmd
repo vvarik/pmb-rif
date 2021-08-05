@@ -207,9 +207,9 @@ dat = loadIrisFiles("input/dat/raw/iris_files") %>%
   # plate-to-plate correction, brings plate opacities to same median
   correctOpacityForPlates()
 
-rep.correlations = getPairwiseReplicateCorrelations(dat)
-candidate.files.to.kick.out = getCandidateFilesToKickOut(rep.correlations)
-candidate.files.to.kick.out[ratio.discordant.vs.all==1, filename]
+# rep.correlations = getPairwiseReplicateCorrelations(dat)
+# candidate.files.to.kick.out = getCandidateFilesToKickOut(rep.correlations)
+# candidate.files.to.kick.out[ratio.discordant.vs.all==1, filename]
 # [1] "LBpH5.5-Rifampicin16Polymyxin2-015.JPG.iris"
 
 # Fitness ----------------------------------------
