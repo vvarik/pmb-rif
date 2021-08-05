@@ -490,8 +490,8 @@ ggsave('output/fig/validated_mutants_synergy_count.svg', w=5, h=10)
 ```{r}
 getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% 
   knitr::kable()
-  #knitr::kable(format='latex', booktabs=T) %>% 
-  #kableExtra::save_kable('output/fig/table_valid_hit.png')
+  # knitr::kable(format='latex', booktabs=T) %>% 
+  # kableExtra::save_kable('output/fig/table_valid_hit.png')
 ```
 
 

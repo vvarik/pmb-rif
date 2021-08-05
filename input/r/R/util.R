@@ -939,10 +939,10 @@ addEcOrthologs = function (dat) {
   out = ort[dat, on = c(locus_pa = 'Locus')]
   
   out = ec_map[, .(locus_ec, Locus)][out, on = 'locus_ec']
-  out = dplyr::rename(out, 'EC gene' = Locus, 'PA gene'=Gene) %>% 
+  out = dplyr::rename(out, 'PA gene'=Gene, 'EC ortholog' = Locus) %>% 
     .[, -'locus_ec'] %>% 
-    dplyr::mutate('EC gene' = ifelse(is.na(`EC gene`), '', `EC gene`)) %>% 
-    dplyr::select('EC gene', 'PA gene', Synergy, Description, locus_pa) 
+    dplyr::mutate('EC ortholog' = ifelse(is.na(`EC ortholog`), '', `EC ortholog`)) %>% 
+    dplyr::select('PA gene', 'EC ortholog', Synergy, Description, locus_pa) 
   
 }
 
