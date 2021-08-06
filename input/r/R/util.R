@@ -42,7 +42,7 @@ contour.ResponseSurface = function (x, ...)
     if (!exists("ylab", args)) 
         args$ylab = paste0("Dose (", cpdNames[[2]], ")")
     if (!exists("colorPalette", args)) {
-        args$colorPalette = c("red", "white", "blue")
+        args$colorPalette = c("blue", "white", "red")
         if (x$fitResult$coef["b"] >= x$fitResult$coef["m1"] && 
             x$fitResult$coef["b"] >= x$fitResult$coef["m2"]) {
             args$colorPalette = rev(args$colorPalette)
