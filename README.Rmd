@@ -137,7 +137,7 @@ labs = c('RIF, mg/L', 'PMB, mg/L',
   rep(expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')'), 2)
 )
 
-tmpFun = function (i) {
+tmpFun = function (i, df) {
   par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2)
   if(i == 1) bar = subset(df, ab == 'rif')
   else bar = subset(df, ab == 'pmb' | (ab == 'rif' & conc == 0))
@@ -157,8 +157,8 @@ tmpFun = function (i) {
   )
 }
 
-p5 = function() tmpFun(1)
-p6 = function() tmpFun(2)
+p5 = function() tmpFun(1, foo)
+p6 = function() tmpFun(2, foo)
 
 aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
 
