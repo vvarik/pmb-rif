@@ -100,6 +100,8 @@ foo = foo[time_h >= 0 & overnight_medium == 'pH7.4', .(
   ph.ci = ci(pH)
   ), .(growth_medium, time_h)]
 
+limit_of_detection = 0.03
+foo[, od := replace(od, od < limit_of_detection, limit_of_detection)]
 
 p0 = foo %>% 
   mutate(
@@ -114,10 +116,12 @@ p0 = foo %>%
   theme(legend.position = 'top')
 
 p3 = p0 + 
-  scale_y_continuous(trans='log2', breaks = c(0.001, 0.01, 0.1, 1), limits = c(0.001, 10)) + 
+  scale_y_continuous(trans='log2', breaks = c(0.01, 0.03, 0.1, 0.3, 1, 3,
+      10)) + 
   geom_point(size=.point_size, col='grey20') +
   geom_pointrange(aes(ymin = od*od.ci, ymax = od/od.ci)) +
   geom_line(col='grey20') +
+  coord_cartesian(ylim = c(0.01, 10)) +
   labs(x = 'Time, h', y = expression('OD'[620]))
 
 p4 = p0 %+% aes(y = ph) + 
