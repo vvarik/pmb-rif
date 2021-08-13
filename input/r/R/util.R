@@ -928,7 +928,7 @@ getValidHitTable = function () {
 
 #' @export
 addEcOrthologs = function (dat) {
-  ort = fread('input/dat/raw/pa14_ecMG1655_orthologs.csv')
+  ort = fread('input/dat/raw/pa14_ecMG1655_orthologs_ortholugeDB_2021.csv')
   bar = str_detect(names(ort), 'Locus Tag ')
   ort = ort[, ..bar]
   names(ort) = c('locus_ec', 'locus_pa')
