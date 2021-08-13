@@ -534,9 +534,9 @@ lapply(names(rs), sav3D, xcap=10)
 ```{r}
 dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%  
   fread() %>% 
-  rename(mut = strain) %>% 
+  setnames(., 'strain', 'mut') %>% 
   prepForRS(swapnames=T) %>% 
-  rename(strain = mut) %>% 
+  setnames(., 'mut', 'strain') %>%
   setDT()
 
 rs = getRS(dat, 'rs_pmbR_intra')
