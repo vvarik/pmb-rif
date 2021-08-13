@@ -464,7 +464,7 @@ foo[, mut := c(0:27, 29:45)]
 
 ```{r}
 pltNSynergiesOfValidatedMutants()
-ggsave('output/fig/validated_mutants_synergy_count.svg', w=5, h=10)
+# ggsave('output/fig/validated_mutants_synergy_count.svg', w=5, h=10)
 ```
 
 ## Dose-response
@@ -523,7 +523,7 @@ rs = readRDS('input/dat/tmp/rs_6mut.rds')
 rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
 lapply(rs, names)
 
-lapply(names(rs), sav3D, xcap=10)
+# lapply(names(rs), sav3D, xcap=10)
 ```
 
 ![](output/fig/RsPA14Mutants_portrait.svg)
@@ -540,7 +540,7 @@ dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%
   setDT()
 
 rs = getRS(dat, 'rs_pmbR_intra')
-lapply(names(rs), sav3D)
+# lapply(names(rs), sav3D)
 ```
 
 ![](output/fig/rsPMBr_intra.svg)
