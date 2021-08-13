@@ -538,7 +538,7 @@ dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%
   setnames(., 'mut', 'strain') %>%
   setDT()
 
-rs = getRS(dat, 'rs_pmbR_intra')
+# rs = getRS(dat, 'rs_pmbR_intra')
 # lapply(names(rs), sav3D)
 ```
 
