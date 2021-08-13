@@ -12,6 +12,8 @@
     -   [Table with *E. coli* orthologs](#table-with-e.-coli-orthologs)
     -   [GO term table](#go-term-table)
 -   [Selected five mutants](#selected-five-mutants)
+-   [PMB resistant isolates](#pmb-resistant-isolates)
+-   [Supplementary Membrane Assays](#supplementary-membrane-assays)
 
 # Background
 
@@ -34,7 +36,7 @@ cloacae*, and *K. pneumoniae*.
 
 # Dose Response And pH
 
-![](output/fig/SFig_monotherapy_dose-response_and_pH.svg)
+![](output/fig/SFig_mth_dr_pH_charcoal.svg)
 
 # Time-kill
 
@@ -56,6 +58,36 @@ scores, which were derived next. The significance of difference from
 zero Bliss score, for any mutant, was estimated by a T-test (5
 biological replicates) and corrected for multiple testing
 (Benjamini-Hochberg).
+
+    ##      media  N
+    ## 1:      LB 65
+    ## 2: LBpH5.5 39
+
+    ##       Tn.mutant.id gene.name gene.name.to.show colony      locus   media Tn.per.gene copy.n copy.id t.test.statistic t.test.pvalue t.test.sample.size
+    ## 1: PA14_05620.1077      sahH              sahH  40544 PA14_05620      LB           2      1       1         9.718601  6.276069e-04                  5
+    ## 2: PA14_05620.1077      sahH              sahH  40544 PA14_05620 LBpH5.5           2      1       1        13.958493  1.527853e-04                  5
+    ## 3:   PA14_26960.38                       26960  41410 PA14_26960      LB           3      2       1         6.398637  1.254737e-04                 10
+    ## 4:   PA14_26960.38                       26960  41410 PA14_26960 LBpH5.5           3      2       1         8.542792  1.305246e-05                 10
+    ## 5:  PA14_26590.202                       26590  42429 PA14_26590      LB           2      2       1        -7.957662  2.309281e-05                 10
+    ## 6:  PA14_26590.202                       26590  42429 PA14_26590 LBpH5.5           2      2       1        -6.328941  1.362271e-04                 10
+    ##    t.test.statistic.gene t.test.pvalue.gene t.test.sample.size.gene epsilon.median.mutant.condition epsilon.median.gene.condition t.test.q.value
+    ## 1:             2.9795147       1.546176e-02                      10                       0.2402291                    0.21305360     0.04527595
+    ## 2:             4.6004221       1.289749e-03                      10                       1.0743797                    0.88706063     0.03878802
+    ## 3:             4.7348761       3.194343e-04                      15                       0.1176028                    0.08245968     0.01621420
+    ## 4:             0.9829531       3.379826e-01                      20                       0.2423604                    0.16650957     0.01525263
+    ## 5:            -8.4515577       7.256261e-06                      11                      -0.2355339                   -0.23655745     0.01097478
+    ## 6:            -2.3289252       3.535395e-02                      15                      -0.2216551                   -0.20326740     0.03878802
+    ##    t.test.q.value.gene t.test.IHW.adj.p.value t.test.IHW.adj.p.value.gene showname
+    ## 1:         0.207063286            0.026104344                 0.119212628     TRUE
+    ## 2:         0.057229097            0.026480859                 0.039673498     TRUE
+    ## 3:         0.034473968            0.011601747                 0.020904856    FALSE
+    ## 4:         0.612580886            0.011125844                 1.000000000    FALSE
+    ## 5:         0.004635843            0.009917019                 0.009587997     TRUE
+    ## 6:         0.241116314            0.018318286                 0.102456540     TRUE
+
+Of the 70 hits, 53 are from mutant level of analysis and 17 come from
+gene level of analysis. 31 are shared between mutants and genes
+i.e. hits regardless if mutant or gene level of analysis is used.
 
 <table>
 <thead>
@@ -386,10 +418,10 @@ checkerboard), we use a fixed ratio design [Tallarida et al
 <thead>
 <tr>
 <th style="text-align:left;">
-EC gene
+PA gene
 </th>
 <th style="text-align:left;">
-PA gene
+EC ortholog
 </th>
 <th style="text-align:left;">
 Synergy
@@ -402,9 +434,9 @@ Description
 <tbody>
 <tr>
 <td style="text-align:left;">
+02150
 </td>
 <td style="text-align:left;">
-02150
 </td>
 <td style="text-align:left;">
 none
@@ -429,9 +461,9 @@ none
 </tr>
 <tr>
 <td style="text-align:left;">
+26590
 </td>
 <td style="text-align:left;">
-26590
 </td>
 <td style="text-align:left;">
 none
@@ -442,9 +474,9 @@ GntR family transcriptional regulator
 </tr>
 <tr>
 <td style="text-align:left;">
+66480
 </td>
 <td style="text-align:left;">
-66480
 </td>
 <td style="text-align:left;">
 less
@@ -455,9 +487,9 @@ Predicted ATPase involved in chromosome partitioning
 </tr>
 <tr>
 <td style="text-align:left;">
+56840
 </td>
 <td style="text-align:left;">
-56840
 </td>
 <td style="text-align:left;">
 less
@@ -468,10 +500,10 @@ Predicted thiol oxidoreductase
 </tr>
 <tr>
 <td style="text-align:left;">
-glcA
+lldP
 </td>
 <td style="text-align:left;">
-lldP
+glcA
 </td>
 <td style="text-align:left;">
 less
@@ -482,9 +514,9 @@ L-lactate permease
 </tr>
 <tr>
 <td style="text-align:left;">
+60490
 </td>
 <td style="text-align:left;">
-60490
 </td>
 <td style="text-align:left;">
 less
@@ -495,9 +527,9 @@ cytochrome c
 </tr>
 <tr>
 <td style="text-align:left;">
+03760
 </td>
 <td style="text-align:left;">
-03760
 </td>
 <td style="text-align:left;">
 more
@@ -508,10 +540,10 @@ sodium:solute symporter
 </tr>
 <tr>
 <td style="text-align:left;">
-selU
+43270
 </td>
 <td style="text-align:left;">
-43270
+selU
 </td>
 <td style="text-align:left;">
 more
@@ -522,9 +554,9 @@ tRNA 2-selenouridine synthase
 </tr>
 <tr>
 <td style="text-align:left;">
+51310
 </td>
 <td style="text-align:left;">
-51310
 </td>
 <td style="text-align:left;">
 more
@@ -535,9 +567,9 @@ Predicted redox protein, regulator of disulfide bond formation
 </tr>
 <tr>
 <td style="text-align:left;">
+maiA
 </td>
 <td style="text-align:left;">
-maiA
 </td>
 <td style="text-align:left;">
 more
@@ -548,9 +580,9 @@ maleylacetoacetate isomerase
 </tr>
 <tr>
 <td style="text-align:left;">
+43670
 </td>
 <td style="text-align:left;">
-43670
 </td>
 <td style="text-align:left;">
 more
@@ -575,9 +607,9 @@ PmbA protein
 </tr>
 <tr>
 <td style="text-align:left;">
+62230
 </td>
 <td style="text-align:left;">
-62230
 </td>
 <td style="text-align:left;">
 more
@@ -767,3 +799,60 @@ NA
 </table>
 
 # Selected five mutants
+
+    ## $PA14_wildtype
+    ## [1] "intra" "pH5.5" "pH7.4"
+    ## 
+    ## $PA14_66480
+    ## [1] "intra" "pH5.5" "pH7.4"
+    ## 
+    ## $PA14_43270
+    ## [1] "intra" "pH5.5" "pH7.4"
+    ## 
+    ## $PA14_02150
+    ## [1] "intra" "pH5.5" "pH7.4"
+    ## 
+    ## $PA14_52180
+    ## [1] "intra" "pH5.5" "pH7.4"
+    ## 
+    ## $PA14_26590
+    ## [1] "intra" "pH5.5" "pH7.4"
+
+    ## [[1]]
+    ## NULL
+    ## 
+    ## [[2]]
+    ## NULL
+    ## 
+    ## [[3]]
+    ## NULL
+    ## 
+    ## [[4]]
+    ## NULL
+    ## 
+    ## [[5]]
+    ## NULL
+    ## 
+    ## [[6]]
+    ## NULL
+
+![](output/fig/RsPA14Mutants_portrait.svg)
+
+# PMB resistant isolates
+
+    ## *** Took on  PA947 
+    ## === Working on intra  ===
+    ## *** Took on  PA1292 
+    ## === Working on intra  ===
+
+    ## [[1]]
+    ## NULL
+    ## 
+    ## [[2]]
+    ## NULL
+
+![](output/fig/rsPMBr_intra.svg)
+
+# Supplementary Membrane Assays
+
+![](output/fig/SFig_MembraneAssays.svg)
