@@ -521,7 +521,6 @@ rs = readRDS('input/dat/tmp/rs_6mut.rds')
 
 ```{r}
 rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
-lapply(rs, names)
 
 # lapply(names(rs), sav3D, xcap=10)
 ```
