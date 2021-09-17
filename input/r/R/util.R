@@ -59,6 +59,8 @@ pltMaxR = function (x, main = "Contour plot for maxR",
   show.magnitude = F,
   rev.axes = F,
   extend.axes = F,
+  xcap,
+  ycap,
   colorPalette = c("blue", "white", "red"), 
   logScale = TRUE,  
   zTransform = function(z) {z}, 
@@ -102,8 +104,10 @@ pltMaxR = function (x, main = "Contour plot for maxR",
       pointsize = 1.5
     }
 
-    xlim = transformF(uniqueDoses$d1)
-    ylim = transformF(uniqueDoses$d2)
+    xlim = transformF(with(uniqueDoses, 
+        d1[d1 >= min(xcap) & d1 <= max(xcap)]))
+    ylim = transformF(with(uniqueDoses, 
+        d2[d2 >= min(ycap) & d2 <= max(ycap)]))
     if(extend.axes) {
       xlim = extendrange(xlim)
       ylim = extendrange(ylim)
@@ -181,12 +185,13 @@ pltMaxR = function (x, main = "Contour plot for maxR",
 
 
 #' @export
-pltDDI = function(x, ...) {
+pltDDI = function(x, xcap = c(0.01, 30), ...) {
   pal = RColorBrewer::brewer.pal(9, 'RdBu')
+  if (!exists("ycap")) ycap = xcap
   pal[5] = "#FFFFFF"
   contour(x, xlab = 'PMB, xMIC', ylab = 'RIF, xMIC', 
-    colorPalette = pal,
-    xlim = c(0.01, 30), ylim = c(0.01, 30), ...)
+    colorPalette = pal, 
+    xcap = xcap, ycap = ycap, ...)
 }
 
 
