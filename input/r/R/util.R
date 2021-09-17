@@ -105,9 +105,15 @@ pltMaxR = function (x, main = "Contour plot for maxR",
     }
 
     xlim = transformF(with(uniqueDoses, 
-        d1[d1 >= min(xcap) & d1 <= max(xcap)]))
+        c(min(ycap), 
+          d1[d1 >= min(xcap) & d1 <= max(xcap)],
+          max(xcap)
+        )))
     ylim = transformF(with(uniqueDoses, 
-        d2[d2 >= min(ycap) & d2 <= max(ycap)]))
+        c(min(ycap), 
+          d2[d2 >= min(ycap) & d2 <= max(ycap)], 
+          max(ycap)
+        )))
     if(extend.axes) {
       xlim = extendrange(xlim)
       ylim = extendrange(ylim)
@@ -120,6 +126,8 @@ pltMaxR = function (x, main = "Contour plot for maxR",
       xlim = rev(xlim)
       ylim = rev(ylim)
     }
+    
+    axisLabels = c(0.001, 0.03, 0.01, 0.3, 0.1, 0.3, 1, 3, 10, 30, 100)
 
     filled.contour(
         x = transformF(uniqueDoses$d1),
@@ -129,13 +137,13 @@ pltMaxR = function (x, main = "Contour plot for maxR",
         color.palette = colorRampPalette(colorPalette), 
         #frame.plot = F,
         plot.axes = {
-            axis(1, at = transformF(uniqueDoses$d1), tck=-0.02,
+            axis(1, at = transformF(axisLabels), tck=-0.02,
                 mgp = c(2.5, 0.75, 0), 
-                labels = format(uniqueDoses$d1, ...), cex.axis = 1.25
+                labels = format(axisLabels, ...), cex.axis = 1.25
             )
-            axis(2, at = transformF(uniqueDoses$d2), tck=-0.02,
+            axis(2, at = transformF(axisLabels), tck=-0.02,
                 mgp = c(2.5, 0.75, 0),
-                labels = format(uniqueDoses$d2, ...), cex.axis = 1.25
+                labels = format(axisLabels, ...), cex.axis = 1.25
             )
             points(
                 expand.grid(x = transformF(uniqueDoses$d1), 
@@ -185,9 +193,8 @@ pltMaxR = function (x, main = "Contour plot for maxR",
 
 
 #' @export
-pltDDI = function(x, xcap = c(0.01, 30), ...) {
+pltDDI = function(x, xcap = c(0.01, 30), ycap = c(0.01, 30), ...) {
   pal = RColorBrewer::brewer.pal(9, 'RdBu')
-  if (!exists("ycap")) ycap = xcap
   pal[5] = "#FFFFFF"
   contour(x, xlab = 'PMB, xMIC', ylab = 'RIF, xMIC', 
     colorPalette = pal, 
