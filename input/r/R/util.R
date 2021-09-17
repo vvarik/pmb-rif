@@ -139,11 +139,11 @@ pltMaxR = function (x, main = "Contour plot for maxR",
         plot.axes = {
             axis(1, at = transformF(axisLabels), tck=-0.02,
                 mgp = c(2.5, 0.75, 0), 
-                labels = format(axisLabels, ...), cex.axis = 1.25
+                labels = prettyNum(axisLabels, ...), cex.axis = 1.25
             )
             axis(2, at = transformF(axisLabels), tck=-0.02,
                 mgp = c(2.5, 0.75, 0),
-                labels = format(axisLabels, ...), cex.axis = 1.25
+                labels = prettyNum(axisLabels, ...), cex.axis = 1.25
             )
             points(
                 expand.grid(x = transformF(uniqueDoses$d1), 
