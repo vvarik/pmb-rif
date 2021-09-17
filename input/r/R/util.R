@@ -137,11 +137,11 @@ pltMaxR = function (x, main = "Contour plot for maxR",
         color.palette = colorRampPalette(colorPalette), 
         #frame.plot = F,
         plot.axes = {
-            axis(1, at = transformF(axisLabels), tck=-0.02,
+            axis(1, at = transformF(axisLabels), tck=-0.01,
                 mgp = c(2.5, 0.75, 0), 
                 labels = prettyNum(axisLabels, ...), cex.axis = 1.25
             )
-            axis(2, at = transformF(axisLabels), tck=-0.02,
+            axis(2, at = transformF(axisLabels), tck=-0.01,
                 mgp = c(2.5, 0.75, 0),
                 labels = prettyNum(axisLabels, ...), cex.axis = 1.25
             )
