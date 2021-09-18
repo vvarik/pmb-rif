@@ -105,7 +105,7 @@ pltMaxR = function (x, main = "Contour plot for maxR",
     }
 
     xlim = transformF(with(uniqueDoses, 
-        c(min(ycap), 
+        c(min(xcap), 
           d1[d1 >= min(xcap) & d1 <= max(xcap)],
           max(xcap)
         )))
