@@ -127,7 +127,7 @@ pltMaxR = function (x, main = "Contour plot for maxR",
       ylim = rev(ylim)
     }
     
-    axisLabels = c(0.001, 0.03, 0.01, 0.3, 0.1, 0.3, 1, 3, 10, 30, 100)
+    axisLabels = c(0.001, 0.01, 0.1, 1, 10, 100)
 
     filled.contour(
         x = transformF(uniqueDoses$d1),
