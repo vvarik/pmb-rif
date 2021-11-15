@@ -196,7 +196,7 @@ pltMaxR = function (x, main = "Contour plot for maxR",
 pltDDI = function(x, xcap = c(0.01, 30), ycap = c(0.01, 30), ...) {
   pal = RColorBrewer::brewer.pal(9, 'RdBu')
   pal[5] = "#FFFFFF"
-  contour(x, xlab = 'PMB, xMIC', ylab = 'RIF, xMIC', 
+  contour(x, xlab = 'RIF, xMIC', ylab = 'PMB, xMIC', 
     colorPalette = pal, 
     xcap = xcap, ycap = ycap, ...)
 }
