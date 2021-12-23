@@ -237,7 +237,21 @@ foo = pkd %>%
     levels = c('b', 'e1', 'e2', 'm1', 'm2'),
     labels = c('E[min]', 'EC[50]^PMB', 'EC[50]^RIF', 'E[max]^RIF', 'E[max]^PMB'))
     ) %>% 
-  as.data.table() 
+  as.data.table() %>% 
+  left_join(
+    unique(dat, by = c('genus', 'strain', 'mic1', 'mic2', 'cond')) %>% 
+      .[order(genus)] %>% 
+      .[, .(genus, strain, cond, micRIF = mic1, micPMB = mic2)]
+  ) %>%
+  mutate(
+    mic = case_when(
+      grepl('max|RIF', par) ~ micRIF,
+      grepl('max|PMB', par) ~ micPMB
+    )
+  ) %>% 
+  mutate(cond = factor(cond, levels = c('intra', 'pH7.4', 'pH5.5')))
+
+
 
 foo[grepl('min', par),        `:=`(min = 0, max = 4)]
 foo[grepl('EC\\[50\\]', par), `:=`(min = -2.5, max = 6, 
@@ -264,6 +278,8 @@ p1 = ggplot(foo[!grepl('EC\\[50\\]', par)], aes(value, strain, color = genus)) +
     theme(legend.position = 'top')
 
 p2 = p1 %+% foo[grepl('EC\\[50\\]', par)] +
+  geom_point(aes(mic, col = genus), size = 4.5, pch = 0) +
+  geom_text(aes(x = mic, label = round(mic, 1)), size = 2.5) +
   scale_x_continuous(trans = 'log10', limits = c(0.03, 300), 
     labels = function(x) ifelse(x == 0, "0", x)) +
   xlab('Conc, mg/L') +
