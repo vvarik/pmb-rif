@@ -177,6 +177,106 @@ plot_grid(
 ![](output/fig/SFig_mth_dr_pH_charcoal.svg)
 
 
+# PD parameters
+
+```{r}
+foo = copy(dat)[c1 == 0 | c2 == 0]
+
+bar = foo[, `:=` (
+  dose  = ifelse(d1 == 0, c2, c1),
+  ab    = ifelse(d1 == 0, 2, 1)
+)]
+  
+
+fit = vector('list', 9)
+names(fit) = unique(dat$strain)
+for(i in unique(dat$strain)) {
+  for(j in unique(bar$cond)) {
+    fit[[i]][[j]] = drm(effect ~ dose, ab, 
+      data = subset(bar, strain == i & cond == j), 
+      fct=LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
+      pmodels = data.frame(ab, 1, ab),
+      lowerl = c(-4.5, NA, NA)
+      
+    )
+  }
+}
+
+ci95 = lapply(fit, function(x) lapply(x, confint))  %>% 
+  unlist(., recursive = F)  %>% 
+  lapply(., as.data.table, keep.rownames = 'par') %>% 
+  rbindlist(idcol = T) %>% 
+  mutate(.id = sub('\\.', '_', .id)) %>% 
+  separate(.id, c('strain', 'cond'), sep = '_') %>% 
+  mutate(cond = factor(cond, levels = c('intra', 'pH7.4', 'pH5.5'))) %>% 
+  mutate(par = gsub(':|Intercept|\\(|\\)', '', par)) %>% 
+  setnames(., c('strain', 'cond', 'par', 'lwr', 'upr'))
+
+
+pkd = lapply(fit, function(x) lapply(x, coef)) %>% 
+  unlist(., recursive = F) %>% 
+  do.call(rbind, .) %>% 
+  as.data.table(keep.rownames = T) %>% 
+  mutate(rn = sub('\\.', '_', rn)) %>% 
+  separate(rn, c('strain', 'cond'), '_') %>% 
+  mutate(cond = factor(cond, levels = c('intra', 'pH7.4', 'pH5.5'))) %>% 
+  mutate(genus = case_when(
+      strain %in% c('A112', 'A113') ~ 'Acinetobacter',
+      strain %in% c('E15', 'E51')   ~ 'Enterobacter',
+      strain %in% c('K58', 'K74')   ~ 'Klebsiella',
+      TRUE ~ 'Pseudomonas'
+      ))
+
+names(pkd) = gsub(':|Intercept|\\(|\\)', '', names(pkd))
+
+foo = pkd %>% 
+  pivot_longer(m1:e2, names_to = 'par') %>% 
+  left_join(., ci95) %>% 
+  mutate(strain = fct_relevel(factor(strain), 'ATCC27853', after = Inf))  %>% 
+  mutate(par = factor(par, 
+    levels = c('b', 'e1', 'e2', 'm1', 'm2'),
+    labels = c('E[min]', 'EC[50]^PMB', 'EC[50]^RIF', 'E[max]^RIF', 'E[max]^PMB'))
+    ) %>% 
+  as.data.table() 
+
+foo[grepl('min', par),        `:=`(min = 0, max = 4)]
+foo[grepl('EC\\[50\\]', par), `:=`(min = -2.5, max = 6, 
+  value = exp(value), lwr = exp(lwr), upr = exp(upr))]
+foo[grepl('max', par),        `:=`(min = -5.5, max = 0)]
+
+myFun = function() {
+  plot(fit[[1]][[1]])
+  abline(v = c(exp(c(0.5, -1))))
+}
+
+p1 = ggplot(foo[!grepl('EC\\[50\\]', par)], aes(value, strain, color = genus)) +
+    geom_vline(xintercept = 0, col = 'white') +
+    geom_pointrange(aes(xmin = lwr, xmax = upr), size = 1) +
+    geom_text(aes(label = round(value, 1)), col = 1, size = 2.5) +
+    facet_grid(cond ~ par, labeller = label_parsed, 
+      scales = 'free', space = 'free_y') +
+    geom_blank(aes(x = min)) +
+    geom_blank(aes(x = max)) +
+    scale_color_manual(values = cbPalette[4:1], guide = guide_legend(
+        label.theme = element_text(angle = 0, face = "italic"), reverse = T)) +
+    labs(y = '', color = '') +
+    theme_html() +
+    theme(legend.position = 'top')
+
+p2 = p1 %+% foo[grepl('EC\\[50\\]', par)] +
+  scale_x_continuous(trans = 'log10', limits = c(0.03, 300), 
+    labels = function(x) ifelse(x == 0, "0", x)) +
+  xlab('Conc, mg/L') +
+  theme(legend.position = 'none')
+
+plot_grid(p1 + xlab(expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')), 
+  p2, rel_widths = c(3, 2), align = 'hv', axis = 'tb')
+
+ggsave('output/fig/SFig_mth_pd.svg', width=10, height=6)
+```
+
+![](output/fig/SFig_mth_pd.svg)
+
 # Time-kill
 
 ```{r SFig_TimeKill}
