@@ -1088,3 +1088,16 @@ pltNSynergiesOfValidatedMutants = function () {
     labs(y = '', x = '# of synergistic concentrations', fill='')
   }
 }
+
+
+#' @export
+getCs = function(fit) {
+  # get static concentrations from drm::drc fit
+    lapply(fit, function(x) ED(x, respLev = 0, 
+        type = 'absolute', interval = 'fls')) %>% 
+    lapply(., as.data.table, keep.rownames = 'par') %>% 
+    rbindlist(., idcol = 'cond') %>% 
+    .[, .(cond, par, estimate = Estimate, lwr = Lower, upr = Upper)] %>% 
+    mutate(par = ifelse(grepl(1, par), 'cs1', 'cs2')) %>% 
+    arrange(cond, par)
+}
