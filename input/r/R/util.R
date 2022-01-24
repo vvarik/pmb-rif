@@ -1120,3 +1120,19 @@ loadDdiData = function(fname) {
     (d2 %between% c(0.003, 100) | d2==0)] %>% 
   .[is.na(effect), effect := -4.5]
 }
+
+#' @export
+getPDPar = function(fit) {
+  rbind(ED(fit, respLev = 0, type = 'absolute', interval = 'fls'),
+    cbind(coef(fit), confint(fit))) %>% 
+  as.data.table(., keep.rownames = 'par') %>% 
+  .[, par := gsub(':|Intercept|\\(|\\)', '', par)] %>% 
+  .[, par := case_when(
+    par == 'e10' ~ 'cs1',
+    par == 'e20' ~ 'cs2',
+    TRUE ~ par)] %>% 
+  arrange(par) %>% 
+  setnames(., c('Estimate', 'Lower', 'Upper'), c('value', 'lwr', 'upr')) %>% 
+  as.data.table()
+}
+
