@@ -1136,3 +1136,13 @@ getPDPar = function(fit) {
   as.data.table()
 }
 
+
+#' @export
+addGenus = function(dat) {
+  dat[, genus := case_when(
+      strain %in% c('A112', 'A113') ~ 'Acinetobacter',
+      strain %in% c('E15', 'E51')   ~ 'Enterobacter',
+      strain %in% c('K58', 'K74')   ~ 'Klebsiella',
+      TRUE                          ~ 'Pseudomonas')
+  ]
+}
