@@ -1146,3 +1146,32 @@ addGenus = function(dat) {
       TRUE                          ~ 'Pseudomonas')
   ]
 }
+
+
+#' @export
+getPdReadyForPlotting = function(dat_fit, dat) {
+  mutate(dat_fit, 
+    par = factor(par, 
+    levels = c('b', 'e1', 'e2', 'cs1', 'cs2', 'm1', 'm2'),
+    labels = c('E[min]', 'EC[50]^PMB', 'EC[50]^RIF', 
+      'C[s]^PMB', 'C[s]^RIF', 'E[max]^PMB', 'E[max]^RIF')))  %>% 
+  mutate(strain = fct_relevel(factor(strain), 'ATCC27853', after = Inf)) %>% 
+  left_join(
+    unique(dat, by = c('genus', 'strain', 'mic1', 'mic2', 'cond')) %>% 
+      .[order(genus)] %>% 
+      .[, .(genus, strain, cond, micRIF = mic1, micPMB = mic2)]
+  ) %>% 
+  mutate(
+    mic = case_when(
+      grepl('max|RIF', par) ~ micRIF,
+      grepl('max|PMB', par) ~ micPMB
+    )
+  ) %>% 
+  mutate(cond = factor(cond, levels = c('intra', 'pH7.4', 'pH5.5'))) %>% 
+  .[, c('min', 'max') := NA_real_] %>% 
+  .[grepl('min', par),        `:=`(min = 0, max = 4)] %>% 
+  .[grepl('EC\\[50\\]', par), `:=`(
+    min = -2.5, max = 6, 
+     value = exp(value), lwr = exp(lwr), upr = exp(upr))] %>% 
+  .[grepl('max', par),        `:=`(min = -5.5, max = 0)]
+}
