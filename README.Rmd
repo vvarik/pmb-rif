@@ -167,6 +167,53 @@ plot_grid(
 # PD parameters
 
 ```{r}
+# schematic for PD pars
+tmp = data.table(
+  #Conc      = c(0, 0.1, 0.3, 1, 3, 10, 30, 100),
+  Conc      = c(0, 0.01, 0.03, 0.1, 0.3, 1, 3, 10),
+  Response  = c(3, 3, 2.8, 1.5, -0.5, -2.5, -2.8, -3.2)
+)
+
+tmp[, Response := Response + 1]
+
+# svg('output/fig/SFig_PDpar.svg', width = 3.5, height = 3.5)
+#oldpar = par()
+par(tcl = -0.3, mar=c(4.1, 4.1, 1.5, 0.5), mgp=c(1.5, 0.75, 0))
+
+plot(
+  (mod = drm(Response ~ Conc, data = tmp, 
+      fct=LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
+      lowerl = c(-2.5, NA, NA),
+      robust = 'median'
+  )),
+    broken = T, pch = 19, 
+    col = 'grey40',
+    ylim = c(-2.5, 4.7), xlim = c(0, 50),
+    xlab = c('Conc, mg/L'),
+    ylab = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')'),
+    asp = 1
+)
+
+x1 = ED(mod, 0, type = 'absolute', logBase = exp(1))[1]
+x2 = ED(mod, 50, logBase = exp(1))[1]
+y2 = predict(mod, data.frame(Conc = x2))
+
+segments(x1, 0, x1, -100, lty = 2)
+segments(0.0001, 0, x1, 0, lty = 2)
+segments(x2, y2, x2, -100, lty = 2)
+segments(0.0001, y2, x2, y2, lty = 2)
+
+abline(h = coef(mod)[2], lty = 2)
+abline(h = coef(mod)[1], lty = 2)
+
+text(x1+0.3, y = 0 + 0.1, expression(C[s]))
+text(x2+0.3, y = y2 + 0.2, expression(EC[50]))
+text(x = 0.002, coef(mod)[2] + 0.3, expression(E[min]))
+text(x = 0.002, coef(mod)[1] + 0.4, expression(E[max]))
+# dev.off()
+```
+
+```{r}
 # transform
 dat_fit = dat[c1 == 0 | c2 == 0,
   ][, dose := ifelse(d1 == 0, c2, c1)
