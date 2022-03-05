@@ -253,7 +253,7 @@ p1 = dat_fit[!grepl('C', par)] %>%
   ggplot(aes(value, strain, color = genus)) +
     geom_vline(xintercept = 0, col = 'white') +
     geom_pointrange(aes(xmin = lwr, xmax = upr), size = 1) +
-    geom_text(aes(label = round(value, 1)), col = 1, size = 2.5) +
+    geom_text(aes(label = round(signif(value, 2), 1)), col = 1, size = 2.5) +
     facet_grid(cond ~ par, labeller = label_parsed, 
       scales = 'free', space = 'free_y') +
     geom_blank(aes(x = min)) +
