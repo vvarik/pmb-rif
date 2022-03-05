@@ -1173,5 +1173,6 @@ getPdReadyForPlotting = function(dat_fit, dat) {
   .[grepl('EC\\[50\\]', par), `:=`(
     min = -2.5, max = 6, 
      value = exp(value), lwr = exp(lwr), upr = exp(upr))] %>% 
-  .[grepl('max', par),        `:=`(min = -5.5, max = 0)]
+  .[grepl('max', par),        `:=`(min = -5.5, max = 0)] %>% 
+  .[cond == 'intra', mic := NA]
 }
