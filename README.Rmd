@@ -214,8 +214,23 @@ text(x = 0.002, coef(mod)[1] + 0.4, expression(E[max]))
 ```
 
 ```{r}
+# add Tn screen's PA14 (Liberati), and pmbR strains PA947 and PA1292 
+foo = rbind(
+  # pa14
+  fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv')[mut == 0] %>% 
+    .[, `:=` (genus   = 'Pseudomonas',
+              strain  = 'PA14 Liberati',
+              mut     = NULL)],
+  # pmbR
+  fread('input/dat/raw/pmb_resistant_isolates.csv') %>% 
+    .[, genus := 'Pseudomonas']
+  ) %>% 
+  .[, `:=` (
+    c1 = d1*mic1,
+    c2 = d2*mic2)]
+
 # transform
-dat_fit = dat[c1 == 0 | c2 == 0,
+dat_fit = rbind(foo, dat, fill = T)[c1 == 0 | c2 == 0,
   ][, dose := ifelse(d1 == 0, c2, c1)
   ][, ab   := ifelse(d1 == 0, 2, 1)
   ][, .(data = list(.SD)), .(strain, cond)]
