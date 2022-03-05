@@ -1153,9 +1153,8 @@ getPdReadyForPlotting = function(dat_fit, dat) {
   mutate(dat_fit, 
     par = factor(par, 
     levels = c('b', 'e1', 'e2', 'cs1', 'cs2', 'm1', 'm2'),
-    labels = c('E[min]', 'EC[50]^PMB', 'EC[50]^RIF', 
-      'C[s]^PMB', 'C[s]^RIF', 'E[max]^PMB', 'E[max]^RIF')))  %>% 
-  mutate(strain = fct_relevel(factor(strain), 'PAO1', 'ATCC27853', after = Inf)) %>% 
+    labels = c('E[min]', 'EC[50]^RIF', 'EC[50]^PMB', 
+      'C[s]^RIF', 'C[s]^PMB', 'E[max]^RIF', 'E[max]^PMB')))  %>% 
   mutate(strain = fct_relevel(factor(strain), 'PA1292', 'PA947', 'PA14 Liberati', 'PA14', 'PAO1', 'ATCC27853', after = Inf)) %>% 
   left_join(
     unique(dat, by = c('genus', 'strain', 'mic1', 'mic2', 'cond')) %>% 
