@@ -250,7 +250,7 @@ dat_fit = unnest(dat_fit, pars) %>% as.data.table
 dat_fit = getPdReadyForPlotting(dat_fit, dat)
 
 p1 = dat_fit[!grepl('C', par)] %>% 
-  .[lwr < -10, c('lwr', 'upr') := NA] %>% 
+  .[lwr < -10, c('lwr', 'upr', 'value') := NA] %>% 
   ggplot(aes(value, strain, color = genus)) +
     geom_vline(xintercept = 0, col = 'white') +
     geom_pointrange(aes(xmin = lwr, xmax = upr), size = 1) +
