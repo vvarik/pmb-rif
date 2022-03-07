@@ -243,7 +243,9 @@ dat_fit[, fit := map(data, ~drm(effect ~ dose, ab, data = .x,
 
 # get parameters
 dat_fit[, pars  := map(fit, ~getPDPar(.x))]
-addGenus(dat_fit)
+dat_fit = dat_fit[
+  dat_fit[, data[[1]][1, .(genus, mic1, mic2)], .(strain, cond)], 
+  on = c('strain', 'cond')]
 
 # reformat
 dat_fit = unnest(dat_fit, pars) %>% as.data.table

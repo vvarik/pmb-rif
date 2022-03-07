@@ -1138,17 +1138,6 @@ getPDPar = function(fit) {
 
 
 #' @export
-addGenus = function(dat) {
-  dat[, genus := case_when(
-      strain %in% c('A112', 'A113') ~ 'Acinetobacter',
-      strain %in% c('E15', 'E51')   ~ 'Enterobacter',
-      strain %in% c('K58', 'K74')   ~ 'Klebsiella',
-      TRUE                          ~ 'Pseudomonas')
-  ]
-}
-
-
-#' @export
 getPdReadyForPlotting = function(dat_fit, dat) {
   mutate(dat_fit, 
     par = factor(par, 
@@ -1156,11 +1145,7 @@ getPdReadyForPlotting = function(dat_fit, dat) {
     labels = c('E[min]', 'EC[50]^RIF', 'EC[50]^PMB', 
       'C[s]^RIF', 'C[s]^PMB', 'E[max]^RIF', 'E[max]^PMB')))  %>% 
   mutate(strain = fct_relevel(factor(strain), 'PA1292', 'PA947', 'PA14 Liberati', 'PA14', 'PAO1', 'ATCC27853', after = Inf)) %>% 
-  left_join(
-    unique(dat, by = c('genus', 'strain', 'mic1', 'mic2', 'cond')) %>% 
-      .[order(genus)] %>% 
-      .[, .(genus, strain, cond, micRIF = mic1, micPMB = mic2)]
-  ) %>% 
+  rename(micRIF = mic1, micPMB = mic2) %>% 
   mutate(
     mic = case_when(
       grepl('max|RIF', par) ~ micRIF,
