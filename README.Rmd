@@ -634,6 +634,8 @@ getGoTermTable() %>%
 
 # Selected five mutants
 
+## 3D
+
 ```{r surface_analysis}
 #rs = fread('input/dat/raw/pa14_mut_pmb_rif_cfu.csv') %>% 
 #  prepForRS()  %>% 
@@ -651,6 +653,9 @@ rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
 
 ![](output/fig/RsPA14Mutants_portrait.svg)
 
+## Supplementary Membrane Assays
+
+![](output/fig/SFig_MembraneAssays.svg)
 
 # PMB resistant isolates
 
@@ -669,6 +674,3 @@ dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%
 ![](output/fig/rsPMBr_intra.svg)
 
 
-# Supplementary Membrane Assays
-
-![](output/fig/SFig_MembraneAssays.svg)
