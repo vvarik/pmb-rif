@@ -1227,3 +1227,25 @@ pltMemb = function(DT) {
 }
 
 
+#' @export
+addAovDunnetMembrane = function(DT, membrane = 'OM') {
+  DT[Membrane == membrane, {
+    Pval   = map(.(.SD), ~summary(aov(Value ~ Strain, .x))[[1]][["Pr(>F)"]][1])
+    Mod    = map(.(.SD), ~lm(Value ~ Strain, .x))
+    ResDun = map(.(.SD), ~DescTools::DunnettTest(Value~Strain, .x))
+    ResRob = map(Mod, ~emmeans::emmeans(.x, trt.vs.ctrl~Strain, 
+              vcov=sandwich::vcovHC)$contrasts)
+    list(Dat = .(.SD), Pval, Mod, ResDun, ResRob)
+  }, .(PmbConcMgL, RifConcMgL)]
+}
+
+#' @export
+getDunnetResultsMemb = function(DT, level, idx=1:4) {
+  list(
+    PmbConcMgL = unname(unlist(DT[, 'PmbConcMgL'][level])),
+    RifConcMgL = unname(unlist(DT[, 'RifConcMgL'][level])),
+    Dunnett = DT$ResDun[[level]],
+    RobustDunnett = DT$ResRob[[level]]
+  )[idx]
+}
+

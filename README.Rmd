@@ -661,6 +661,14 @@ pltMemb(group_by(memb, PmbConcMgL, Strain))
 #ggsave('./output/fig/PA14MembranePermeability.svg', w=15, h=5)
 ```
 
+```{r}
+memb = readRDS('input/dat/rds/permeability.rds')
+om = addAovDunnetMembrane(memb) 
+im = addAovDunnetMembrane(memb, membrane = 'IM') 
+getDunnetResultsMemb(om, lev = 1)
+getDunnetResultsMemb(im, lev = 1)
+```
+
 
 ## Supplementary Membrane Assays
 
