@@ -1161,3 +1161,69 @@ getPdReadyForPlotting = function(dat_fit, dat) {
   .[grepl('max', par),        `:=`(min = -5.5, max = 0)] %>% 
   .[cond == 'intra', mic := NA]
 }
+
+
+#' @export
+pltMemb = function(DT) {
+  DT = DT %>% 
+    mutate(Strain = factor(Strain, levels = c('relA', '26590', 
+          '02150', '66480', 'wild-type', '43270'))) 
+
+  mycol = c(cbPalette[c(3, 3, 3, 3)], 'white', cbPalette[4])
+  myylim = c(0, 130)
+  mybreaks = c(0, 25, 50, 75, 100, 125)
+  
+  plot_grid(
+    DT %>% 
+      filter(Membrane == 'OM')  %>% 
+      group_by(PmbConcMgL, Strain) %>% 
+      mutate(muVal = mean(Value), 
+             ci    = se(Value))  %>% {
+      ggplot(., aes(as.character(PmbConcMgL), muVal, fill = Strain)) +
+        geom_errorbar(aes(ymin=muVal-ci, ymax=muVal + ci), 
+          width = 0.4, col = 1, 
+          position = position_dodge(width = 0.9)) +
+        geom_col(position = 'dodge', col = 1) +
+        geom_point(
+          fill = 'grey70', col = 1,
+          size = 3, 
+          aes(as.character(PmbConcMgL), Value, pch = Strain),
+          position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2, seed = 3)) +
+        scale_y_continuous(name = 'OM permeability, %', breaks = mybreaks,
+          limits = myylim) +
+        theme(#aspect.ratio = 1, 
+          legend.position = c(0.125, 0.85)) +
+        scale_fill_manual(values = mycol, guide = 'none') +
+        #scale_shape_manual(values = c(0, 2, 6, 5, 1, 4), name = '') +
+        scale_shape_manual(values = c(22, 24, 25, 23, 21, 4), name = '') +
+        labs(x = 'Polymyxin B, mg/L', y = 'OM permeability, %')
+      },
+    DT %>% 
+      filter(Membrane == 'IM')  %>% 
+      group_by(PmbConcMgL, RifConcMgL, Strain) %>% 
+      mutate(Conc = interaction(PmbConcMgL, RifConcMgL)) %>% 
+      mutate(muVal = mean(Value), 
+             ci    = se(Value))  %>% {
+      ggplot(., aes(Conc, muVal, fill = Strain)) +
+        geom_errorbar(aes(ymin=muVal-ci, ymax=muVal + ci), 
+          width = 0.4, col = 1, 
+          position = position_dodge(width = 0.9)) +
+        geom_col(position = 'dodge', col = 1) +
+        geom_point(
+          fill = 'grey70', col = 1,
+          size = 3, 
+          aes(Conc, Value, pch = Strain),
+          position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2, seed = 2)) +
+        scale_y_continuous(name = 'IM permeability, %', breaks = mybreaks, 
+          limits = myylim) +
+        theme(#aspect.ratio = 1, 
+          legend.position = c(0.125, 0.85)) +
+        scale_fill_manual(values = mycol, guide = 'none') +
+        #scale_shape_manual(values = c(0, 2, 6, 5, 1, 4), name = '') +
+        scale_shape_manual(values = c(22, 24, 25, 23, 21, 4), name = '') +
+        labs(x = 'PMB.RIF', y = 'OM permeability, %')
+      }
+  )
+}
+
+

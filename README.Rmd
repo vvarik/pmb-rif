@@ -653,6 +653,15 @@ rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
 
 ![](output/fig/RsPA14Mutants_portrait.svg)
 
+## Membrane permeability
+
+```{r}
+memb = readRDS('input/dat/rds/permeability.rds')
+pltMemb(group_by(memb, PmbConcMgL, Strain))
+#ggsave('./output/fig/PA14MembranePermeability.svg', w=15, h=5)
+```
+
+
 ## Supplementary Membrane Assays
 
 ![](output/fig/SFig_MembraneAssays.svg)
