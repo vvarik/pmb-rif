@@ -446,9 +446,9 @@ getPA14Map = function () {
 
 
 #' @export
-addAnnotation = function (dat) {
+addAnnotation = function (dat, using='colony') {
   PA14.map = getPA14Map()
-  merge(dat, PA14.map, by='colony', all.x=T)
+  merge(dat, PA14.map, by=using, all.x=T)
 }
 
 
