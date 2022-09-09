@@ -691,3 +691,66 @@ dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%
 ![](output/fig/rsPMBr_intra.svg)
 
 
+# Change in EC90 of RIF
+
+```{r}
+dat = loadDdiData('input/dat/rds/ddi_all_strains.rds')
+
+dat_fit = anti_join(dat, dat[c1==0 & c2!=0])[, .(data = list(.SD)), .(strain, cond)]
+
+dat_fit[, fit := 
+  map(data, function(x) {try(
+    drm(effect ~ d1, d2, data = x, 
+    fct=LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
+    lowerl = c(-4.5, NA, NA))
+  )})
+]
+
+idx = sapply(dat_fit$fit, function(x) class(x) != 'try-error')
+
+dat_fit[idx, ed90  := map(fit, function(x) list(try(ED(x, 90, interval='fls', display=F) %>% 
+      round(3))))]
+
+dat_fit[idx, par90 := lapply(unlist(dat_fit[['ed90']], recursive=F), function(x) try(as.data.table(x, keep.rownames='level')))]
+
+par90 = lapply(1:nrow(dat_fit[idx, ]), 
+  function(x) dat_fit[idx, ][['par90']][[x]]) %>% 
+  rbindlist(idcol='id') %>% 
+  merge(dat_fit[, .(strain, cond)][idx][, id := 1:26], .) %>% 
+  lowerCaseNamesDT() %>% 
+  .[, level := gsub('e:|:90', '', level)] %>% 
+  .[, effect:= 90]
+
+set.seed(1)
+res = par90 %>% 
+  group_by(id) %>% 
+  mutate(rel_IC = estimate/head(estimate, 1),
+    rel_IC = ifelse(rel_IC > 2, 2, rel_IC)
+    ) %>% 
+  mutate(level = ifelse(level < 1 & level != 0, 0.1, level)) %>% 
+  filter(as.numeric(level) <= 1) 
+
+# res %>% group_by(level) %>% summarise(ec90=median(estimate), quantile(estimate, 0.2), ci=gci(estimate), lwr=ec90/ci, upr=ec90*ci) %>% dplyr::select(-ci)
+#   level  ec90   lwr   upr
+# 1 0      7.41 6.34   8.65
+# 2 0.1    3.20 2.32   4.41
+# 3 1      2.18 0.966  4.92
+# res %>% filter(level==0.1) %>% pull(estimate) %>% quantile(0.2) 
+#   20% 
+# 0.939 
+
+ggplot(res, aes(level, estimate)) + 
+  geom_jitter(width=0.2, pch=21, aes(fill=cond), col='grey70') +
+  geom_boxplot(alpha=0.5, outlier.shape=NA) +
+  scale_y_continuous(name=expression('EC'[90]^'RIF'*', mg/L'), 
+    trans='log2', breaks=c(16, 8, 4, 2, 1, 0.5, 0.25)) +
+  scale_x_discrete(name='PMB, xMIC', labels=c('0', '< 1', '1')) +
+  coord_cartesian(ylim = c(0.2, 16)) +
+  labs(fill = '') +
+  theme(aspect.ratio=1)
+
+#ggsave('output/fig/rif_ec90_upon_pmb.svg', width=5, height=4, bg='white')
+```
+
+![](output/fig/rif_ec90_upon_pmb.svg)
+
