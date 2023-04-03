@@ -1043,7 +1043,7 @@ getValidatedMutRes = function () {
     setkey(mut)
 
   out = calls[stats][annotation] %>% 
-    mutate(gene = fct_reorder(gene, Syn, .desc=T))
+    mutate(gene = fct_reorder(gene, Syn, .desc=T, .na_rm=FALSE))
 
   # PmrB is twice and will cause problems
   unique(out, by = 'gene') 
