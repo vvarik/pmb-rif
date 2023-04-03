@@ -1145,7 +1145,7 @@ getPdReadyForPlotting = function(dat_fit, dat) {
     labels = c('E[min]', 'EC[50]^RIF', 'EC[50]^PMB', 
       'C[s]^RIF', 'C[s]^PMB', 'E[max]^RIF', 'E[max]^PMB')))  %>% 
   mutate(strain = fct_relevel(factor(strain), 'PA1292', 'PA947', 'PA14 Liberati', 'PA14', 'PAO1', 'ATCC27853', after = Inf)) %>% 
-  rename(micRIF = mic1, micPMB = mic2) %>% 
+  dplyr::rename(micRIF = mic1, micPMB = mic2) %>% 
   mutate(
     mic = case_when(
       grepl('max|RIF', par) ~ micRIF,
