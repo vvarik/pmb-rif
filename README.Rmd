@@ -67,15 +67,17 @@ dat = loadDdiData('input/dat/rds/ddi_all_strains.rds')
 
 
 ```{r fig.cap='Acidification increases the number of drug concentration pairs with a synergistic effect. The number of significantly synergistic points are shown for the results above.'}
-getDdiCounts(readRDS('input/dat/tmp/rs.rds')) %>% 
-  group_by(Strain) %>% 
-  ggplot(aes(Cond, Syn)) +
-  geom_col(fill = 'grey70', col = 1) +
-  facet_wrap(~Name, nrow = 2, dir = 'v') +
-  labs(y = '# of synergistic concentrations', x = '') +
-  theme(strip.text.x = element_text(size = 12))
+#getDdiCounts(readRDS('input/dat/tmp/rs.rds')) %>% 
+#  group_by(Strain) %>% 
+#  ggplot(aes(Cond, Syn)) +
+#  geom_col(fill = 'grey70', col = 1) +
+#  facet_wrap(~Name, nrow = 3, dir = 'v') +
+#  labs(y = '# of synergistic concentrations', x = '') +
+#  theme(strip.text.x = element_text(size = 12)) 
+#ggsave(filename='output/fig/SynergyCountAcid.svg', bg='white', h=7.5, w=7.5)
 ```
 
+![](output/fig/SynergyCountAcid.svg)
 
 
 # Dose Response And pH
