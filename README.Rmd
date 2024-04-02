@@ -169,12 +169,16 @@ p6 = function() tmpFun(2, foo)
 aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
 
 plot_grid(
-  ggdraw(p1), ggdraw(p2), ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]),
-  plot_grid(ggdraw(p5), ggdraw(p6), nrow=2),
-  labels = 'AUTO', align = 'v'
+  plot_grid(NULL, ggdraw(p1), ggdraw(p2), nrow=1, labels=c('A', 'B', 'C')), 
+  plot_grid(
+    ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]),
+    plot_grid(ggdraw(p5), ggdraw(p6), nrow=2),
+    nrow=1, labels=c('D', 'E')
+  ),
+  align = 'v', nrow=2
 )
 
-# ggsave('output/fig/SFig_mth_dr_pH_charcoal.svg', width=10, height=9)
+# ggsave('output/fig/SFig_mth_dr_pH_charcoal_2.svg', width=10, height=9)
 ```
 
 ![](output/fig/SFig_mth_dr_pH_charcoal.svg)
