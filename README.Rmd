@@ -85,12 +85,66 @@ dat = loadDdiData('input/dat/rds/ddi_all_strains.rds')
 # Dose Response And pH
 
 ```{r SFig_monotherapy_dose-response_and_pH}
-theme_set(theme_pdf())
+theme_set(theme_html())
+
+# schematic for PD pars
+pltPD = function() {
+  tmp = data.table(
+    #Conc      = c(0, 0.1, 0.3, 1, 3, 10, 30, 100),
+    Conc      = c(0, 0.01, 0.03, 0.1, 0.3, 1, 3, 10)*10,
+    Response  = c(3, 3, 2.8, 1.5, -0.5, -2.5, -2.8, -3.2)
+  )
+  
+  tmp[, Response := Response + 1]
+  
+  # svg('output/fig/SFig_PDpar.svg', width = 3.5, height = 3.5)
+  #oldpar = par()
+  par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2, pty='s')
+  
+  plot(
+    (mod = drm(Response ~ Conc, data = tmp, 
+        fct=LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
+        lowerl = c(-2.5, NA, NA),
+        robust = 'median'
+    )),
+      broken = T, pch = 19, 
+      cex.axis=1.25, cex.lab=1.25,
+      xt = c(0, 0.1, 1, 10),
+      col = 'grey40',
+      ylim = c(-2.5, 4.7), xlim = c(0, 50),
+      xlab = c('Conc, mg/L'),
+      ylab = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')
+  )
+  
+  x1 = ED(mod, 0, type = 'absolute', logBase = exp(1))[1]
+  x2 = ED(mod, 50, logBase = exp(1))[1]
+  y2 = predict(mod, data.frame(Conc = x2))
+  
+  segments(x1, 0, x1, -100, lty = 2)
+  segments(0.0001, 0, x1, 0, lty = 2)
+  segments(x2, y2, x2, -100, lty = 2)
+  segments(0.0001, y2, x2, y2, lty = 2)
+  
+  abline(h = coef(mod)[2], lty = 2)
+  abline(h = coef(mod)[1], lty = 2)
+  
+  text(x1+3, y = 0 + 0.1, expression(C[s]))
+  text(x2+3, y = y2 + 0.2, expression(EC[50]))
+  text(x = 0.02, coef(mod)[2] + 0.3, expression(E[min]))
+  text(x = 0.02, coef(mod)[1] + 0.4, expression(E[max]))
+  # dev.off()
+}
 
 sub = subset(dat, strain == 'ATCC27853' & (d1 == 0 | d2 == 0))
 
-p1 = function() pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30)
-p2 = function() pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L')
+p1 = function() {
+  par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2, pty='s')
+  pltDR(effect ~ c1, subset(sub, c2==0), xlab = 'RIF, mg/L', zero=30, cex.legend=0.8, legendPos=c(1, -2), xt=c(0, 0.1, 10, 1000))
+}
+p2 = function() {
+  par(mar=c(2.1, 5.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2, pty='s')
+  pltDR(effect ~ c2, subset(sub, c1==0), col='orange', xlab = 'PMB, mg/L', cex.legend=0.8, legendPos=c(0.13, -2), xt=c(0, 0.01, 1, 100))
+}
 
 # pH
 foo = fread("input/dat/raw/growth_and_pH.tsv")
@@ -108,33 +162,38 @@ foo[, od := replace(od, od < limit_of_detection, limit_of_detection)]
 p0 = foo %>% 
   mutate(
     growth_medium = relevel(factor(growth_medium), 'pH7.4'),
-    time_h = ifelse(time_h > 20, 20, time_h),
+    time_h = ifelse(time_h > 20, 14, time_h),
     NULL
     ) %>% 
   ggplot(aes(time_h, od, shape = growth_medium)) +
-  scale_x_continuous(breaks = c(0, 5, 10, 20), labels = c(seq(0, 10, 5), 24), limits = c(0, 20)) +
+  scale_x_continuous(breaks = c(0, 5, 10, 14), labels = c(seq(0, 10, 5), 24), limits = c(0, 14)) +
   scale_shape_manual(name = '', values = c(19, 22, 15), labels = c('pH 7.4', 'pH 5.5',
       'pH 5.5 buffered')) +
-  theme(legend.position = 'top')
+  theme_html(12) +
+  theme(legend.position = 'inside', 
+    legend.position.inside = c(0.4, 0.9),
+    aspect.ratio=1, 
+    legend.text = element_text(size=11))
 
 p3 = p0 + 
-  scale_y_continuous(trans='log2', breaks = c(0.01, 0.03, 0.1, 0.3, 1, 3,
-      10)) + 
+  scale_y_continuous(trans='log2', breaks = c(0.03, 0.3, 3)) + 
   geom_point(size=.point_size, col='grey20') +
   geom_pointrange(aes(ymin = od*od.ci, ymax = od/od.ci)) +
   geom_line(col='grey20') +
-  coord_cartesian(ylim = c(0.01, 10)) +
-  labs(x = 'Time, h', y = expression('OD'[620]))
+  coord_cartesian(ylim = c(0.03, 10)) +
+  labs(x = 'Time, h', y = expression('OD'[620])) 
 
 p4 = p0 %+% aes(y = ph) + 
-  scale_y_continuous(position = 'right') +
+  scale_y_continuous(position = 'right', limits=c(NA, 9)) +
   geom_point(size=.point_size, col=cbPalette[3]) +
   geom_line(col=cbPalette[3]) +
   geom_pointrange(aes(ymin = ph-ph.ci, ymax = ph + ph.ci), col=cbPalette[3]) +
   theme(legend.position = 'none',
+    panel.border = element_blank(),
     axis.title.y.right=element_text(color = cbPalette[3]),
     axis.text.y.right=element_text(color = cbPalette[3]),
-    axis.ticks.y.right=element_line(color = cbPalette[3])
+    axis.ticks.y.right=element_line(color = cbPalette[3]),
+    axis.text.x = element_blank()
   ) +
   labs(x = '', y = 'pH')
 
@@ -143,8 +202,8 @@ labs = c('RIF, mg/L', 'PMB, mg/L',
   rep(expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')'), 2)
 )
 
-tmpFun = function (i, df) {
-  par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2)
+tmpFun = function (i, df, ...) {
+  par(mar=c(3.1, 6.1, 0, 0.7), mgp = c(1.7, 0.5, 0), tcl=-0.2, pty='s')
   if(i == 1) bar = subset(df, ab == 'rif')
   else bar = subset(df, ab == 'pmb' | (ab == 'rif' & conc == 0))
 
@@ -155,7 +214,7 @@ tmpFun = function (i, df) {
   
   plot(fit, type="average", cex.axis=1.25, cex.lab=1.25, lwd=2, 
     col='grey30', pch = c(1, 19), lty = 1, asp=1,
-    xlab = labs[i], ylab = labs[i+2], broken=T,
+    xlab = labs[i], ylab = labs[i+2], broken=T, ...,
     ylim=c(-4,4), legendText=c("control", "charcoal")
   )
   plot(fit, type="confidence", add=T, legend=F, 
@@ -163,75 +222,28 @@ tmpFun = function (i, df) {
   )
 }
 
-p5 = function() tmpFun(1, foo)
-p6 = function() tmpFun(2, foo)
+p5 = function() tmpFun(1, foo, xt=c(0, 0.1, 10, 1000))
+p6 = function() tmpFun(2, foo, xt=c(0, 0.01, 1, 100))
 
 aligned = align_plots(p3, p4, align = 'hv', axis = 'tblr')
 
 plot_grid(
-  plot_grid(NULL, ggdraw(p1), ggdraw(p2), nrow=1, labels=c('A', 'B', 'C')), 
-  plot_grid(
+  ggdraw(pltPD), ggdraw(p1), ggdraw(p2), 
     ggdraw(aligned[[1]]) + draw_plot(aligned[[2]]),
-    plot_grid(ggdraw(p5), ggdraw(p6), nrow=2),
-    nrow=1, labels=c('D', 'E')
-  ),
-  align = 'v', nrow=2
+    ggdraw(p5), ggdraw(p6),
+  labels='AUTO', label_size=16,
+  align = 'hv', 
+  nrow=2
 )
 
-# ggsave('output/fig/SFig_mth_dr_pH_charcoal_2.svg', width=10, height=9)
+# ggsave('output/fig/SFig_mth_dr_pH_charcoal_2.svg', width=10, height=6)
+# ggsave('output/fig/SFig_mth_dr_pH_charcoal_2.pdf', width=10, height=6)
 ```
 
 ![](output/fig/SFig_mth_dr_pH_charcoal.svg)
 
 
 # PD parameters
-
-```{r}
-# schematic for PD pars
-tmp = data.table(
-  #Conc      = c(0, 0.1, 0.3, 1, 3, 10, 30, 100),
-  Conc      = c(0, 0.01, 0.03, 0.1, 0.3, 1, 3, 10),
-  Response  = c(3, 3, 2.8, 1.5, -0.5, -2.5, -2.8, -3.2)
-)
-
-tmp[, Response := Response + 1]
-
-# svg('output/fig/SFig_PDpar.svg', width = 3.5, height = 3.5)
-#oldpar = par()
-par(tcl = -0.3, mar=c(4.1, 4.1, 1.5, 0.5), mgp=c(1.5, 0.75, 0))
-
-plot(
-  (mod = drm(Response ~ Conc, data = tmp, 
-      fct=LL2.4(names=c("h", "m", "b", "e"), fixed=c(1, NA, NA, NA)),
-      lowerl = c(-2.5, NA, NA),
-      robust = 'median'
-  )),
-    broken = T, pch = 19, 
-    col = 'grey40',
-    ylim = c(-2.5, 4.7), xlim = c(0, 50),
-    xlab = c('Conc, mg/L'),
-    ylab = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')'),
-    asp = 1
-)
-
-x1 = ED(mod, 0, type = 'absolute', logBase = exp(1))[1]
-x2 = ED(mod, 50, logBase = exp(1))[1]
-y2 = predict(mod, data.frame(Conc = x2))
-
-segments(x1, 0, x1, -100, lty = 2)
-segments(0.0001, 0, x1, 0, lty = 2)
-segments(x2, y2, x2, -100, lty = 2)
-segments(0.0001, y2, x2, y2, lty = 2)
-
-abline(h = coef(mod)[2], lty = 2)
-abline(h = coef(mod)[1], lty = 2)
-
-text(x1+0.3, y = 0 + 0.1, expression(C[s]))
-text(x2+0.3, y = y2 + 0.2, expression(EC[50]))
-text(x = 0.002, coef(mod)[2] + 0.3, expression(E[min]))
-text(x = 0.002, coef(mod)[1] + 0.4, expression(E[max]))
-# dev.off()
-```
 
 ```{r}
 # add Tn screen's PA14 (Liberati), and pmbR strains PA947 and PA1292 
