@@ -774,3 +774,213 @@ ggplot(res, aes(level, estimate)) +
 
 ![](output/fig/rif_ec90_upon_pmb.svg)
 
+
+# Chloroquine
+
+```{r}
+pacman::p_load(sandwich)
+# https://stackoverflow.com/questions/65699987/coeftest-gives-error-with-drc-class-object
+registerS3method("estfun", "drc", drc::estfun.drc)
+registerS3method("bread", "drc", drc::bread.drc)
+
+compPars = function(mod, p, ...) {
+  as.data.table(compParm(mod, p, display=F, ...))[, .(Estimate, `p-value`)] %>% sapply(., signif, 2)
+
+} 
+
+chloroquine = fread('./input/dat/raw/chloroquine.csv')
+
+m1_rif = drm(response ~ mgL, curveid=chloroquine,
+  data=subset(chloroquine, strain=='ATCC27853' & drug=='RIF'), 
+  fct=LL.4(fixed=c(1, NA, NA, NA), names=c('slope', 'Emax', 'Emin', 'IC50'))
+)
+
+m1_pmb = update(m1_rif, data=subset(chloroquine, drug=='PMB' & strain=='ATCC27853'))
+m2_rif = update(m1_rif, curveid=NULL)
+m2_pmb = update(m1_pmb, curveid=NULL)
+
+anova(m1_rif, m2_rif)
+anova(m1_pmb, m2_pmb)
+AIC(m1_pmb, m2_pmb)
+AIC(m1_rif, m2_rif)
+
+
+# RIF ==============================
+
+summary(m1_rif)
+# Model fitted: Log-logistic (ED50 as parameter) (3 parms)
+# 
+# Parameter estimates:
+# 
+#                   Estimate Std. Error  t-value   p-value    
+# Emax:chloroquine -1.901870   0.098459 -19.3164 < 2.2e-16 ***
+# Emax:control     -2.281402   0.086839 -26.2717 < 2.2e-16 ***
+# Emin:chloroquine  3.509196   0.089456  39.2283 < 2.2e-16 ***
+# Emin:control      3.629471   0.105448  34.4194 < 2.2e-16 ***
+# IC50:chloroquine 12.196531   1.252178   9.7403 1.722e-13 ***
+# IC50:control      4.557944   0.451625  10.0923 4.932e-14 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error:
+# 
+#  0.2773383 (54 degrees of freedom)
+
+compPars(m1_rif, 'IC50', vcov=sandwich)
+# Estimate  p-value 
+#  2.70000  0.00035 
+
+compPars(m1_rif, 'Emax', vcov=sandwich)
+# Estimate  p-value 
+#  0.83000  0.00017 
+compParm(m1_rif, 'Emax', vcov=sandwich)
+# Comparison of parameter 'Emax' 
+# 
+#                     Estimate Std. Error t-value   p-value    
+# chloroquine/control 0.833641   0.041126 -4.0451 0.0001675 ***
+# CI95
+ci = 0.833641 + c(1, -1) * 0.041126 * qt(0.025, df=54)
+round(ci, 2)
+# [1] 0.75 0.92
+
+
+EDcomp(m1_rif, c(0, 0), type='absolute', vcov=sandwich)
+# Estimated ratios of effect doses
+# 
+#                           Estimate Std. Error    t-value    p-value
+# chloroquine/control:0/0 3.10350594 0.50911168 4.13171807 0.00012604
+
+# CI95
+ci = 3.10350594 + c(1, -1) * 0.50911168 * qt(0.025, df=54)
+round(ci, 1)
+
+
+ED(m1_rif, c(0), type='absolute', interval='delta', vcov=sandwich)
+# Estimated effective doses
+# 
+#                 Estimate Std. Error    Lower    Upper
+# e:chloroquine:0 22.50418    3.35270 15.78243 29.22593
+# e:control:0      7.25121    0.49792  6.25295  8.24947
+
+confint(m1_rif, 'Emax')
+#                      2.5 %    97.5 %
+# Emax:chloroquine -2.099268 -1.704472
+# Emax:control     -2.455503 -2.107301
+
+
+
+# PMB ==============================
+
+summary(m1_pmb)
+# Model fitted: Log-logistic (ED50 as parameter) (3 parms)
+# 
+# Parameter estimates:
+# 
+#                   Estimate Std. Error  t-value   p-value    
+# Emax:chloroquine -0.640179   0.081292  -7.8750 1.570e-10 ***
+# Emax:control     -1.094442   0.080318 -13.6263 < 2.2e-16 ***
+# Emin:chloroquine  3.530741   0.090245  39.1240 < 2.2e-16 ***
+# Emin:control      3.575761   0.088856  40.2421 < 2.2e-16 ***
+# IC50:chloroquine  0.770553   0.097517   7.9017 1.421e-10 ***
+# IC50:control      0.773965   0.083207   9.3017 8.315e-13 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error:
+# 
+#  0.2492302 (54 degrees of freedom)
+
+compPars(m1_pmb, 'IC50', vcov=sandwich)
+# Estimate  p-value 
+#     1.00     0.98 
+
+
+compPars(m1_pmb, 'Emax', vcov=sandwich)
+# Estimate  p-value 
+#  5.8e-01  1.4e-05 
+
+compParm(m1_pmb, 'Emax', vcov=sandwich)
+# Comparison of parameter 'Emax' 
+# 
+#                     Estimate Std. Error t-value   p-value    
+# chloroquine/control 0.584936   0.087008 -4.7704 1.437e-05 ***
+ci = 0.584936 + c(1, -1) * 0.087008 * qt(0.025, df=54)
+round(ci, 1)
+# [1] 0.4 0.8
+
+
+EDcomp(m1_pmb, c(0, 0), type='absolute', vcov=sandwich)
+# Estimated ratios of effect doses
+# 
+#                         Estimate Std. Error  t-value  p-value
+# chloroquine/control:0/0 1.680623   0.259976 2.618017 0.011452
+# CI95
+ci = 1.680623 + c(1, -1) * 0.259976 * qt(0.025, df=54)
+round(ci, 1)
+# [1] 1.2 2.2
+
+ED(m1_pmb, c(0), type='absolute', interval='delta', vcov=sandwich)
+# Estimated effective doses
+# 
+#                 Estimate Std. Error   Lower   Upper
+# e:chloroquine:0  4.24979    0.47379 3.29989 5.19968
+# e:control:0      2.52870    0.27117 1.98503 3.07237
+
+confint(m1_pmb, 'Emax')
+#                       2.5 %     97.5 %
+# Emax:chloroquine -0.8031596 -0.4771976
+# Emax:control     -1.2554703 -0.9334134
+
+
+
+```
+
+```{r}
+pacman::p_load(cowplot, ggpubr)
+
+myTheme = theme(
+  aspect.ratio = 1, 
+  axis.line = element_blank(),
+  axis.title = element_text(size=rel(1.1)),
+  axis.text = element_text(size=rel(1.1)), 
+  NULL
+)
+
+myplot = function(mod, ...) {
+  dat = mod$data[, c(1:2, 4)]
+  xrange = log(range(dat$mgL))
+  xrange = seq(xrange[1], xrange[2], 0.001)
+  fit = expand.grid(
+    mgL = exp(xrange), 
+    chloroquine = unique(dat$chloroquine)
+  )
+  fit$response = predict(mod, fit)
+
+  dat %>%
+    ggplot(aes(mgL, response, fill=chloroquine)) +
+    geom_hline(yintercept=0, lty=2, col='grey30') +
+    geom_line(data=fit, aes(col=chloroquine)) +
+    geom_point(pch=21, col=1, size=2.5) +
+    scale_x_continuous(trans='log10', 
+      breaks=c(0.01, 0.1, 1, 10, 100, 1000), labels=function(x) as.character(x)) +
+    scale_fill_manual(values=c('grey40', 'grey70'), name='') +
+    scale_color_manual(values=c('grey40', 'grey70'), name='') +
+    theme_cowplot() +
+    myTheme + 
+    panel_border(color=1) +
+    ylab(expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')) +
+    ylim(-3, 4) +
+    NULL
+}
+
+ggarrange(
+  myplot(m1_rif) + xlab('RIF, mg/L'), 
+  myplot(m1_pmb) + xlab('PMB, mg/L'), 
+  legend = 'right',
+  common.legend = T, 
+  labels='AUTO'
+)
+
+ggsave('./output/fig/chloroquine.pdf', w=7.4, h=3.7)
+```
+
