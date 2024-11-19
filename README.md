@@ -28,7 +28,7 @@ details and full captions of figures, consult the publication.
 We studied the potential of the rifampicin-polymyxin B combination
 against intra- and extracellular forms of bacteria: three *P.
 aeruginosa* strains, two clinical isolates of *A. baumannii*, *E.
-cloacae*, and *K. pneumoniae*.
+coli*, and *K. pneumoniae*.
 
 ![](output/fig/RsAllTheSpeciesStrains_portrait.svg)
 
