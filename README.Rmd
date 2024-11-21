@@ -13,11 +13,11 @@ output:
 
 # Background 
 
-We looked for combination therapies of neglected and misused antibiotics.
-Rifampin and polymyxin B combination stood out as a promising approach against
-scpectrum of clinical isolates. This repository contains all the data and code
-to reproduce the analysis. For details and full captions of figures, consult the
-publication.
+We explored combination therapies of neglected and misused antibiotics. The
+rifampin and polymyxin B combination emerged as a promising option against
+various clinical isolates. This repository includes the data and code to
+reproduce the analysis. For detailed figure captions and more information,
+refer to the publication.
 
 
 ```{r setup, include=FALSE}
