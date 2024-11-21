@@ -781,3 +781,5 @@ NA
 # Supplementary Membrane Assays
 
 ![](output/fig/SFig_MembraneAssays.svg)
+
+This repository is licensed under the MIT License - see the LICENSE file for details.
