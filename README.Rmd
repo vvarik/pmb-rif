@@ -526,14 +526,14 @@ string_11_pa = 'input/dat/raw/pao1_ppi_stringDB_287.protein.links.v11.0.txt' %>%
   )]
 
 # create an igraph object
-pa_ppi = graph.data.frame(string_11_pa, directed = FALSE)
+pa_ppi = graph_from_data_frame(string_11_pa, directed = FALSE)
 # summary(pa_ppi)
 V(pa_ppi)$degree = degree(pa_ppi)
 
 pa_ppi = simplify(pa_ppi, remove.multiple=T, remove.loops=T, edge.attr.comb='mean')
 
 # extract network for all the hits in the provided list
-hit_ppi = induced.subgraph(pa_ppi, which(V(pa_ppi)$name %in% hit_list))
+hit_ppi = induced_subgraph(pa_ppi, which(V(pa_ppi)$name %in% hit_list))
 
 # store degree on the network (main hit network)
 V(hit_ppi)$degree = degree(hit_ppi)
