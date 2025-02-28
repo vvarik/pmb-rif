@@ -675,6 +675,9 @@ rsl = lapply(rs, function(x) lapply(x, function(y) y$rsl))
 
 ![](output/fig/RsPA14Mutants_portrait.svg)
 
+
+
+<!--
 ## Membrane permeability
 
 ```{r}
@@ -690,7 +693,7 @@ im = addAovDunnetMembrane(memb, membrane = 'IM')
 getDunnetResultsMemb(om, lev = 1)
 getDunnetResultsMemb(im, lev = 1)
 ```
-
+-->
 
 ## Supplementary Membrane Assays
 
@@ -715,7 +718,7 @@ dat = 'input/dat/raw/pmb_resistant_isolates.csv' %>%
 
 # Change in EC90 of RIF
 
-```{r}
+```{r include=F}
 dat = loadDdiData('input/dat/rds/ddi_all_strains.rds')
 
 dat_fit = anti_join(dat, dat[c1==0 & c2!=0])[, .(data = list(.SD)), .(strain, cond)]
@@ -776,6 +779,8 @@ ggplot(res, aes(level, estimate)) +
 
 ![](output/fig/rif_ec90_upon_pmb.svg)
 
+
+<!--
 
 # Chloroquine
 
@@ -985,5 +990,6 @@ ggarrange(
 
 ggsave('./output/fig/chloroquine.pdf', w=7.4, h=3.7)
 ```
+-->
 
 This repository is licensed under the MIT License - see the LICENSE file for details.
