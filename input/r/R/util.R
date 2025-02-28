@@ -1123,7 +1123,7 @@ loadDdiData = function(fname) {
 
 #' @export
 getPDPar = function(fit) {
-  rbind(ED(fit, respLev = 0, type = 'absolute', interval = 'fls'),
+  rbind(ED(fit, respLev = 0, type = 'absolute', interval = 'fls', display = F),
     cbind(coef(fit), confint(fit))) %>% 
   as.data.table(., keep.rownames = 'par') %>% 
   .[, par := gsub(':|Intercept|\\(|\\)', '', par)] %>% 

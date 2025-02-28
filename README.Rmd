@@ -116,8 +116,8 @@ pltPD = function() {
       ylab = expression(log[10]*'('*over('CFU'['24h'], 'CFU'['0h '])*')')
   )
   
-  x1 = ED(mod, 0, type = 'absolute', logBase = exp(1))[1]
-  x2 = ED(mod, 50, logBase = exp(1))[1]
+  x1 = ED(mod, 0, type = 'absolute', logBase = exp(1), display = F)[1]
+  x2 = ED(mod, 50, logBase = exp(1), display = F)[1]
   y2 = predict(mod, data.frame(Conc = x2))
   
   segments(x1, 0, x1, -100, lty = 2)
