@@ -1012,9 +1012,10 @@ addMutGeneNames = function (dat) {
 
 #' @export
 getValidatedMutAnnotation = function () {
+  PA14_map = getPA14Map()
   data.table(mut = c(1:27, 29:45), key = 'mut') %>% 
     addPA14MutAnnotation(.) %>% 
-    unique(tmp[, .(gene = gene.name.to.show, locus)])[., on = 'gene'] %>% 
+    unique(PA14_map[, .(gene = gene.name.to.show, locus)])[., on = 'gene'] %>% 
     mutate(
       locus = ifelse(is.na(locus), gene, locus),
       gene  = gsub('PA14_', '', gene)
