@@ -30,6 +30,7 @@ getDdiCounts = function(rs) {
       K74       = 'K. pneumoniae K74',
       ATCC27853 = 'P. aeruginosa ATCC27853',
       PAO1      = 'P. aeruginosa PAO1',
-      PA14      = 'P. aeruginosa PA14'
+      PA14      = 'P. aeruginosa PA14',
+      `PA04/202`= 'P. aeruginosa PA04/202'
     ))
 }

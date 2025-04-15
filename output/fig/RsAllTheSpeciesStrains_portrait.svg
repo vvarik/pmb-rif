@@ -2,24 +2,24 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="330.10477mm"
    height="944.06903mm"
    viewBox="0 0 330.10476 944.06904"
    version="1.1"
    id="svg12902"
    sodipodi:docname="RsAllTheSpeciesStrains_portrait.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_AllTheSpeciesStrains.png"
    inkscape:export-xdpi="300"
-   inkscape:export-ydpi="300">
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs12896">
     <marker
@@ -185,6 +185,7 @@
    d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
    transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
    inkscape:connector-curvature="0" />
+
 
 
 
@@ -765,9 +766,9 @@
          result="flood"
          id="feFlood5206" />
       <feComposite
-         in="flood"
-         in2="SourceGraphic"
-         operator="destination-over"
+         in="SourceGraphic"
+         in2="flood"
+         operator="over"
          result="composite"
          id="feComposite5208" />
       <feBlend
@@ -796,9 +797,9 @@
          result="flood"
          id="feFlood5206-3" />
       <feComposite
-         in="flood"
-         in2="SourceGraphic"
-         operator="destination-over"
+         in="SourceGraphic"
+         in2="flood"
+         operator="over"
          result="composite"
          id="feComposite5208-0" />
       <feBlend
@@ -2311,22 +2312,25 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.46803053"
-     inkscape:cx="816.0923"
-     inkscape:cy="2900.7476"
+     inkscape:cx="542.69964"
+     inkscape:cy="801.22978"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g13679"
      showgrid="true"
-     inkscape:window-width="1916"
-     inkscape:window-height="1036"
+     inkscape:window-width="1914"
+     inkscape:window-height="1148"
      inkscape:window-x="0"
-     inkscape:window-y="20"
+     inkscape:window-y="24"
      inkscape:window-maximized="0"
      inkscape:snap-nodes="false"
      fit-margin-top="2"
      fit-margin-right="2"
      fit-margin-bottom="2"
      fit-margin-left="2"
-     showguides="false">
+     showguides="false"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
     <inkscape:grid
        type="xygrid"
        id="grid2403"
@@ -2351,7 +2355,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2362,15 +2366,10 @@
      transform="translate(-197.86904,-344.73347)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="108.47916"
        y="16.919643"
-       id="text2364"><tspan
-         sodipodi:role="line"
-         x="108.47916"
-         y="20.732838"
-         style="stroke-width:0.26458332"
-         id="tspan2368" /></text>
+       id="text2364" />
     <g
        id="g1997"
        transform="matrix(1.4493684,0,0,1.4575006,-105.23469,-3.9023292)"
@@ -2414,7 +2413,8 @@
            height="1528"
            x="-3748"
            y="-520.52356" /></flowRegion><flowPara
-         id="flowPara1625" /></flowRoot>    <image
+         id="flowPara1625" /></flowRoot>
+    <image
        transform="translate(217.33393,225.94004)"
        y="87.752167"
        x="-16.041563"
@@ -2532,7 +2532,7 @@
     <text
        clip-path="url(#clipPath1550-4)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1"
@@ -2544,13 +2544,13 @@
          id="tspan109-7"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9"
@@ -2562,9 +2562,9 @@
          id="tspan109-62-6"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <image
        transform="translate(320.21855,126.90665)"
        y="186.78557"
@@ -2581,7 +2581,7 @@
     <text
        clip-path="url(#clipPath1550-4-1)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9"
@@ -2593,13 +2593,13 @@
          id="tspan109-7-6"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8"
@@ -2611,9 +2611,9 @@
          id="tspan109-62-6-5"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <image
        transform="translate(423.1031,27.687868)"
        y="286.00433"
@@ -2630,7 +2630,7 @@
     <text
        clip-path="url(#clipPath1550-4-11)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-8"
@@ -2642,15 +2642,15 @@
          id="tspan109-7-5"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan2621"
-   style="font-size:64.99999762%;baseline-shift:sub">8</tspan><tspan
+   style="font-size:65%;baseline-shift:sub">8</tspan><tspan
    id="tspan11305-5-9"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"> mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"> mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-9)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-7"
@@ -2662,11 +2662,11 @@
          id="tspan109-62-6-53"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan2619"
-   style="font-size:64.99999762%;baseline-shift:sub">0.125</tspan><tspan
+   style="font-size:65%;baseline-shift:sub">0.125</tspan><tspan
    id="tspan11307-2-8"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"> mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"> mg/L</tspan></tspan></text>
     <flowRoot
        transform="matrix(0.26458333,0,0,0.26458333,-614.15444,342.59254)"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -2678,7 +2678,8 @@
            height="283.90594"
            width="774.53955"
            id="rect2627" /></flowRegion><flowPara
-         id="flowPara2629" /></flowRoot>    <image
+         id="flowPara2629" /></flowRoot>
+    <image
        y="-110.79642"
        x="46.243256"
        id="image6569-2"
@@ -2799,36 +2800,36 @@
        id="text111-1-6"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2">16 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,202.78542,426.85473)"
        id="text111-35-9-2"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7">2 mg/L</tspan></tspan></text>
     <image
        y="-11.577644"
@@ -2847,7 +2848,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5"
@@ -2859,13 +2860,13 @@
          id="tspan109-7-6-8"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2"
@@ -2877,11 +2878,11 @@
          id="tspan109-62-6-5-8"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan5323"
-   style="font-size:64.99999762%;baseline-shift:sub">1</tspan><tspan
+   style="font-size:65%;baseline-shift:sub">1</tspan><tspan
    id="tspan11307-2-6-4"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"> mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"> mg/L</tspan></tspan></text>
     <image
        clip-path="url(#clipPath1511-2)"
        width="124.35416"
@@ -2900,40 +2901,40 @@
        id="text111-1-8-9"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9"
          sodipodi:role="line">RIF, ×MIC<tspan
    id="tspan5325"
-   style="font-size:64.99999762%;baseline-shift:sub">16</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub">16</tspan><tspan
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.9203,428.36313)"
        id="text111-35-9-7-6"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7">0.5</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6"> mg/L</tspan></tspan></text>
     <image
        y="87.766754"
@@ -3055,38 +3056,38 @@
        id="text111-1-6-7"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8">16 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,207.41165,531.1946)"
        id="text111-35-9-2-5"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan5327">1</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2"> mg/L</tspan></tspan></text>
     <image
        y="-11.566013"
@@ -3104,7 +3105,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8"
@@ -3116,13 +3117,13 @@
          id="tspan109-7-6-8-0"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6"
@@ -3134,9 +3135,9 @@
          id="tspan109-62-6-5-8-6"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <image
        y="87.652756"
        x="-1.3817546"
@@ -3155,40 +3156,40 @@
        id="text111-1-8-9-0"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4">16</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.70992,532.43838)"
        id="text111-35-9-7-6-2"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4">1</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2"> mg/L</tspan></tspan></text>
     <image
        transform="translate(415.39916,1049.0076)"
@@ -3310,36 +3311,36 @@
        id="text111-1-6-7-9"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9">32 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,204.29143,947.49552)"
        id="text111-35-9-2-5-9"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5">2 mg/L</tspan></tspan></text>
     <image
        transform="translate(518.28379,949.97423)"
@@ -3357,7 +3358,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5"
@@ -3369,13 +3370,13 @@
          id="tspan109-7-6-8-0-9"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">32 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">32 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1"
@@ -3387,9 +3388,9 @@
          id="tspan109-62-6-5-8-6-4"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <image
        y="87.652756"
        x="-74.142174"
@@ -3408,40 +3409,40 @@
        id="text111-1-8-9-0-6"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8">16</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.94181,948.73931)"
        id="text111-35-9-7-6-2-3"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3">8</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7"> mg/L</tspan></tspan></text>
     <image
        y="87.752174"
@@ -3563,36 +3564,36 @@
        id="text111-1-6-7-9-3"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0-7"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9-8">32 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,205.05245,843.42029)"
        id="text111-35-9-2-5-9-7"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6-3)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4-4"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5-1">8 mg/L</tspan></tspan></text>
     <image
        y="-11.566015"
@@ -3610,7 +3611,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0-1)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5-2"
@@ -3622,13 +3623,13 @@
          id="tspan109-7-6-8-0-9-8"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9-3"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">32 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">32 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4-7)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1-8"
@@ -3640,9 +3641,9 @@
          id="tspan109-62-6-5-8-6-4-0"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9-4"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">8 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">8 mg/L</tspan></tspan></text>
     <image
        y="87.652771"
        x="-285.80884"
@@ -3661,40 +3662,40 @@
        id="text111-1-8-9-0-6-3"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5-9)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9-1"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8-4">32</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1-8"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,412.5862,844.66407)"
        id="text111-35-9-7-6-2-3-9"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4-6)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3-6"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3-7">64</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7-7"> mg/L</tspan></tspan></text>
     <image
        transform="translate(762.25593,1058.542)"
@@ -3816,36 +3817,36 @@
        id="text111-1-6-7-9-3-0"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6-1-9)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0-7-2"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9-8-1">16 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,205.2843,1155.646)"
        id="text111-35-9-2-5-9-7-7"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6-3-9)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4-4-5"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5-1-1">2 mg/L</tspan></tspan></text>
     <image
        transform="translate(865.14055,959.50857)"
@@ -3863,7 +3864,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0-1-0)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5-2-4"
@@ -3875,13 +3876,13 @@
          id="tspan109-7-6-8-0-9-8-6"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9-3-9"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4-7-1)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1-8-4"
@@ -3893,9 +3894,9 @@
          id="tspan109-62-6-5-8-6-4-0-2"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9-4-2"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">1 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">1 mg/L</tspan></tspan></text>
     <image
        transform="translate(968.0251,860.28979)"
        clip-path="url(#clipPath3453-7)"
@@ -3914,40 +3915,40 @@
        id="text111-1-8-9-0-6-3-5"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5-9-3)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9-1-4"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8-4-2">8</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1-8-2"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.34727,1156.8898)"
        id="text111-35-9-7-6-2-3-9-1"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4-6-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3-6-7"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3-7-2">1</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7-7-4"> mg/L</tspan></tspan></text>
     <image
        transform="translate(874.70387,954.4667)"
@@ -4069,36 +4070,36 @@
        id="text111-1-6-7-9-3-0-2"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6-1-9-7)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0-7-2-2"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9-8-1-9">16 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,202.87033,1051.5708)"
        id="text111-35-9-2-5-9-7-7-7"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6-3-9-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4-4-5-5"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5-1-1-6">1 mg/L</tspan></tspan></text>
     <image
        transform="translate(977.58849,855.43331)"
@@ -4116,7 +4117,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0-1-0-6)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5-2-4-6"
@@ -4128,13 +4129,13 @@
          id="tspan109-7-6-8-0-9-8-6-8"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9-3-9-7"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">16 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">16 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4-7-1-1)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1-8-4-9"
@@ -4146,9 +4147,9 @@
          id="tspan109-62-6-5-8-6-4-0-2-0"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9-4-2-3"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <image
        transform="translate(1080.473,756.21453)"
        clip-path="url(#clipPath3841-6)"
@@ -4167,40 +4168,40 @@
        id="text111-1-8-9-0-6-3-5-0"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5-9-3-1)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9-1-4-0"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8-4-2-3">8</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1-8-2-4"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.57913,1052.8146)"
        id="text111-35-9-7-6-2-3-9-1-6"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4-6-1-5)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3-6-7-6"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3-7-2-0">1</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7-7-4-2"> mg/L</tspan></tspan></text>
     <image
        y="87.752167"
@@ -4322,36 +4323,36 @@
        id="text111-1-6-7-9-3-0-2-8"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6-1-9-7-4)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0-7-2-2-3"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9-8-1-9-8">2 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,203.63137,739.34507)"
        id="text111-35-9-2-5-9-7-7-7-5"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6-3-9-1-3)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4-4-5-5-2"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5-1-1-6-2">1 mg/L</tspan></tspan></text>
     <image
        y="186.78557"
@@ -4369,7 +4370,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0-1-0-6-3)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5-2-4-6-7"
@@ -4381,13 +4382,13 @@
          id="tspan109-7-6-8-0-9-8-6-8-9"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9-3-9-7-3"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4-7-1-1-7)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1-8-4-9-9"
@@ -4399,9 +4400,9 @@
          id="tspan109-62-6-5-8-6-4-0-2-0-2"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9-4-2-3-8"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">1 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">1 mg/L</tspan></tspan></text>
     <image
        y="286.00433"
        x="-792.474"
@@ -4420,46 +4421,46 @@
        id="text111-1-8-9-0-6-3-5-0-7"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5-9-3-1-5)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9-1-4-0-7"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8-4-2-3-6">0.25</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1-8-2-4-9"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,413.28186,740.58886)"
        id="text111-35-9-7-6-2-3-9-1-6-1"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4-6-1-5-9)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3-6-7-6-1"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3-7-2-0-9">8</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7-7-4-2-0"> mg/L</tspan></tspan></text>
     <g
        id="g13679">
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-402.75742"
          y="204.03072"
          id="text6944-3"
@@ -4471,25 +4472,25 @@
            id="tspan6942-6"
            x="-402.75742"
            y="204.03072"
-           style="font-size:5.64444447px;stroke-width:0.26458332">ATCC27853</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">ATCC27853</tspan></text>
       <text
          id="text6944-7-9"
          y="204.03072"
          x="-499.29932"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          xml:space="preserve"
          transform="rotate(-90)"
          inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
          inkscape:export-xdpi="300"
          inkscape:export-ydpi="300"><tspan
-           style="font-size:5.64444447px;stroke-width:0.26458332"
+           style="font-size:5.64444px;stroke-width:0.264583"
            y="204.03072"
            x="-499.29932"
            id="tspan6942-7-2"
            sodipodi:role="line">PAO1</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-603.47919"
          y="204.14096"
          id="text6944-7-3-0"
@@ -4501,11 +4502,11 @@
            id="tspan6942-7-9-3"
            x="-603.47919"
            y="204.14096"
-           style="font-size:5.64444447px;stroke-width:0.26458332">PA14</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">PA04/202</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-1018.3069"
          y="204.14096"
          id="text6944-7-3-5-5"
@@ -4516,11 +4517,11 @@
            id="tspan6942-7-9-7-5"
            x="-1018.3069"
            y="204.14096"
-           style="font-size:5.64444447px;stroke-width:0.26458332">K74</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">K74</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-913.8045"
          y="204.03348"
          id="text6944-7-3-4-4"
@@ -4531,11 +4532,11 @@
            id="tspan6942-7-9-1-7"
            x="-913.8045"
            y="204.03348"
-           style="font-size:5.64444447px;stroke-width:0.26458332">K58</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">K58</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-1224.5983"
          y="204.03348"
          id="text6944-7-3-4-3-3"
@@ -4546,11 +4547,11 @@
            id="tspan6942-7-9-1-3-1"
            x="-1224.5983"
            y="204.03348"
-           style="font-size:5.64444447px;stroke-width:0.26458332">E51</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">E51</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-1121.8823"
          y="204.03348"
          id="text6944-7-3-4-3-8-4"
@@ -4561,11 +4562,11 @@
            id="tspan6942-7-9-1-3-6-9"
            x="-1121.8823"
            y="204.03348"
-           style="font-size:5.64444447px;stroke-width:0.26458332">E15</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">E15</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-810.13397"
          y="204.03348"
          id="text6944-7-3-4-3-8-3-2"
@@ -4576,11 +4577,11 @@
            id="tspan6942-7-9-1-3-6-6-61"
            x="-810.13397"
            y="204.03348"
-           style="font-size:5.64444447px;stroke-width:0.26458332">A113</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">A113</tspan></text>
       <text
          transform="rotate(-90)"
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
          x="-706.85687"
          y="204.14096"
          id="text6944-7-3-4-3-8-3-5-7"
@@ -4591,7 +4592,7 @@
            id="tspan6942-7-9-1-3-6-6-6-7"
            x="-706.85687"
            y="204.14096"
-           style="font-size:5.64444447px;stroke-width:0.26458332">A112</tspan></text>
+           style="font-size:5.64444px;stroke-width:0.264583">A112</tspan></text>
     </g>
     <image
        transform="translate(1126.058,537.12348)"
@@ -4713,36 +4714,36 @@
        id="text111-1-6-7-9-3-0-2-8-1"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-8-4-6-1-9-7-4-2)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-9-4-0-7-2-2-3-3"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-2-8-9-8-1-9-8-3">2 mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,206.68616,634.22755)"
        id="text111-35-9-2-5-9-7-7-7-5-3"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-1-0-6-3-9-1-3-0)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-4-8-4-4-5-5-2-8"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-7-2-5-1-1-6-2-5">1 mg/L</tspan></tspan></text>
     <image
        y="186.78557"
@@ -4760,7 +4761,7 @@
     <text
        clip-path="url(#clipPath1550-4-1-7-7-0-1-0-6-3-3)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="-75.614632"
        y="574.32812"
        id="text111-1-9-5-8-5-2-4-6-7-9"
@@ -4772,13 +4773,13 @@
          id="tspan109-7-6-8-0-9-8-6-8-9-7"
          x="-75.614632"
          y="574.32812"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">RIF, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">RIF, ×MIC<tspan
    id="tspan11305-5-3-6-5-9-3-9-7-3-8"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">2 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">2 mg/L</tspan></tspan></text>
     <text
        clip-path="url(#clipPath1546-7-5-4-4-4-7-1-1-7-1)"
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        x="306.1304"
        y="237.94458"
        id="text111-35-9-8-2-6-1-8-4-9-9-2"
@@ -4790,9 +4791,9 @@
          id="tspan109-62-6-5-8-6-4-0-2-0-2-5"
          x="306.1304"
          y="237.94458"
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741">PMB, ×MIC<tspan
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521">PMB, ×MIC<tspan
    id="tspan11307-2-6-4-4-9-4-2-3-8-3"
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741">1 mg/L</tspan></tspan></text>
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521">1 mg/L</tspan></tspan></text>
     <image
        y="286.00433"
        x="-930.05731"
@@ -4811,62 +4812,57 @@
        id="text111-1-8-9-0-6-3-5-0-7-5"
        y="574.32812"
        x="-75.614632"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1550-4-11-1-1-5-9-3-1-5-8)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="574.32812"
          x="-75.614632"
          id="tspan109-7-5-9-3-9-1-4-0-7-6"
          sodipodi:role="line">RIF, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2621-0-4-8-4-2-3-6-8">0.25</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11305-5-9-7-9-1-8-2-4-9-4"> mg/L</tspan></tspan></text>
     <text
        transform="matrix(0.18438616,0.1818399,-0.1818399,0.18438616,412.9845,636.73172)"
        id="text111-35-9-7-6-2-3-9-1-6-1-8"
        y="237.94458"
        x="306.1304"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13520741"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:9px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#2e3436;fill-opacity:1;stroke:none;stroke-width:1.13521"
        xml:space="preserve"
        clip-path="url(#clipPath1546-7-9-8-0-4-6-1-5-9-8)"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:17.33333397px;line-height:9px;fill:#2e3436;stroke-width:1.13520741"
+         style="font-size:17.3333px;line-height:9px;fill:#2e3436;stroke-width:1.13521"
          y="237.94458"
          x="306.1304"
          id="tspan109-62-6-53-3-7-3-6-7-6-1-8"
          sodipodi:role="line">PMB, ×MIC<tspan
-   style="font-size:64.99999762%;baseline-shift:sub"
+   style="font-size:65%;baseline-shift:sub"
    id="tspan2619-7-4-3-7-2-0-9-3">8</tspan><tspan
-   style="font-size:64.99999762%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13520741"
+   style="font-size:65%;baseline-shift:sub;fill:#2e3436;stroke-width:1.13521"
    id="tspan11307-2-8-6-2-7-7-4-2-0-8"> mg/L</tspan></tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="-8.9977808"
        y="431.74979"
-       id="text5331"><tspan
-         sodipodi:role="line"
-         id="tspan5329"
-         x="-8.9977808"
-         y="434.10776"
-         style="stroke-width:0.26458332" /></text>
+       id="text5331" />
     <text
        id="text6944-3-7"
        y="350.89514"
        x="242.6693"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="350.89514"
          x="242.6693"
          id="tspan6942-6-5"
@@ -4875,12 +4871,12 @@
        id="text6944-3-7-5"
        y="350.89514"
        x="347.97339"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="350.89514"
          x="347.97339"
          id="tspan6942-6-5-0"
@@ -4889,12 +4885,12 @@
        id="text6944-3-7-5-5"
        y="350.89514"
        x="450.63147"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig1_PA.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="350.89514"
          x="450.63147"
          id="tspan6942-6-5-0-7"
@@ -6693,12 +6689,12 @@
        id="text6944-3-7-8"
        y="662.04541"
        x="242.6693"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="662.04541"
          x="242.6693"
          id="tspan6942-6-5-5"
@@ -6707,12 +6703,12 @@
        id="text6944-3-7-5-50"
        y="662.04541"
        x="347.97336"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="662.04541"
          x="347.97336"
          id="tspan6942-6-5-0-1"
@@ -6721,12 +6717,12 @@
        id="text6944-3-7-5-5-2"
        y="662.04541"
        x="450.63144"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig2_Abaumanni.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="662.04541"
          x="450.63144"
          id="tspan6942-6-5-0-7-6"
@@ -6735,12 +6731,12 @@
        id="text6944-3-7-8-2"
        y="871.59619"
        x="242.6693"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="871.59619"
          x="242.6693"
          id="tspan6942-6-5-5-6"
@@ -6749,12 +6745,12 @@
        id="text6944-3-7-5-50-9"
        y="871.59619"
        x="347.97333"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="871.59619"
          x="347.97333"
          id="tspan6942-6-5-0-1-1"
@@ -6763,12 +6759,12 @@
        id="text6944-3-7-5-5-2-3"
        y="871.59619"
        x="450.63141"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig3_Klebsiella.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="871.59619"
          x="450.63141"
          id="tspan6942-6-5-0-7-6-3"
@@ -6777,12 +6773,12 @@
        id="text6944-3-7-8-2-1"
        y="1079.559"
        x="242.6693"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="1079.559"
          x="242.6693"
          id="tspan6942-6-5-5-6-5"
@@ -6791,12 +6787,12 @@
        id="text6944-3-7-5-50-9-2"
        y="1079.559"
        x="347.9733"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="1079.559"
          x="347.9733"
          id="tspan6942-6-5-0-1-1-6"
@@ -6805,12 +6801,12 @@
        id="text6944-3-7-5-5-2-3-9"
        y="1079.559"
        x="450.63138"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:2.3812499px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:2.38125px;font-family:Helvetica;-inkscape-font-specification:Helvetica;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
        xml:space="preserve"
        inkscape:export-filename="/home/varik/work/manuscripts/pmb_rif/fig/png/SFig4_Enterobacter.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
-         style="font-size:5.64444447px;stroke-width:0.26458332"
+         style="font-size:5.64444px;stroke-width:0.264583"
          y="1079.559"
          x="450.63138"
          id="tspan6942-6-5-0-7-6-3-4"
