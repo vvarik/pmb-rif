@@ -488,21 +488,29 @@ tmpFun = function (dat, name='CC') {
     mutate(`GO.ID` = sub('GO:', '', `GO.ID`)) 
 }
 
-tmpFun(tab) %>%
-  knitr::kable()
+#tmpFun(tab) %>%
+#  knitr::kable()
   # knitr::kable(format='latex', booktabs=T) %>% 
   # kableExtra::save_kable('output/fig/table_cell_component.png', font='Verdana')
+# GO databases change over time, so we're using a saved (frozen) version here
 ```
+
+![](output/fig/table_cell_component.png)
+
 
 ### Biological process
 
 ```{r}
 # biological processes
-tmpFun(tab, 'BP') %>% 
-  knitr::kable()
+# tmpFun(tab, 'BP') %>% 
+  # knitr::kable()
   # knitr::kable(format='latex', booktabs=T) %>% 
   # kableExtra::save_kable('output/fig/table_biological_process.png', font='Verdana')
+# GO databases change over time, so we're using a saved (frozen) version here
 ```
+
+<img src="output/fig/table_biological_process.png" width="60%">
+
 
 ## Protein-protein interaction network
 
@@ -638,21 +646,28 @@ pltNSynergiesOfValidatedMutants()
 ## Table with _E. coli_ orthologs
 
 ```{r}
-getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% 
-  knitr::kable()
+#getValidHitTable() %>% addEcOrthologs() %>% .[,-'locus_pa'] %>% 
+  # knitr::kable()
   # knitr::kable(format='latex', booktabs=T) %>% 
   # kableExtra::save_kable('output/fig/table_valid_hit.png')
+# GO databases change over time, so we're using a saved (frozen) version here
 ```
+
+<img src="output/fig/table_valid_hit.png" width="90%">
 
 
 ## GO term table
 
 ```{r}
-getGoTermTable() %>% 
-  knitr::kable() 
+# getGoTermTable() %>% 
+  #knitr::kable() 
   #knitr::kable(format='latex', booktabs=T) %>% 
   #kableExtra::save_kable('output/fig/table_valid_hit_go.png', font='Verdana')
+# GO databases change over time, so we're using a saved (frozen) version here
 ```
+
+![](output/fig/table_valid_hit_go.png)
+
 
 # Selected five mutants
 
